@@ -9,7 +9,7 @@ package ca.gui.programming;
  *
  * @author alych
  */
-public class CAGUIProgramming {
+public class Home {
 
     /**
      * @param args the command line arguments
