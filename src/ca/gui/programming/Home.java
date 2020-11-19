@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -56,7 +57,7 @@ public class Home extends JFrame {
         left.setLayout(lLayout);
         
         left.setBackground(Color.black);
-        left.setBorder(BorderFactory.createLineBorder(Color.orange));
+        left.setBorder(BorderFactory.createLineBorder(Color.orange));        
         main.add(left);
         
         // RIGHT PANEL
@@ -68,6 +69,20 @@ public class Home extends JFrame {
         right.setBackground(Color.black);
         right.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.add(right);
+        
+        // BOTTOM PANEL
+        JPanel bottom = new JPanel();
+        JLabel b = new JLabel("2020© Alysson Chinque");
+
+        bottom.setBackground(Color.black);
+        bottom.setBorder(BorderFactory.createLineBorder(Color.orange));
+        b.setFont(new Font("Arial", Font.PLAIN, 12));
+        b.setForeground(new java.awt.Color(255, 204, 0));
+        
+        bottom.add(b);
+        this.add(bottom, BorderLayout.SOUTH);
+        
+        JTextField newPeople = new JTextField();
 
         this.add(main);
         
