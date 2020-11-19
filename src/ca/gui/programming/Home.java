@@ -5,10 +5,10 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -57,7 +57,23 @@ public class Home extends JFrame {
         left.setLayout(lLayout);
         
         left.setBackground(Color.black);
-        left.setBorder(BorderFactory.createLineBorder(Color.orange));        
+        left.setBorder(BorderFactory.createLineBorder(Color.orange));  
+        
+        // LINES OF LEFT PANEL
+        JLabel emp = new JLabel();
+        left.add(emp);
+        JLabel newPeople = new JLabel("                 ARE YOU NEW HERE?");
+        newPeople.setFont(new Font("Showcard Gothic", Font.PLAIN, 26));
+        newPeople.setForeground(new java.awt.Color(255, 204, 0));
+        left.add(newPeople, BorderLayout.CENTER);
+        JLabel empty = new JLabel();
+        left.add(empty);
+        JPanel but = new JPanel();
+        JButton reg = new JButton("REGISTER");
+        but.setBackground(Color.black);
+        but.add(reg, BorderLayout.CENTER);
+        left.add(but);
+        
         main.add(left);
         
         // RIGHT PANEL
@@ -81,8 +97,6 @@ public class Home extends JFrame {
         
         bottom.add(b);
         this.add(bottom, BorderLayout.SOUTH);
-        
-        JTextField newPeople = new JTextField();
 
         this.add(main);
         
