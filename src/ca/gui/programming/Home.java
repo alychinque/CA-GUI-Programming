@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,6 +36,7 @@ public class Home extends JFrame {
 
         //SET HEADER
         top.setBackground(Color.black);
+        top.setBorder(BorderFactory.createLineBorder(Color.orange));
         style.setFont(new Font("Showcard Gothic", Font.PLAIN, 48));
         style.setForeground(new java.awt.Color(255, 204, 0));
         
@@ -49,12 +51,22 @@ public class Home extends JFrame {
 
         // LEFT PANEL
         JPanel left = new JPanel();
-        left.setBackground(Color.green);
+        
+        GridLayout lLayout = new GridLayout(4, 1);
+        left.setLayout(lLayout);
+        
+        left.setBackground(Color.black);
+        left.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.add(left);
-
+        
         // RIGHT PANEL
         JPanel right = new JPanel();
-        right.setBackground(Color.blue);
+        
+        GridLayout rLayout = new GridLayout(4, 1);
+        right.setLayout(rLayout);
+        
+        right.setBackground(Color.black);
+        right.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.add(right);
 
         this.add(main);
