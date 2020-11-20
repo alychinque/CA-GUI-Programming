@@ -84,6 +84,22 @@ public class Home extends JFrame {
         
         right.setBackground(Color.black);
         right.setBorder(BorderFactory.createLineBorder(Color.orange));
+        
+        // LINES OF RIGHT PANEL
+        JLabel emp0 = new JLabel();
+        right.add(emp0);
+        JLabel oldPeople = new JLabel("                   NO... SO LET'S LOG IN");
+        oldPeople.setFont(new Font("Showcard Gothic", Font.PLAIN, 26));
+        oldPeople.setForeground(new java.awt.Color(255, 204, 0));
+        right.add(oldPeople, BorderLayout.CENTER);
+        JLabel emp1 = new JLabel();
+        right.add(emp1);
+        JPanel but0 = new JPanel();
+        JButton log = new JButton("LOG IN");
+        but0.setBackground(Color.black);
+        but0.add(log, BorderLayout.CENTER);
+        right.add(but0);
+        
         main.add(right);
         
         // BOTTOM PANEL
