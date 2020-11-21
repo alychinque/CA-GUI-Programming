@@ -16,7 +16,13 @@ public class User {
     private String email;
     private String password;
 
-   
+    public User(String firstName, String surname, int phone, String email, String password) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+    }
     
     
 }
