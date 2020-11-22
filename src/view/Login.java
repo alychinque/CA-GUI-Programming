@@ -25,6 +25,7 @@ public class Login extends JFrame {
 
     JComboBox combo;
     JPanel left;
+    JPanel right;
     
     public void Login() {
         this.setTitle("Style Barber Shop - login");
@@ -97,6 +98,17 @@ public class Login extends JFrame {
         left.add(loginC);
         
         this.add(left);
+        
+        //CREATED RIGHT PANEL AND STYLED IT
+        right = new JPanel();
+        right.setLayout(null);
+        right.setBackground(Color.black);
+        right.setBorder(BorderFactory.createLineBorder(Color.orange));
+        right.setBounds(448, 110, 446, 434);  
+        
+        
+        this.add(right);
+        
         
         // FOOTER PANEL
         JPanel footer = new JPanel();
