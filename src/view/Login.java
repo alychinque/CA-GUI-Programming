@@ -28,9 +28,8 @@ public class Login extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
+        this.setLayout(null);
+        
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
