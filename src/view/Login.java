@@ -8,7 +8,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,7 +17,7 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class Login extends JFrame {
 
@@ -55,19 +54,16 @@ public class Login extends JFrame {
         choice.setBorder(BorderFactory.createLineBorder(Color.orange));
         choice.setBackground(Color.black);
         choice.add(combo);
-        this.add(choice, BorderLayout.CENTER);
-        
-        // BOTTOM PANEL
-        JPanel bottom = new JPanel();
+        this.add(choice, BorderLayout.CENTER);        
+        // FOOTER PANEL
+        JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
-
-        bottom.setBackground(Color.black);
-        bottom.setBorder(BorderFactory.createLineBorder(Color.orange));
+        footer.setBackground(Color.black);
+        footer.setBorder(BorderFactory.createLineBorder(Color.orange));
         copy.setFont(new Font("Arial", Font.PLAIN, 12));
         copy.setForeground(new java.awt.Color(255, 204, 0));
-        
-        bottom.add(copy);
-        this.add(bottom, BorderLayout.SOUTH);
+        footer.add(copy);
+        this.add(footer, BorderLayout.SOUTH);
         
         this.validate();
         this.repaint();

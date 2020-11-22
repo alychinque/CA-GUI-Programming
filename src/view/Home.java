@@ -110,15 +110,13 @@ public class Home extends JFrame {
         
         main.add(right);
         
-        // BOTTOM PANEL
+        // FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
-
         footer.setBackground(Color.black);
         footer.setBorder(BorderFactory.createLineBorder(Color.orange));
         copy.setFont(new Font("Arial", Font.PLAIN, 12));
         copy.setForeground(new java.awt.Color(255, 204, 0));
-        
         footer.add(copy);
         this.add(footer, BorderLayout.SOUTH);
 
