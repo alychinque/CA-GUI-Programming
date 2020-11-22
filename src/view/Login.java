@@ -144,7 +144,8 @@ public class Login extends JFrame {
         copy.setFont(new Font("Arial", Font.PLAIN, 12));
         copy.setForeground(new java.awt.Color(255, 204, 0));
         footer.add(copy);
-        this.add(footer, BorderLayout.SOUTH);
+        footer.setBounds(0, 544, 894, 27);
+        this.add(footer);
         
         this.validate();
         this.repaint();
