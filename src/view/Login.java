@@ -20,11 +20,12 @@ import javax.swing.WindowConstants;
  */
 public class Login extends JFrame {
 
-    public Login() {
+    public void Login() {
+        System.out.println("It's getting in here");
         this.setTitle("Style Barber Shop - login");
         this.setSize(900, 600);
-        this.setResizable(false);
         this.setVisible(true);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -40,6 +41,8 @@ public class Login extends JFrame {
         top.setBorder(BorderFactory.createLineBorder(Color.orange));
         style.setFont(new Font("Showcard Gothic", Font.PLAIN, 48));
         style.setForeground(new java.awt.Color(255, 204, 0));
+        //ADDED LABEL TO PANEL AND PANEL TO FRAME
+        top.add(style);
+        this.add(top, BorderLayout.PAGE_START);
     }
-
 }
