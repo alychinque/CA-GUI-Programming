@@ -57,9 +57,19 @@ public class Login extends JFrame {
         choice.add(combo);
         this.add(choice, BorderLayout.CENTER);
         
+        // BOTTOM PANEL
+        JPanel bottom = new JPanel();
+        JLabel copy = new JLabel("2020© Alysson Chinque");
+
+        bottom.setBackground(Color.black);
+        bottom.setBorder(BorderFactory.createLineBorder(Color.orange));
+        copy.setFont(new Font("Arial", Font.PLAIN, 12));
+        copy.setForeground(new java.awt.Color(255, 204, 0));
         
+        bottom.add(copy);
+        this.add(bottom, BorderLayout.SOUTH);
         
-        
-        
+        this.validate();
+        this.repaint();
     }
 }
