@@ -22,6 +22,7 @@ import javax.swing.WindowConstants;
 public class Login extends JFrame {
 
     JComboBox combo;
+    JPanel left;
     
     public void Login() {
         this.setTitle("Style Barber Shop - login");
@@ -59,6 +60,14 @@ public class Login extends JFrame {
         choice.setBounds(0, 72, 894, 38);
         this.add(choice);      
         
+        //CREATED LEFT PANEL AND STYLED IT
+        left = new JPanel();
+        left.setLayout(null);
+        left.setBackground(Color.black);
+        left.setBorder(BorderFactory.createLineBorder(Color.orange));
+        left.setBounds(0, 110, 448, 434); 
+        
+        this.add(left);
         
         // FOOTER PANEL
         JPanel footer = new JPanel();
