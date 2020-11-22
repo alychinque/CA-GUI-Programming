@@ -5,17 +5,34 @@
  */
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.WindowConstants;
+import view.Home;
 import view.Login;
 
 /**
  *
  * @author alych
  */
-public class HomeController {
-    private final Login view;
+public class HomeController implements ActionListener {
+    private final Home view;
 
-    public HomeController(Login view) {
+    public HomeController(Home view) {
         this.view = view;
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+       
+        if (e.getActionCommand().equals("login")) {
+            this.view.setVisible(false);
+            Login lg = new Login();
+            lg.Login();
+//        }else if(e.getActionCommand().equals("reg")){
+//            home.setVisible(false);
+//            Register reg = new Register();
+//            reg.Register();
+        }
     }
     
 }
