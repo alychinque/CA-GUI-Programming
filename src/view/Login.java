@@ -8,7 +8,9 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,7 +23,6 @@ import javax.swing.WindowConstants;
 public class Login extends JFrame {
 
     public void Login() {
-        System.out.println("It's getting in here");
         this.setTitle("Style Barber Shop - login");
         this.setSize(900, 600);
         this.setVisible(true);
@@ -44,5 +45,21 @@ public class Login extends JFrame {
         //ADDED LABEL TO PANEL AND PANEL TO FRAME
         top.add(style);
         this.add(top, BorderLayout.PAGE_START);
+        
+        //CREATED PANEL OF CHOICE
+        JPanel choice = new JPanel();
+        JComboBox combo;
+        String[] option = {"CUSTOMER", "BARBER"};
+        combo = new JComboBox(option);
+//        combo.addActionListener((ActionListener) this);
+        choice.setBorder(BorderFactory.createLineBorder(Color.orange));
+        choice.setBackground(Color.black);
+        choice.add(combo);
+        this.add(choice, BorderLayout.CENTER);
+        
+        
+        
+        
+        
     }
 }
