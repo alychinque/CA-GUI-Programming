@@ -106,6 +106,32 @@ public class Login extends JFrame {
         right.setBorder(BorderFactory.createLineBorder(Color.orange));
         right.setBounds(448, 110, 446, 434);  
         
+        //BARBER LOGIN
+        JLabel barber = new JLabel("BARBER");
+        barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
+        barber.setForeground(new java.awt.Color(255, 204, 0));
+        barber.setBounds(150, 90, 250, 40);
+        right.add(barber);
+        
+        JLabel emailB = new JLabel("EMAIL:");
+        emailB.setBounds(120, 150, 200, 30);
+        right.add(emailB);
+        
+        JTextField emailBarber = new JTextField(10);
+        emailBarber.setBounds(120, 180, 200, 30);
+        right.add(emailBarber);
+        
+        JLabel passB = new JLabel("PASSWORD:");
+        passB.setBounds(120, 240, 200, 30);
+        right.add(passB);
+        
+        JTextField passBarber = new JTextField(10);
+        passBarber.setBounds(120, 270, 200, 30);
+        right.add(passBarber);
+        
+        JButton loginB = new JButton("LOG IN");
+        loginB.setBounds(170, 350, 100, 20);
+        right.add(loginB);
         
         this.add(right);
         
