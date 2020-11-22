@@ -21,6 +21,8 @@ import javax.swing.WindowConstants;
  */
 public class Login extends JFrame {
 
+    JComboBox combo;
+    
     public void Login() {
         this.setTitle("Style Barber Shop - login");
         this.setSize(900, 600);
@@ -47,14 +49,17 @@ public class Login extends JFrame {
         
         //CREATED PANEL OF CHOICE
         JPanel choice = new JPanel();
-        JComboBox combo;
         String[] option = {"CUSTOMER", "BARBER"};
         combo = new JComboBox(option);
+        combo.setSelectedIndex(0);
 //        combo.addActionListener((ActionListener) this);
         choice.setBorder(BorderFactory.createLineBorder(Color.orange));
         choice.setBackground(Color.black);
         choice.add(combo);
-        this.add(choice, BorderLayout.CENTER);        
+        choice.setBounds(0, 72, 894, 38);
+        this.add(choice);      
+        
+        
         // FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
