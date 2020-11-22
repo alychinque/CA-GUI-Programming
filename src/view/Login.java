@@ -41,8 +41,9 @@ public class Login extends JFrame {
         style.setFont(new Font("Showcard Gothic", Font.PLAIN, 48));
         style.setForeground(new java.awt.Color(255, 204, 0));
         //ADDED LABEL TO PANEL AND PANEL TO FRAME
+        top.setBounds(0, 0, 894, 72);
         top.add(style);
-        this.add(top, BorderLayout.PAGE_START);
+        this.add(top);
         
         //CREATED PANEL OF CHOICE
         JPanel choice = new JPanel();
