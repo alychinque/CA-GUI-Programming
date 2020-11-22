@@ -1,5 +1,6 @@
 package view;
 
+import controller.HomeController;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,7 +14,7 @@ import javax.swing.WindowConstants;
 
 /**
  *
- * @author alychinque
+ * @author Alysson Chinque
  */
 public class Home extends JFrame {
 
@@ -29,6 +30,8 @@ public class Home extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        
+        HomeController controller = new HomeController(this);
 
         BorderLayout frameLayout = new BorderLayout();
         this.setLayout(frameLayout);
@@ -96,11 +99,14 @@ public class Home extends JFrame {
         right.add(oldPeople, BorderLayout.CENTER);
         JLabel emp1 = new JLabel();
         right.add(emp1);
-        JPanel but0 = new JPanel();
-        JButton log = new JButton("LOG IN");
-        but0.setBackground(Color.black);
-        but0.add(log, BorderLayout.CENTER);
-        right.add(but0);
+        JPanel butPanel = new JPanel();
+        JButton login = new JButton("LOG IN");
+        butPanel.setBackground(Color.black);
+        butPanel.add(login, BorderLayout.CENTER);
+        login.setActionCommand("login");
+        login.addActionListener(controller);
+        
+        right.add(butPanel);
         
         main.add(right);
         
