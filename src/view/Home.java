@@ -111,16 +111,16 @@ public class Home extends JFrame {
         main.add(right);
         
         // BOTTOM PANEL
-        JPanel bottom = new JPanel();
-        JLabel b = new JLabel("2020© Alysson Chinque");
+        JPanel footer = new JPanel();
+        JLabel copy = new JLabel("2020© Alysson Chinque");
 
-        bottom.setBackground(Color.black);
-        bottom.setBorder(BorderFactory.createLineBorder(Color.orange));
-        b.setFont(new Font("Arial", Font.PLAIN, 12));
-        b.setForeground(new java.awt.Color(255, 204, 0));
+        footer.setBackground(Color.black);
+        footer.setBorder(BorderFactory.createLineBorder(Color.orange));
+        copy.setFont(new Font("Arial", Font.PLAIN, 12));
+        copy.setForeground(new java.awt.Color(255, 204, 0));
         
-        bottom.add(b);
-        this.add(bottom, BorderLayout.SOUTH);
+        footer.add(copy);
+        this.add(footer, BorderLayout.SOUTH);
 
         this.add(main);
         
