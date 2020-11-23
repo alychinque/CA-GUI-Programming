@@ -140,8 +140,8 @@ public class Login extends JFrame{
 
         this.add(right);
 
+        //BACKGROUND PANEL
         JPanel background = new JPanel();
-        background.setLayout(null);
         background.setBackground(Color.black);
         background.setBorder(BorderFactory.createLineBorder(Color.orange));
         background.setBounds(0, 110, 894, 434);
