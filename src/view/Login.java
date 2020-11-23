@@ -23,7 +23,7 @@ import javax.swing.WindowConstants;
  *
  * @author Alysson Chinque
  */
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame{
 
     JComboBox combo;
     JPanel left;
@@ -56,9 +56,9 @@ public class Login extends JFrame implements ActionListener {
         JPanel choice = new JPanel();
         String[] option = {"CUSTOMER", "BARBER"};
         combo = new JComboBox(option);
-        combo.setSelectedIndex(0);
-        //LoginController loginCont = new LoginController(this);
-        combo.addActionListener(this);
+        setCombo(combo);
+        LoginController loginCont = new LoginController(this);
+        combo.addActionListener(loginCont);
         combo.setActionCommand("combo");
 
         choice.setBorder(BorderFactory.createLineBorder(Color.orange));
@@ -163,17 +163,33 @@ public class Login extends JFrame implements ActionListener {
         this.validate();
         this.repaint();
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("combo")) {
-            if (combo.getSelectedItem() == "CUSTOMER") {
-                left.setVisible(true);
-                right.setVisible(false);
-            } else {
-                right.setVisible(true);
-                left.setVisible(false);
-            }
-        }
+    
+    public void changeVisibilityCustomer(boolean visible){
+        left.setVisible(visible);
     }
+    
+    public void changeVisibilityBarber(boolean visible){
+        right.setVisible(visible);
+    }
+
+    public String getCombo() {
+        return combo.getSelectedItem().toString();
+    }
+
+    public void setCombo(JComboBox combo) {
+        this.combo = combo;
+    }
+
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//        if (e.getActionCommand().equals("combo")) {
+//            if (combo.getSelectedItem() == "CUSTOMER") {
+//                left.setVisible(true);
+//                right.setVisible(false);
+//            } else {
+//                right.setVisible(true);
+//                left.setVisible(false);
+//            }
+//        }
+//    }
 }
