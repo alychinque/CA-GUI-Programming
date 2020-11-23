@@ -77,6 +77,8 @@ public class Home extends JFrame {
         JButton reg = new JButton("REGISTER");
         but.setBackground(Color.black);
         but.add(reg, BorderLayout.CENTER);
+        reg.setActionCommand("reg");
+        reg.addActionListener(controller);
         left.add(but);
         
         main.add(left);

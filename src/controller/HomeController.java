@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.Home;
 import view.Login;
+import view.Registration;
 
 /**
  *
@@ -27,10 +28,10 @@ public class HomeController implements ActionListener {
             this.view.setVisible(false);
             Login lg = new Login();
             lg.Login();
-//        }else if(e.getActionCommand().equals("reg")){
-//            home.setVisible(false);
-//            Register reg = new Register();
-//            reg.Register();
+        }else if(e.getActionCommand().equals("reg")){
+            this.view.setVisible(false);
+            Registration reg = new Registration();
+            reg.Registration();
         }
     }
     
