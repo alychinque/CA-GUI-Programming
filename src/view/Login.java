@@ -5,9 +5,11 @@
  */
 package view;
 
-import java.awt.BorderLayout;
+import controller.LoginController;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -21,12 +23,12 @@ import javax.swing.WindowConstants;
  *
  * @author Alysson Chinque
  */
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
 
     JComboBox combo;
     JPanel left;
     JPanel right;
-    
+
     public void Login() {
         this.setTitle("Style Barber Shop - login");
         this.setSize(900, 600);
@@ -35,7 +37,6 @@ public class Login extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
-        
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -50,92 +51,104 @@ public class Login extends JFrame {
         top.setBounds(0, 0, 894, 72);
         top.add(style);
         this.add(top);
-        
+
         //CREATED PANEL OF CHOICE
         JPanel choice = new JPanel();
         String[] option = {"CUSTOMER", "BARBER"};
         combo = new JComboBox(option);
         combo.setSelectedIndex(0);
-//        combo.addActionListener((ActionListener) this);
+        //LoginController loginCont = new LoginController(this);
+        combo.addActionListener(this);
+        combo.setActionCommand("combo");
+
         choice.setBorder(BorderFactory.createLineBorder(Color.orange));
         choice.setBackground(Color.black);
         choice.add(combo);
         choice.setBounds(0, 72, 894, 38);
-        this.add(choice);      
-        
+        this.add(choice);
+
         //CREATED LEFT PANEL AND STYLED IT
         left = new JPanel();
         left.setLayout(null);
         left.setBackground(Color.black);
         left.setBorder(BorderFactory.createLineBorder(Color.orange));
-        left.setBounds(0, 110, 448, 434); 
-        
+        left.setBounds(0, 110, 448, 434);
+
         //CUSTOMER LOGIN
         JLabel customer = new JLabel("CUSTOMER");
         customer.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         customer.setForeground(new java.awt.Color(255, 204, 0));
         customer.setBounds(150, 90, 250, 40);
         left.add(customer);
-        
+
         JLabel emailC = new JLabel("EMAIL:");
         emailC.setBounds(120, 150, 200, 30);
         left.add(emailC);
-        
+
         JTextField emailCustomer = new JTextField(10);
         emailCustomer.setBounds(120, 180, 200, 30);
         left.add(emailCustomer);
-        
+
         JLabel passC = new JLabel("PASSWORD:");
         passC.setBounds(120, 240, 200, 30);
         left.add(passC);
-        
+
         JTextField passCustomer = new JTextField(10);
         passCustomer.setBounds(120, 270, 200, 30);
         left.add(passCustomer);
-        
+
+        //BUTTON LOGIN CUSTOMER
         JButton loginC = new JButton("LOG IN");
         loginC.setBounds(170, 350, 100, 20);
         left.add(loginC);
-        
+
         this.add(left);
-        
+
         //CREATED RIGHT PANEL AND STYLED IT
         right = new JPanel();
+        right.setVisible(false);
         right.setLayout(null);
         right.setBackground(Color.black);
         right.setBorder(BorderFactory.createLineBorder(Color.orange));
-        right.setBounds(448, 110, 446, 434);  
-        
+        right.setBounds(448, 110, 446, 434);
+
         //BARBER LOGIN
         JLabel barber = new JLabel("BARBER");
         barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         barber.setForeground(new java.awt.Color(255, 204, 0));
         barber.setBounds(150, 90, 250, 40);
         right.add(barber);
-        
+
         JLabel emailB = new JLabel("EMAIL:");
         emailB.setBounds(120, 150, 200, 30);
         right.add(emailB);
-        
+
         JTextField emailBarber = new JTextField(10);
         emailBarber.setBounds(120, 180, 200, 30);
         right.add(emailBarber);
-        
+
         JLabel passB = new JLabel("PASSWORD:");
         passB.setBounds(120, 240, 200, 30);
         right.add(passB);
-        
+
         JTextField passBarber = new JTextField(10);
         passBarber.setBounds(120, 270, 200, 30);
         right.add(passBarber);
-        
+
+        //BUTTON LOGIN BARBER
         JButton loginB = new JButton("LOG IN");
         loginB.setBounds(170, 350, 100, 20);
         right.add(loginB);
-        
+
         this.add(right);
-        
-        
+
+        JPanel background = new JPanel();
+        background.setLayout(null);
+        background.setBackground(Color.black);
+        background.setBorder(BorderFactory.createLineBorder(Color.orange));
+        background.setBounds(0, 110, 894, 434);
+        this.add(background);
+
         // FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
@@ -146,8 +159,21 @@ public class Login extends JFrame {
         footer.add(copy);
         footer.setBounds(0, 544, 894, 27);
         this.add(footer);
-        
+
         this.validate();
         this.repaint();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("combo")) {
+            if (combo.getSelectedItem() == "CUSTOMER") {
+                left.setVisible(true);
+                right.setVisible(false);
+            } else {
+                right.setVisible(true);
+                left.setVisible(false);
+            }
+        }
     }
 }
