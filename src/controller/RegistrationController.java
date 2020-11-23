@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.Home;
 import view.Registration;
 
 /**
@@ -22,7 +23,11 @@ public class RegistrationController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getActionCommand().equals("back")){
+            Home home = new Home();
+            this.view.setVisible(false);
+            home.setVisible(true);
+        }
     }
     
     

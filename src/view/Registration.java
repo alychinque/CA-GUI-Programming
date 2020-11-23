@@ -5,9 +5,11 @@
  */
 package view;
 
+import controller.RegistrationController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +29,8 @@ public class Registration extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
+        
+        RegistrationController regController = new RegistrationController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -44,7 +48,13 @@ public class Registration extends JFrame{
         
         
         
-        // FOOTER PANEL
+        // RETURN BUTTON AND FOOTER PANEL
+        JButton back = new JButton("BACK");
+        back.setBounds(15, 548, 80, 19);
+        this.add(back);
+        back.addActionListener(regController);
+        back.setActionCommand("back");
+        
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
         footer.setBackground(Color.black);
