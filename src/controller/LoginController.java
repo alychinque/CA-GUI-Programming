@@ -23,7 +23,16 @@ public class LoginController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if (e.getActionCommand().equals("combo")){
+            if(this.view.getCombo().equals("CUSTOMER")){
+                this.view.changeVisibilityCustomer(true);
+                this.view.changeVisibilityBarber(false);
+            }else{
+                this.view.changeVisibilityCustomer(false);
+                this.view.changeVisibilityBarber(true);
+            }
+        }
     }
     
 }
