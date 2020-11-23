@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.Home;
 import view.Login;
 
 /**
@@ -15,7 +16,7 @@ import view.Login;
  */
 public class LoginController implements ActionListener {
     private final Login view;
-
+    
     public LoginController(Login view) {
         this.view = view;
        
@@ -32,6 +33,10 @@ public class LoginController implements ActionListener {
                 this.view.changeVisibilityCustomer(false);
                 this.view.changeVisibilityBarber(true);
             }
+        }else if(e.getActionCommand().equals("back")){
+            Home home = new Home();
+            this.view.setVisible(false);
+            home.setVisible(true);
         }
     }
     

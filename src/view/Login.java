@@ -64,7 +64,7 @@ public class Login extends JFrame{
         choice.add(combo);
         choice.setBounds(0, 72, 894, 38);
         this.add(choice);
-
+                
         //CREATED LEFT PANEL AND STYLED IT
         left = new JPanel();
         left.setLayout(null);
@@ -147,7 +147,13 @@ public class Login extends JFrame{
         background.setBounds(0, 110, 894, 434);
         this.add(background);
 
-        // FOOTER PANEL
+        // RETURN BUTTON AND FOOTER PANEL
+        JButton back = new JButton("BACK");
+        back.setBounds(15, 548, 80, 19);
+        this.add(back);
+        back.addActionListener(loginCont);
+        back.setActionCommand("back");
+        
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
         footer.setBackground(Color.black);
@@ -177,17 +183,4 @@ public class Login extends JFrame{
     public void setCombo(JComboBox combo) {
         this.combo = combo;
     }
-
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//        if (e.getActionCommand().equals("combo")) {
-//            if (combo.getSelectedItem() == "CUSTOMER") {
-//                left.setVisible(true);
-//                right.setVisible(false);
-//            } else {
-//                right.setVisible(true);
-//                left.setVisible(false);
-//            }
-//        }
-//    }
 }
