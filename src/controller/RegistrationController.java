@@ -27,6 +27,10 @@ public class RegistrationController implements ActionListener{
             Home home = new Home();
             this.view.setVisible(false);
             home.setVisible(true);
+        }else if(e.getActionCommand().equals("customer")){
+            this.view.setBarberSection(false);
+        }else if(e.getActionCommand().equals("barber")){
+            this.view.setBarberSection(true);
         }
     }
     

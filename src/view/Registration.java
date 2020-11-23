@@ -26,8 +26,7 @@ import javax.swing.WindowConstants;
 public class Registration extends JFrame {
 
     JComboBox combo;
-    JPanel right;
-    JPanel left;
+    JPanel barberSection;
 
     public String getCombo() {
         return combo.getSelectedItem().toString();
@@ -115,21 +114,29 @@ public class Registration extends JFrame {
         JTextField password = new JTextField();
         password.setBounds(250, 220, 400, 27);
         main.add(password);
-        
+
+        //RADIO BUTTON TO SELECT BABER OR CUSTOMER
         JRadioButton customer = new JRadioButton("CUSTOMER");
-        customer.setBounds(410, 220, 30, 15);
+        customer.setBounds(670, 220, 100, 15);
         customer.setSelected(true);
+        customer.setBackground(Color.black);
+        customer.setForeground(new java.awt.Color(255, 204, 0));
+        customer.addActionListener(regController);
+        customer.setActionCommand("customer");
         JRadioButton barber = new JRadioButton("BARBER");
-        barber.setBounds(440, 220, 30, 15);
+        barber.addActionListener(regController);
+        barber.setActionCommand("barber");
+        barber.setBounds(770, 220, 100, 15);
+        barber.setBackground(Color.black);
+        barber.setForeground(new java.awt.Color(255, 204, 0));
         ButtonGroup group = new ButtonGroup();
         group.add(customer);
         group.add(barber);
-        
         main.add(customer);
         main.add(barber);
-        
+
         //BARBER SECTION
-        JPanel barberSection = new JPanel();
+        barberSection = new JPanel();
         barberSection.setBounds(4, 260, 886, 134);
         barberSection.setBackground(Color.black);
         barberSection.setLayout(null);
@@ -159,8 +166,7 @@ public class Registration extends JFrame {
         JButton register = new JButton("REGISTER");
         register.setBounds(400, 395, 100, 30);
         main.add(register);
-        
-        
+
         main.add(barberSection);
 
         this.add(main);
@@ -184,5 +190,13 @@ public class Registration extends JFrame {
 
         this.validate();
         this.repaint();
+    }
+
+    public JPanel getBarberSection() {
+        return barberSection;
+    }
+
+    public void setBarberSection(boolean barberSection) {
+        this.barberSection.setVisible(barberSection);
     }
 }
