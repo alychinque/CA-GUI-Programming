@@ -9,11 +9,13 @@ import controller.RegistrationController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -68,45 +70,45 @@ public class Registration extends JFrame {
         choice.setBorder(BorderFactory.createLineBorder(Color.orange));
         choice.setBackground(Color.black);
         choice.add(text);
-       
+
         choice.setBounds(0, 72, 894, 45);
         this.add(choice);
 
-        //BACKGROUND PANEL
+        //MAIN PANEL
         JPanel main = new JPanel();
         main.setBackground(Color.black);
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 110, 894, 434);
         main.setLayout(null);
-        
+
         JLabel firstNameL = new JLabel("FIRST NAME:");
         firstNameL.setBounds(150, 32, 200, 27);
         main.add(firstNameL);
         JTextField firstName = new JTextField();
         firstName.setBounds(250, 32, 400, 27);
         main.add(firstName);
-        
+
         JLabel surnameL = new JLabel("SURNAME:");
         surnameL.setBounds(150, 79, 200, 27);
         main.add(surnameL);
         JTextField surname = new JTextField();
         surname.setBounds(250, 79, 400, 27);
         main.add(surname);
-        
+
         JLabel phoneL = new JLabel("PHONE:");
         phoneL.setBounds(150, 126, 200, 27);
         main.add(phoneL);
         JTextField phone = new JTextField();
         phone.setBounds(250, 126, 400, 27);
         main.add(phone);
-        
+
         JLabel emailL = new JLabel("EMAIL:");
         emailL.setBounds(150, 173, 200, 27);
         main.add(emailL);
         JTextField email = new JTextField();
         email.setBounds(250, 173, 400, 27);
         main.add(email);
-        
+
         JLabel passwordL = new JLabel("PASSWORD:");
         passwordL.setBounds(150, 220, 200, 27);
         main.add(passwordL);
@@ -114,42 +116,53 @@ public class Registration extends JFrame {
         password.setBounds(250, 220, 400, 27);
         main.add(password);
         
+        JRadioButton customer = new JRadioButton("CUSTOMER");
+        customer.setBounds(410, 220, 30, 15);
+        customer.setSelected(true);
+        JRadioButton barber = new JRadioButton("BARBER");
+        barber.setBounds(440, 220, 30, 15);
+        ButtonGroup group = new ButtonGroup();
+        group.add(customer);
+        group.add(barber);
+        
+        main.add(customer);
+        main.add(barber);
+        
+        //BARBER SECTION
+        JPanel barberSection = new JPanel();
+        barberSection.setBounds(4, 260, 886, 134);
+        barberSection.setBackground(Color.black);
+        barberSection.setLayout(null);
+        barberSection.setVisible(false);
+
         JLabel barberShopL = new JLabel("BARBERSHOP:");
-        barberShopL.setBounds(150, 267, 200, 27);
-        main.add(barberShopL);
+        barberShopL.setBounds(146, 5, 200, 27);
+        barberSection.add(barberShopL);
         JTextField barberShop = new JTextField();
-        barberShop.setBounds(250, 267, 400, 27);
-        main.add(barberShop);
-        
+        barberShop.setBounds(246, 5, 400, 27);
+        barberSection.add(barberShop);
+
         JLabel addressL = new JLabel("ADDRESS:");
-        addressL.setBounds(150, 314, 200, 27);
-        main.add(addressL);
+        addressL.setBounds(146, 52, 200, 27);
+        barberSection.add(addressL);
         JTextField address = new JTextField();
-        address.setBounds(250, 314, 400, 27);
-        main.add(address);
-        
+        address.setBounds(246, 52, 400, 27);
+        barberSection.add(address);
+
         JLabel locationL = new JLabel("LOCATION:");
-        locationL.setBounds(150, 361, 200, 27);
-        main.add(locationL);
+        locationL.setBounds(146, 99, 200, 27);
+        barberSection.add(locationL);
         JTextField location = new JTextField();
-        location.setBounds(250, 361, 400, 27);
-        main.add(location);
-        
-        
-        
-        
+        location.setBounds(246, 99, 400, 27);
+        barberSection.add(location);
+
         JButton register = new JButton("REGISTER");
         register.setBounds(400, 395, 100, 30);
         main.add(register);
         
         
-        
-        
-        
-        
-        
-        
-        
+        main.add(barberSection);
+
         this.add(main);
 
         // RETURN BUTTON AND FOOTER PANEL
