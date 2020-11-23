@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
@@ -47,7 +48,7 @@ public class Registration extends JFrame {
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
-        JLabel style = new JLabel("STYLE BARBER SHOP - registration");
+        JLabel style = new JLabel("STYLE BARBER SHOP");
 
         //SET HEADER
         top.setBackground(Color.black);
@@ -76,6 +77,79 @@ public class Registration extends JFrame {
         main.setBackground(Color.black);
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 110, 894, 434);
+        main.setLayout(null);
+        
+        JLabel firstNameL = new JLabel("FIRST NAME:");
+        firstNameL.setBounds(150, 32, 200, 27);
+        main.add(firstNameL);
+        JTextField firstName = new JTextField();
+        firstName.setBounds(250, 32, 400, 27);
+        main.add(firstName);
+        
+        JLabel surnameL = new JLabel("SURNAME:");
+        surnameL.setBounds(150, 79, 200, 27);
+        main.add(surnameL);
+        JTextField surname = new JTextField();
+        surname.setBounds(250, 79, 400, 27);
+        main.add(surname);
+        
+        JLabel phoneL = new JLabel("PHONE:");
+        phoneL.setBounds(150, 126, 200, 27);
+        main.add(phoneL);
+        JTextField phone = new JTextField();
+        phone.setBounds(250, 126, 400, 27);
+        main.add(phone);
+        
+        JLabel emailL = new JLabel("EMAIL:");
+        emailL.setBounds(150, 173, 200, 27);
+        main.add(emailL);
+        JTextField email = new JTextField();
+        email.setBounds(250, 173, 400, 27);
+        main.add(email);
+        
+        JLabel passwordL = new JLabel("PASSWORD:");
+        passwordL.setBounds(150, 220, 200, 27);
+        main.add(passwordL);
+        JTextField password = new JTextField();
+        password.setBounds(250, 220, 400, 27);
+        main.add(password);
+        
+        JLabel barberShopL = new JLabel("BARBERSHOP:");
+        barberShopL.setBounds(150, 267, 200, 27);
+        main.add(barberShopL);
+        JTextField barberShop = new JTextField();
+        barberShop.setBounds(250, 267, 400, 27);
+        main.add(barberShop);
+        
+        JLabel addressL = new JLabel("ADDRESS:");
+        addressL.setBounds(150, 314, 200, 27);
+        main.add(addressL);
+        JTextField address = new JTextField();
+        address.setBounds(250, 314, 400, 27);
+        main.add(address);
+        
+        JLabel locationL = new JLabel("LOCATION:");
+        locationL.setBounds(150, 361, 200, 27);
+        main.add(locationL);
+        JTextField location = new JTextField();
+        location.setBounds(250, 361, 400, 27);
+        main.add(location);
+        
+        
+        
+        
+        JButton register = new JButton("REGISTER");
+        register.setBounds(400, 395, 100, 30);
+        main.add(register);
+        
+        
+        
+        
+        
+        
+        
+        
+        
         this.add(main);
 
         // RETURN BUTTON AND FOOTER PANEL
