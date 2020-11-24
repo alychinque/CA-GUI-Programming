@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.CustomerController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -33,6 +34,7 @@ public class Customer extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
+        CustomerController custController = new CustomerController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -95,6 +97,8 @@ public class Customer extends JFrame{
         main.add(nameT);
         JButton nameB = new JButton("SEARCH");
         nameB.setBounds(675, 150, 90, 20);
+        nameB.addActionListener(custController);
+        nameB.setActionCommand("name");
         main.add(nameB);
         
         //LOCATION LABEL, TEXTFIELD AND BUTTON
@@ -108,6 +112,8 @@ public class Customer extends JFrame{
         main.add(locationT);
         JButton locationB = new JButton("SEARCH");
         locationB.setBounds(675, 200, 90, 20);
+        locationB.addActionListener(custController);
+        locationB.setActionCommand("location");
         main.add(locationB);
         
         //COMPLAIN LABEL, TEXTFIELD AND BUTTON
@@ -116,12 +122,14 @@ public class Customer extends JFrame{
         complain.setForeground(new java.awt.Color(255, 204, 0));
         complain.setBounds(250, 240, 550, 30);
         main.add(complain);
-        JTextArea complainT = new JTextArea("");
+        JTextArea complainT = new JTextArea();
         complainT.setBounds(370, 280, 395, 120);
         //SET THE INSERTION POINT TO THE TOP OF THE FIELD
         main.add(complainT);
         JButton complainB = new JButton("SEND");
         complainB.setBounds(675, 410, 90, 20);
+        complainB.addActionListener(custController);
+        complainB.setActionCommand("complain");
         main.add(complainB);
         this.add(main);
         

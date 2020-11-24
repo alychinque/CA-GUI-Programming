@@ -23,7 +23,15 @@ public class CustomerController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getActionCommand().equals("name")){
+            System.out.println("Serched by name");
+        }else if(e.getActionCommand().equals("location")){
+            System.out.println("Serched by location");
+        }else if(e.getActionCommand().equals("complain")){
+            System.out.println("let a complain");
+        }else{
+            System.out.println("error");
+        }
     }
     
 }
