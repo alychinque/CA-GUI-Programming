@@ -11,6 +11,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -43,6 +46,25 @@ public class Customer extends JFrame{
         top.add(style);
         this.add(top);
         
+        //MENUBAR
+        JMenuBar myMenuBar = new JMenuBar();
+        this.setJMenuBar(myMenuBar);
+
+        JMenu myMenu = new JMenu("MENU");
+        myMenuBar.add(myMenu);
+
+        JMenuItem myBookings = new JMenuItem("My Bookings");
+        myMenu.add(myBookings);
+        JMenuItem logout = new JMenuItem("Logout");
+        myMenu.add(logout);
+        
+        JPanel main = new JPanel();
+        main.setLayout(null);
+        main.setBackground(Color.black);
+        main.setBorder(BorderFactory.createLineBorder(Color.orange));
+        main.setBounds(0, 72, 894, 449);
+        this.add(main);
+        
         
          // RETURN BUTTON AND FOOTER PANEL
         JButton back = new JButton("BACK");
@@ -58,7 +80,7 @@ public class Customer extends JFrame{
         copy.setFont(new Font("Arial", Font.PLAIN, 12));
         copy.setForeground(new java.awt.Color(255, 204, 0));
         footer.add(copy);
-        footer.setBounds(0, 544, 894, 27);
+        footer.setBounds(0, 521, 894, 27);
         this.add(footer);
 
         this.validate();

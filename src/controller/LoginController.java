@@ -41,6 +41,7 @@ public class LoginController implements ActionListener {
         }else if(e.getActionCommand().equals("customer")){
             Customer cust = new Customer();
             cust.Customer();
+            this.view.setVisible(false);
         }else if(e.getActionCommand().equals("barber")){
             
         }
