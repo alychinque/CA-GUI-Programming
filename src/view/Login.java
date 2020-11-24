@@ -98,6 +98,8 @@ public class Login extends JFrame{
         //BUTTON LOGIN CUSTOMER
         JButton loginC = new JButton("LOG IN");
         loginC.setBounds(170, 350, 100, 20);
+        loginC.addActionListener(loginCont);
+        loginC.setActionCommand("customer");
         left.add(loginC);
 
         this.add(left);
@@ -136,6 +138,8 @@ public class Login extends JFrame{
         //BUTTON LOGIN BARBER
         JButton loginB = new JButton("LOG IN");
         loginB.setBounds(170, 350, 100, 20);
+        loginB.addActionListener(loginCont);
+        loginB.setActionCommand("barber");
         right.add(loginB);
 
         this.add(right);
