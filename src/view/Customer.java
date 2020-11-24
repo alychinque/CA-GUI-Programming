@@ -58,11 +58,26 @@ public class Customer extends JFrame{
         JMenuItem logout = new JMenuItem("Logout");
         myMenu.add(logout);
         
+        //MAIN PANEL
         JPanel main = new JPanel();
         main.setLayout(null);
         main.setBackground(Color.black);
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 72, 894, 449);
+        
+        //WELCOME TEXT
+        JLabel welcome = new JLabel("Welcome");
+        welcome.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
+        welcome.setForeground(new java.awt.Color(255, 204, 0));
+        welcome.setBounds(50, 30, 150, 70);
+        main.add(welcome);
+        JLabel nameCust = new JLabel("receive the name");
+        nameCust.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
+        nameCust.setForeground(new java.awt.Color(255, 204, 0));
+        nameCust.setBounds(195, 30, 350, 70);
+        main.add(nameCust);
+        
+        
         this.add(main);
         
         
