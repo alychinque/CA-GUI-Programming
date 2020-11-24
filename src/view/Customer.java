@@ -133,14 +133,7 @@ public class Customer extends JFrame{
         main.add(complainB);
         this.add(main);
         
-        
-         // RETURN BUTTON AND FOOTER PANEL
-        JButton back = new JButton("BACK");
-        back.setBounds(15, 548, 80, 19);
-        this.add(back);
-        //back.addActionListener();
-        back.setActionCommand("back");
-        
+        //FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
         footer.setBackground(Color.black);
