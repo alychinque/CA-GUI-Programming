@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 /**
@@ -76,8 +78,51 @@ public class Customer extends JFrame{
         nameCust.setForeground(new java.awt.Color(255, 204, 0));
         nameCust.setBounds(195, 30, 350, 70);
         main.add(nameCust);
+        JLabel searchText = new JLabel("Search a baber by name or location:");
+        searchText.setFont(new Font("Arial", Font.PLAIN, 20));
+        searchText.setForeground(new java.awt.Color(255, 204, 0));
+        searchText.setBounds(50, 70, 400, 70);
+        main.add(searchText);
         
+        //NAME LABEL, TEXTFIELD AND BUTTON
+        JLabel name = new JLabel("NAME:");
+        name.setFont(new Font("Arial", Font.PLAIN, 20));
+        name.setForeground(new java.awt.Color(255, 204, 0));
+        name.setBounds(250, 140, 80, 30);
+        main.add(name);
+        JTextField nameT = new JTextField();
+        nameT.setBounds(370, 140, 300, 30);
+        main.add(nameT);
+        JButton nameB = new JButton("SEARCH");
+        nameB.setBounds(675, 150, 90, 20);
+        main.add(nameB);
         
+        //LOCATION LABEL, TEXTFIELD AND BUTTON
+        JLabel location = new JLabel("LOCATION:");
+        location.setFont(new Font("Arial", Font.PLAIN, 20));
+        location.setForeground(new java.awt.Color(255, 204, 0));
+        location.setBounds(250, 190, 120, 30);
+        main.add(location);
+        JTextField locationT = new JTextField("");
+        locationT.setBounds(370, 190, 300, 30);
+        main.add(locationT);
+        JButton locationB = new JButton("SEARCH");
+        locationB.setBounds(675, 200, 90, 20);
+        main.add(locationB);
+        
+        //COMPLAIN LABEL, TEXTFIELD AND BUTTON
+        JLabel complain = new JLabel("DO YOU HAVE ANY SUGGESTION OR COMPLAIN?");
+        complain.setFont(new Font("Arial", Font.PLAIN, 20));
+        complain.setForeground(new java.awt.Color(255, 204, 0));
+        complain.setBounds(250, 240, 550, 30);
+        main.add(complain);
+        JTextArea complainT = new JTextArea("");
+        complainT.setBounds(370, 280, 395, 120);
+        //SET THE INSERTION POINT TO THE TOP OF THE FIELD
+        main.add(complainT);
+        JButton complainB = new JButton("SEND");
+        complainB.setBounds(675, 410, 90, 20);
+        main.add(complainB);
         this.add(main);
         
         
