@@ -7,6 +7,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.BarberSearch;
 import view.Customer;
 
 /**
@@ -24,7 +25,9 @@ public class CustomerController implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("name")){
-            System.out.println("Serched by name");
+            this.view.setVisible(false);
+            BarberSearch bs = new BarberSearch();
+            bs.BarberSearch();
         }else if(e.getActionCommand().equals("location")){
             System.out.println("Serched by location");
         }else if(e.getActionCommand().equals("complain")){

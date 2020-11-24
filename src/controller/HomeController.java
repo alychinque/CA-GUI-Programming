@@ -13,7 +13,7 @@ import view.Registration;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class HomeController implements ActionListener {
     private final Home view;
