@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.BarberSController;
+import controller.LocationSController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -24,8 +24,7 @@ import javax.swing.WindowConstants;
  *
  * @author Alysson Chinque
  */
-public class BarberSearch extends JFrame{
-
+public class LocationSearch extends JFrame{
     String[] colNames = {"Module", "Lecture", "Days"};
         String[][]  data = {
             {"GUI", "Amilcar", "Friday"},
@@ -52,20 +51,17 @@ public class BarberSearch extends JFrame{
             {"Laboratory", "Aldana", "Tuesday"},
             {"GUI", "Amilcar", "Friday"},
             {"Laboratory", "Aldana", "Tuesday"},
-        
-            
-         
-    };
-        
-    public void BarberSearch() {
-         this.setTitle("Style Barber Shop - barber search");
+        };
+
+    public void LocationSearch() {
+        this.setTitle("Style Barber Shop - customer");
         this.setSize(900, 600);
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
-        BarberSController barberSController = new BarberSController(this);
+        LocationSController locationController = new LocationSController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -100,10 +96,10 @@ public class BarberSearch extends JFrame{
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 72, 894, 449);
         
-        JLabel nameBarber = new JLabel("Found + barber"); //ADD BARBER'S NAME HERE
+        JLabel nameBarber = new JLabel("Found barbers in + Location"); //ADD BARBER'S LOCATION HERE
         nameBarber.setForeground(new java.awt.Color(255, 204, 0));
         nameBarber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        nameBarber.setBounds(200, 70, 200, 30);
+        nameBarber.setBounds(200, 70, 400, 30);
         main.add(nameBarber);
         
         JTable tableBarbers = new JTable(data, colNames);
@@ -115,14 +111,17 @@ public class BarberSearch extends JFrame{
         scroll.setBackground(Color.red);
         main.add(scroll);
         this.add(main);
-               
-        // RETURN BUTTON AND FOOTER PANEL
+         
+        this.add(main);
+        
+         // RETURN BUTTON AND FOOTER PANEL
         JButton back = new JButton("BACK");
         back.setBounds(15, 525, 80, 19);
         this.add(back);
-        back.addActionListener(barberSController);
+        back.addActionListener(locationController);
         back.setActionCommand("back");
         
+        //FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
         footer.setBackground(Color.black);
@@ -136,6 +135,6 @@ public class BarberSearch extends JFrame{
         this.validate();
         this.repaint();
         
+        
     }
-    
 }

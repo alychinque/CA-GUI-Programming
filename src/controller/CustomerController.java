@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.BarberSearch;
 import view.Customer;
+import view.LocationSearch;
 
 /**
  *
@@ -29,7 +30,9 @@ public class CustomerController implements ActionListener{
             BarberSearch bs = new BarberSearch();
             bs.BarberSearch();
         }else if(e.getActionCommand().equals("location")){
-            System.out.println("Serched by location");
+            this.view.setVisible(false);
+            LocationSearch ls = new LocationSearch();
+            ls.LocationSearch();
         }else if(e.getActionCommand().equals("complain")){
             System.out.println("let a complain");
         }else{
