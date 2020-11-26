@@ -25,9 +25,9 @@ public class BarberSController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("chega aqui");
         if (e.getActionCommand().equals("back")) {
-            Customer customer = new Customer();
             this.view.setVisible(false);
-            customer.setVisible(true);
+            Customer customer = new Customer();
+            customer.Customer();
         }
     }
 
