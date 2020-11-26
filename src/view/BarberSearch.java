@@ -15,6 +15,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 
 /**
@@ -23,8 +25,39 @@ import javax.swing.WindowConstants;
  */
 public class BarberSearch extends JFrame{
 
+    String[] colNames = {"Module", "Lecture", "Days"};
+        String[][]  data = {
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            {"GUI", "Amilcar", "Friday"},
+            {"Laboratory", "Aldana", "Tuesday"},
+            
+            
+         
+    };
+        
     public void BarberSearch() {
-         this.setTitle("Style Barber Shop - customer");
+         this.setTitle("Style Barber Shop - barber search");
         this.setSize(900, 600);
         this.setVisible(true);
         this.setResizable(false);
@@ -66,10 +99,22 @@ public class BarberSearch extends JFrame{
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 72, 894, 449);
         
+        JLabel nameBarber = new JLabel("Found + barber"); //ADD NAMES'S BARBER HERE
+        nameBarber.setForeground(new java.awt.Color(255, 204, 0));
+        nameBarber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+        nameBarber.setBounds(200, 70, 200, 30);
+        main.add(nameBarber);
+        
+        JTable tableBarbers = new JTable(data, colNames);
+        tableBarbers.setFont(new Font("Showcard Gothic", Font.PLAIN, 16));
+        tableBarbers.setForeground(new java.awt.Color(255, 255, 255));
+        tableBarbers.setBackground(Color.black);
+        JScrollPane scroll = new JScrollPane(tableBarbers);
+        scroll.setBounds(200, 150, 500, 200);
+        scroll.setBackground(Color.red);
+        main.add(scroll);
         this.add(main);
-        
-        
-        
+               
         // RETURN BUTTON AND FOOTER PANEL
         JButton back = new JButton("BACK");
         back.setBounds(15, 525, 80, 19);
