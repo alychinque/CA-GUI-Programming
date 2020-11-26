@@ -23,14 +23,18 @@ public class RegistrationController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().equals("back")){
-            Home home = new Home();
-            this.view.setVisible(false);
-            home.setVisible(true);
-        }else if(e.getActionCommand().equals("customer")){
-            this.view.setBarberSection(false);
-        }else if(e.getActionCommand().equals("barber")){
-            this.view.setBarberSection(true);
+        switch (e.getActionCommand()) {
+            case "back":
+                Home home = new Home();
+                this.view.setVisible(false);
+                home.setVisible(true);
+                break;
+            case "customer":
+                this.view.setBarberSection(false);
+                break;
+            case "barber":
+                this.view.setBarberSection(true);
+                break;
         }
     }
     

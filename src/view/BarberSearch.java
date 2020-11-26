@@ -5,6 +5,7 @@
  */
 package view;
 
+import controller.BarberSController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -64,7 +65,7 @@ public class BarberSearch extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
-        //BarberSearchController barberSeController = new BarberSearchController(this);
+        BarberSController barberSController = new BarberSController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -119,7 +120,7 @@ public class BarberSearch extends JFrame{
         JButton back = new JButton("BACK");
         back.setBounds(15, 525, 80, 19);
         this.add(back);
-        //back.addActionListener();
+        back.addActionListener(barberSController);
         back.setActionCommand("back");
         
         JPanel footer = new JPanel();
