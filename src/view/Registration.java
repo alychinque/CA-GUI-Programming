@@ -28,14 +28,6 @@ public class Registration extends JFrame {
     JComboBox combo;
     JPanel barberSection;
 
-    public String getCombo() {
-        return combo.getSelectedItem().toString();
-    }
-
-    public void setCombo(JComboBox combo) {
-        this.combo = combo;
-    }
-
     public void Registration() {
         this.setTitle("Style Barber Shop - registration");
         this.setSize(900, 600);
@@ -159,9 +151,17 @@ public class Registration extends JFrame {
         JLabel locationL = new JLabel("LOCATION:");
         locationL.setBounds(146, 99, 200, 27);
         barberSection.add(locationL);
-        JTextField location = new JTextField();
-        location.setBounds(246, 99, 400, 27);
-        barberSection.add(location);
+       String[] option = {"Dublin1", "Dublin2", "Dublin3", "Dublin4",
+            "Dublin5", "Dublin6", "Dublin7", "Dublin8",
+            "Dublin9", "Dublin10", "Dublin11", "Dublin12",
+            "Dublin13", "Dublin14", "Dublin15", "Dublin16",
+            "Dublin17", "Dublin18", "Dublin19", "Dublin20",
+            "Dublin21", "Dublin22", "Dublin23", "Dublin24",};
+        combo = new JComboBox(option);
+        combo.addActionListener(regController);
+        combo.setActionCommand("combo");
+        combo.setBounds(246, 99, 400, 27);
+        barberSection.add(combo);
 
         JButton register = new JButton("REGISTER");
         register.setBounds(400, 395, 100, 30);

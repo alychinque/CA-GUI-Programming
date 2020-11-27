@@ -54,7 +54,7 @@ public class LocationSearch extends JFrame{
         };
 
     public void LocationSearch() {
-        this.setTitle("Style Barber Shop - customer");
+        this.setTitle("Style Barber Shop - location search");
         this.setSize(900, 600);
         this.setVisible(true);
         this.setResizable(false);
