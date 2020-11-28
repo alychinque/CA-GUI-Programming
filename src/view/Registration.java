@@ -27,6 +27,7 @@ public class Registration extends JFrame {
 
     JComboBox combo;
     JPanel barberSection;
+    JButton registerCust;
 
     public void Registration() {
         this.setTitle("Style Barber Shop - registration");
@@ -126,10 +127,14 @@ public class Registration extends JFrame {
         group.add(barber);
         main.add(customer);
         main.add(barber);
+        
+        registerCust = new JButton("REGISTER CUSTOMER");
+        registerCust.setBounds(360, 395, 180, 30);
+        main.add(registerCust);
 
         //BARBER SECTION
         barberSection = new JPanel();
-        barberSection.setBounds(4, 260, 886, 134);
+        barberSection.setBounds(4, 260, 886, 174);
         barberSection.setBackground(Color.black);
         barberSection.setLayout(null);
         barberSection.setVisible(false);
@@ -151,7 +156,7 @@ public class Registration extends JFrame {
         JLabel locationL = new JLabel("LOCATION:");
         locationL.setBounds(146, 99, 200, 27);
         barberSection.add(locationL);
-       String[] option = {"Dublin1", "Dublin2", "Dublin3", "Dublin4",
+       String[] option = {"Choose", "Dublin1", "Dublin2", "Dublin3", "Dublin4",
             "Dublin5", "Dublin6", "Dublin7", "Dublin8",
             "Dublin9", "Dublin10", "Dublin11", "Dublin12",
             "Dublin13", "Dublin14", "Dublin15", "Dublin16",
@@ -163,9 +168,9 @@ public class Registration extends JFrame {
         combo.setBounds(246, 99, 400, 27);
         barberSection.add(combo);
 
-        JButton register = new JButton("REGISTER");
-        register.setBounds(400, 395, 100, 30);
-        main.add(register);
+        JButton registerBarber = new JButton("REGISTER BARBER");
+        registerBarber.setBounds(360, 135, 180, 30);
+        barberSection.add(registerBarber);
 
         main.add(barberSection);
 
@@ -192,11 +197,13 @@ public class Registration extends JFrame {
         this.repaint();
     }
 
-    public JPanel getBarberSection() {
-        return barberSection;
+    public void setRegisterCust(boolean registerCust) {
+        this.registerCust.setVisible(registerCust);
     }
+
 
     public void setBarberSection(boolean barberSection) {
         this.barberSection.setVisible(barberSection);
+        
     }
 }

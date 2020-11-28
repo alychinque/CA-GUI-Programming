@@ -31,10 +31,14 @@ public class RegistrationController implements ActionListener{
                 break;
             case "customer":
                 this.view.setBarberSection(false);
+                this.view.setRegisterCust(true);
                 break;
             case "barber":
                 this.view.setBarberSection(true);
+                this.view.setRegisterCust(false);
                 break;
+            case "register":
+                
         }
     }
     
