@@ -26,7 +26,7 @@ public class RegistrationController implements ActionListener{
         switch (e.getActionCommand()) {
             case "back":
                 Home home = new Home();
-                this.view.setVisible(false);
+                this.view.dispose();
                 home.setVisible(true);
                 break;
             case "customer":
@@ -37,7 +37,7 @@ public class RegistrationController implements ActionListener{
                 this.view.setBarberSection(true);
                 this.view.setRegisterCust(false);
                 break;
-            case "register":
+            case "registerCust":
                 
         }
     }

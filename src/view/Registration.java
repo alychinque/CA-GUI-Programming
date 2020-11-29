@@ -143,6 +143,8 @@ public class Registration extends JFrame {
         
         registerCust = new JButton("REGISTER CUSTOMER");
         registerCust.setBounds(360, 395, 180, 30);
+        registerCust.addActionListener(regController);
+        registerCust.setActionCommand("registerCust");
         main.add(registerCust);
 
         //BARBER SECTION
