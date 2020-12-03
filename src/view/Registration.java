@@ -28,6 +28,7 @@ public class Registration extends JFrame {
 
     JPanel barberSection;
     JButton registerCust;
+    JButton registerBarber;
     
     JTextField firstName;
     JTextField surname;
@@ -197,9 +198,11 @@ public class Registration extends JFrame {
         combo.setBounds(246, 99, 400, 27);
         barberSection.add(combo);
 
-        JButton registerBarber = new JButton("REGISTER BARBER");
+        registerBarber = new JButton("REGISTER BARBER");
         registerBarber.setBounds(360, 135, 180, 30);
         barberSection.add(registerBarber);
+        registerBarber.addActionListener(regController);
+        registerBarber.setActionCommand("registerBarber");
 
         main.add(barberSection);
 
