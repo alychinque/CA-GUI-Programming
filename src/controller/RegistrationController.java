@@ -5,8 +5,16 @@
  */
 package controller;
 
+import com.sun.istack.internal.logging.Logger;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.Integer.parseInt;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import model.DAO.ConnectionDB;
+import model.DAO.UserDAO;
+import model.User;
 import view.Home;
 import view.Registration;
 
@@ -38,9 +46,26 @@ public class RegistrationController implements ActionListener{
                 this.view.setRegisterCust(false);
                 break;
             case "registerCust":
+                //receiving custumers' attributes
+                String name = view.getFirstName().getText();
+                String surname = view.getSurname().getText();
+                int phone = Integer.parseInt(view.getPhone().getText());
+                String email = view.getEmail().getText();
+                String pass = view.getPassword().getText();
+                //creating a new user 
+                User user = new User(name, surname, phone, email, pass);
+            try {
+                //creating a new Connection conn and giving connection with the DB
+                Connection conn = new ConnectionDB().getConnection();
                 
+                //instantiating userDAO passing a connection as a parameter
+                UserDAO userDAO = new UserDAO(conn);
+                
+                //accessing method insert in the userDAO class passing a user as a parameter
+                userDAO.insert(user);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(RegistrationController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-    
-    
+    } 
 }
