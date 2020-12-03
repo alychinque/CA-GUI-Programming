@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -32,8 +33,8 @@ public class Registration extends JFrame {
     JTextField surname;
     JTextField phone;
     JTextField email;
-    JTextField password;
-    JTextField passwordConfirm;
+    JPasswordField password;
+    JPasswordField passwordConfirm;
     
     JTextField barberShop;
     JTextField address;
@@ -119,7 +120,7 @@ public class Registration extends JFrame {
         passwordL.setForeground(color("bt"));
         passwordL.setBounds(150, 179, 200, 25);
         main.add(passwordL);
-        password = new JTextField();
+        password = new JPasswordField();
         password.setBounds(250, 179, 400, 25);
         main.add(password);
         
@@ -127,7 +128,7 @@ public class Registration extends JFrame {
         passwordLConfirm.setForeground(color("bt"));
         passwordLConfirm.setBounds(100, 220, 200, 25);
         main.add(passwordLConfirm);
-        passwordConfirm = new JTextField();
+        passwordConfirm = new JPasswordField();
         passwordConfirm.setBounds(250, 220, 400, 25);
         main.add(passwordConfirm);
 
@@ -271,7 +272,7 @@ public class Registration extends JFrame {
         return password;
     }
 
-    public void setPassword(JTextField password) {
+    public void setPassword(JPasswordField password) {
         this.password = password;
     }
 
@@ -279,7 +280,7 @@ public class Registration extends JFrame {
         return passwordConfirm;
     }
 
-    public void setPasswordConfirm(JTextField passwordConfirm) {
+    public void setPasswordConfirm(JPasswordField passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
     }
 
