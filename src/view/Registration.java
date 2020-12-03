@@ -25,9 +25,19 @@ import javax.swing.WindowConstants;
  */
 public class Registration extends JFrame {
 
-    JComboBox combo;
     JPanel barberSection;
     JButton registerCust;
+    
+    JTextField firstName;
+    JTextField surname;
+    JTextField phone;
+    JTextField email;
+    JTextField password;
+    JTextField passwordConfirm;
+    
+    JTextField barberShop;
+    JTextField address;
+    JComboBox combo;
 
     public void Registration() {
         this.setTitle("Style Barber Shop - registration");
@@ -77,7 +87,7 @@ public class Registration extends JFrame {
         firstNameL.setForeground(color("bt"));
         firstNameL.setBounds(150, 15, 200, 25);
         main.add(firstNameL);
-        JTextField firstName = new JTextField();
+        firstName = new JTextField();
         firstName.setBounds(250, 15, 400, 25);
         main.add(firstName);
 
@@ -85,7 +95,7 @@ public class Registration extends JFrame {
         surnameL.setForeground(color("bt"));
         surnameL.setBounds(150, 56, 200, 25);
         main.add(surnameL);
-        JTextField surname = new JTextField();
+        surname = new JTextField();
         surname.setBounds(250, 56, 400, 25);
         main.add(surname);
 
@@ -93,7 +103,7 @@ public class Registration extends JFrame {
         phoneL.setForeground(color("bt"));
         phoneL.setBounds(150, 97, 200, 25);
         main.add(phoneL);
-        JTextField phone = new JTextField();
+        phone = new JTextField();
         phone.setBounds(250, 97, 400, 25);
         main.add(phone);
 
@@ -101,7 +111,7 @@ public class Registration extends JFrame {
         emailL.setForeground(color("bt"));
         emailL.setBounds(150, 138, 200, 25);
         main.add(emailL);
-        JTextField email = new JTextField();
+        email = new JTextField();
         email.setBounds(250, 138, 400, 25);
         main.add(email);
 
@@ -109,7 +119,7 @@ public class Registration extends JFrame {
         passwordL.setForeground(color("bt"));
         passwordL.setBounds(150, 179, 200, 25);
         main.add(passwordL);
-        JTextField password = new JTextField();
+        password = new JTextField();
         password.setBounds(250, 179, 400, 25);
         main.add(password);
         
@@ -117,7 +127,7 @@ public class Registration extends JFrame {
         passwordLConfirm.setForeground(color("bt"));
         passwordLConfirm.setBounds(100, 220, 200, 25);
         main.add(passwordLConfirm);
-        JTextField passwordConfirm = new JTextField();
+        passwordConfirm = new JTextField();
         passwordConfirm.setBounds(250, 220, 400, 25);
         main.add(passwordConfirm);
 
@@ -158,7 +168,7 @@ public class Registration extends JFrame {
         barberShopL.setForeground(color("bt"));
         barberShopL.setBounds(146, 5, 200, 27);
         barberSection.add(barberShopL);
-        JTextField barberShop = new JTextField();
+        barberShop = new JTextField();
         barberShop.setBounds(246, 5, 400, 27);
         barberSection.add(barberShop);
 
@@ -166,7 +176,7 @@ public class Registration extends JFrame {
         addressL.setForeground(color("bt"));
         addressL.setBounds(146, 52, 200, 27);
         barberSection.add(addressL);
-        JTextField address = new JTextField();
+        address = new JTextField();
         address.setBounds(246, 52, 400, 27);
         barberSection.add(address);
 
@@ -174,7 +184,7 @@ public class Registration extends JFrame {
         locationL.setForeground(color("bt"));
         locationL.setBounds(146, 99, 200, 27);
         barberSection.add(locationL);
-       String[] option = {"Choose", "Dublin1", "Dublin2", "Dublin3", "Dublin4",
+        String[] option = {"Choose", "Dublin1", "Dublin2", "Dublin3", "Dublin4",
             "Dublin5", "Dublin6", "Dublin7", "Dublin8",
             "Dublin9", "Dublin10", "Dublin11", "Dublin12",
             "Dublin13", "Dublin14", "Dublin15", "Dublin16",
@@ -223,6 +233,78 @@ public class Registration extends JFrame {
     public void setBarberSection(boolean barberSection) {
         this.barberSection.setVisible(barberSection);
         
+    }
+    
+     public JTextField getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(JTextField firstName) {
+        this.firstName = firstName;
+    }
+
+    public JTextField getSurname() {
+        return surname;
+    }
+
+    public void setSurname(JTextField surname) {
+        this.surname = surname;
+    }
+
+    public JTextField getPhone() {
+        return phone;
+    }
+
+    public void setPhone(JTextField phone) {
+        this.phone = phone;
+    }
+
+    public JTextField getEmail() {
+        return email;
+    }
+
+    public void setEmail(JTextField email) {
+        this.email = email;
+    }
+
+    public JTextField getPassword() {
+        return password;
+    }
+
+    public void setPassword(JTextField password) {
+        this.password = password;
+    }
+
+    public JTextField getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(JTextField passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public JTextField getBarberShop() {
+        return barberShop;
+    }
+
+    public void setBarberShop(JTextField barberShop) {
+        this.barberShop = barberShop;
+    }
+
+    public JTextField getAddress() {
+        return address;
+    }
+
+    public void setAddress(JTextField address) {
+        this.address = address;
+    }
+
+    public JComboBox getCombo() {
+        return combo;
+    }
+
+    public void setCombo(JComboBox combo) {
+        this.combo = combo;
     }
 
     private Color color(String type) {
