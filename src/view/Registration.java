@@ -30,8 +30,7 @@ public class Registration extends JFrame {
     JButton registerCust;
     JButton registerBarber;
     
-    JTextField firstName;
-    JTextField surname;
+    JTextField fullname;
     JTextField phone;
     JTextField email;
     JPasswordField password;
@@ -85,21 +84,13 @@ public class Registration extends JFrame {
         main.setBounds(0, 110, 894, 434);
         main.setLayout(null);
 
-        JLabel firstNameL = new JLabel("FIRST NAME:");
-        firstNameL.setForeground(color("bt"));
-        firstNameL.setBounds(150, 15, 200, 25);
-        main.add(firstNameL);
-        firstName = new JTextField();
-        firstName.setBounds(250, 15, 400, 25);
-        main.add(firstName);
-
-        JLabel surnameL = new JLabel("SURNAME:");
-        surnameL.setForeground(color("bt"));
-        surnameL.setBounds(150, 56, 200, 25);
-        main.add(surnameL);
-        surname = new JTextField();
-        surname.setBounds(250, 56, 400, 25);
-        main.add(surname);
+        JLabel fullnameL = new JLabel("FULL NAME:");
+        fullnameL.setForeground(color("bt"));
+        fullnameL.setBounds(150, 56, 200, 25);
+        main.add(fullnameL);
+        fullname = new JTextField();
+        fullname.setBounds(250, 56, 400, 25);
+        main.add(fullname);
 
         JLabel phoneL = new JLabel("PHONE:");
         phoneL.setForeground(color("bt"));
@@ -238,21 +229,13 @@ public class Registration extends JFrame {
         this.barberSection.setVisible(barberSection);
         
     }
-    
-     public JTextField getFirstName() {
-        return firstName;
+
+    public JTextField getFullName() {
+        return fullname;
     }
 
-    public void setFirstName(JTextField firstName) {
-        this.firstName = firstName;
-    }
-
-    public JTextField getSurname() {
-        return surname;
-    }
-
-    public void setSurname(JTextField surname) {
-        this.surname = surname;
+    public void setFullName (JTextField fullName) {
+        this.fullname = fullName;
     }
 
     public JTextField getPhone() {
