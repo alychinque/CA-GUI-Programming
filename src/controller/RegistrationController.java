@@ -31,6 +31,7 @@ public class RegistrationController implements ActionListener {
     private String name;
     private String surname;
     private int phone;
+    private String phoneString;
     private String email;
     private String pass;
     private String barberShop;
@@ -63,13 +64,11 @@ public class RegistrationController implements ActionListener {
 
             case "registerCust":
                 //validate a user
-                if(validateName()){
+                if (validateName() && validatePhone()) {
                     JOptionPane.showMessageDialog(null, "Success");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                 }
-//                validatePhone();
-//                validateEmail();
                 //validatedPass();
                 //creating a new user receiving a validated user
                 User user = new User(name, surname, phone, email, pass);
@@ -88,9 +87,9 @@ public class RegistrationController implements ActionListener {
                 break;
 
             case "registerBarber":
-                if(validateName()){
+                if (validateName() && validatePhone()) {
                     JOptionPane.showMessageDialog(null, "Success");
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                 }
                 barberShop = view.getBarberShop().getText();
@@ -126,7 +125,7 @@ public class RegistrationController implements ActionListener {
                 name = fullName[0].toLowerCase();
                 surname = fullName[fullName.length - 1].toLowerCase();
                 return isValidName(name, surname);
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Failed!\nPlease enter name and surname with a space between them!");
                 return false;
             }
@@ -145,20 +144,30 @@ public class RegistrationController implements ActionListener {
             return true;
         } else {
             if (!nameBoo) {
-                JOptionPane.showMessageDialog(null, "Name is not valid!\nPlease Enter again!");
-            }if (!surnameBoo) {
-                JOptionPane.showMessageDialog(null, "Surname is not valid!\nPlease Enter again!");
+                JOptionPane.showMessageDialog(null, "Name is not valid!\nPlease enter again!");
+            }
+            if (!surnameBoo) {
+                JOptionPane.showMessageDialog(null, "Surname is not valid!\nPlease enter again!");
             }
             return false;
         }
     }
 
-    private void validatePhone() {
-        phone = Integer.parseInt(view.getPhone().getText());
+    private Boolean validatePhone() {
+        try {
+            phoneString = view.getPhone().getText();
+            phone = Integer.parseInt(phoneString);
+            if (phoneString.length() >= 7 && phoneString.length() <= 10) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Phone is not valid!\nPlease enter again, just numbers between 7 and 10 digits!");
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Phone is not valid!\nPlease enter again just numbers between 7 and 10 digits!");
+            return false;
+        }
 
     }
-
-    private void validateEmail() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
