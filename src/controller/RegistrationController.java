@@ -64,7 +64,7 @@ public class RegistrationController implements ActionListener {
 
             case "registerCust":
                 //validate a user
-                if (validateName() && validatePhone()) {
+                if (validateName() && validatePhone() && validateEmail()) {
                     JOptionPane.showMessageDialog(null, "Success");
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
@@ -87,7 +87,7 @@ public class RegistrationController implements ActionListener {
                 break;
 
             case "registerBarber":
-                if (validateName() && validatePhone()) {
+                if (validateName() && validatePhone() && validateEmail()) {
                     JOptionPane.showMessageDialog(null, "Success");
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
@@ -169,5 +169,30 @@ public class RegistrationController implements ActionListener {
         }
 
     }
-    
+    //method implemented from geeksforgeeks
+    //URL:https://www.geeksforgeeks.org/check-email-address-valid-not-java/
+    private Boolean validateEmail() {
+        try {
+            email = view.getEmail().getText();
+            String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
+                    + "[a-zA-Z0-9_+&*-]+)*@"
+                    + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
+                    + "A-Z]{2,7}$";
+
+            Pattern pat = Pattern.compile(emailRegex);
+            if (email == null) {
+                JOptionPane.showMessageDialog(null, "Email field is empty!\nPlease enter an email!");
+                return false;
+            }
+            if (pat.matcher(email).matches() == true) {
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Email is not valid!\nPlease enter again!");
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Email is not valid!\nPlease enter again!");
+            return false;
+        }
+    }
 }
