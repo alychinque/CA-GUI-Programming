@@ -186,7 +186,7 @@ public class Registration extends JFrame {
         locationL.setForeground(color("bt"));
         locationL.setBounds(146, 99, 200, 27);
         barberSection.add(locationL);
-        String[] option = {"Choose", "Dublin1", "Dublin2", "Dublin3", "Dublin4",
+        String[] option = {"Dublin1", "Dublin2", "Dublin3", "Dublin4",
             "Dublin5", "Dublin6", "Dublin7", "Dublin8",
             "Dublin9", "Dublin10", "Dublin11", "Dublin12",
             "Dublin13", "Dublin14", "Dublin15", "Dublin16",
@@ -303,8 +303,8 @@ public class Registration extends JFrame {
         this.address = address;
     }
 
-    public JComboBox getCombo() {
-        return combo;
+    public String getCombo() {
+        return combo.getSelectedItem().toString();
     }
 
     public void setCombo(JComboBox combo) {
