@@ -30,7 +30,7 @@ public class Registration extends JFrame {
     JButton registerCust;
     JButton registerBarber;
     
-    JTextField fullname;
+    JTextField fullName;
     JTextField phone;
     JTextField email;
     JPasswordField password;
@@ -84,13 +84,13 @@ public class Registration extends JFrame {
         main.setBounds(0, 110, 894, 434);
         main.setLayout(null);
 
-        JLabel fullnameL = new JLabel("FULL NAME:");
-        fullnameL.setForeground(color("bt"));
-        fullnameL.setBounds(150, 56, 200, 25);
-        main.add(fullnameL);
-        fullname = new JTextField();
-        fullname.setBounds(250, 56, 400, 25);
-        main.add(fullname);
+        JLabel fullNameL = new JLabel("FULL NAME:");
+        fullNameL.setForeground(color("bt"));
+        fullNameL.setBounds(150, 56, 200, 25);
+        main.add(fullNameL);
+        fullName = new JTextField();
+        fullName.setBounds(250, 56, 400, 25);
+        main.add(fullName);
 
         JLabel phoneL = new JLabel("PHONE:");
         phoneL.setForeground(color("bt"));
@@ -231,11 +231,11 @@ public class Registration extends JFrame {
     }
 
     public JTextField getFullName() {
-        return fullname;
+        return fullName;
     }
 
     public void setFullName (JTextField fullName) {
-        this.fullname = fullName;
+        this.fullName = fullName;
     }
 
     public JTextField getPhone() {
