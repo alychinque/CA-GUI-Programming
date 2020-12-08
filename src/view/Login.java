@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
@@ -26,6 +27,11 @@ public class Login extends JFrame{
     JComboBox combo;
     JPanel left;
     JPanel right;
+    
+    JTextField emailCustomer;
+    JPasswordField passCustomer;
+    JTextField emailBarber;
+    JPasswordField passBarber;
 
     public void Login() {
         this.setTitle("Style Barber Shop - login");
@@ -83,7 +89,7 @@ public class Login extends JFrame{
         emailC.setBounds(120, 150, 200, 30);
         left.add(emailC);
 
-        JTextField emailCustomer = new JTextField(10);
+        emailCustomer = new JTextField(10);
         emailCustomer.setBounds(120, 180, 200, 30);
         left.add(emailCustomer);
 
@@ -91,7 +97,7 @@ public class Login extends JFrame{
         passC.setBounds(120, 240, 200, 30);
         left.add(passC);
 
-        JTextField passCustomer = new JTextField(10);
+        passCustomer = new JPasswordField();
         passCustomer.setBounds(120, 270, 200, 30);
         left.add(passCustomer);
 
@@ -123,7 +129,7 @@ public class Login extends JFrame{
         emailB.setBounds(120, 150, 200, 30);
         right.add(emailB);
 
-        JTextField emailBarber = new JTextField(10);
+        emailBarber = new JTextField(10);
         emailBarber.setBounds(120, 180, 200, 30);
         right.add(emailBarber);
 
@@ -131,9 +137,10 @@ public class Login extends JFrame{
         passB.setBounds(120, 240, 200, 30);
         right.add(passB);
 
-        JTextField passBarber = new JTextField(10);
+        passBarber = new JPasswordField();
         passBarber.setBounds(120, 270, 200, 30);
         right.add(passBarber);
+        
 
         //BUTTON LOGIN BARBER
         JButton loginB = new JButton("LOG IN");
@@ -186,5 +193,21 @@ public class Login extends JFrame{
 
     public void setCombo(JComboBox combo) {
         this.combo = combo;
+    }
+    
+    public JTextField getEmailCustomer() {
+        return emailCustomer;
+    }
+
+    public JPasswordField getPassCustomer() {
+        return passCustomer;
+    }
+
+    public JTextField getEmailBarber() {
+        return emailBarber;
+    }
+
+    public JPasswordField getPassBarber() {
+        return passBarber;
     }
 }
