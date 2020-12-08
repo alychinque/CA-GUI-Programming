@@ -18,6 +18,7 @@ import model.DAO.UserDAO;
 import model.DAO.barberDAO;
 import model.User;
 import view.Home;
+import view.Login;
 import view.Registration;
 
 /**
@@ -34,9 +35,12 @@ public class RegistrationController implements ActionListener {
     private String phoneString;
     private String email;
     private String pass;
+    private String passConfirm;
     private String barberShop;
     private String address;
     private String location;
+    
+    private User user;
 
     public RegistrationController(Registration view) {
         this.view = view;
@@ -64,14 +68,17 @@ public class RegistrationController implements ActionListener {
 
             case "registerCust":
                 //validate a user
-                if (validateName() && validatePhone() && validateEmail()) {
+                
+                if (validateName() && validatePhone() && validateEmail() && validatedPass()) {
+                     user = new User(name, surname, phone, email, pass);
                     JOptionPane.showMessageDialog(null, "Success");
+                    Login lg = new Login();
+                    this.view.dispose();
+                    lg.Login();
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                 }
-                //validatedPass();
                 //creating a new user receiving a validated user
-                User user = new User(name, surname, phone, email, pass);
                 try {
                     //creating a new Connection conn and giving connection with the DB
                     Connection conn = new ConnectionDB().getConnection();
@@ -173,7 +180,7 @@ public class RegistrationController implements ActionListener {
     //URL:https://www.geeksforgeeks.org/check-email-address-valid-not-java/
     private Boolean validateEmail() {
         try {
-            email = view.getEmail().getText();
+            email = view.getEmail().getText().toLowerCase();
             String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
                     + "[a-zA-Z0-9_+&*-]+)*@"
                     + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -192,6 +199,17 @@ public class RegistrationController implements ActionListener {
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Email is not valid!\nPlease enter again!");
+            return false;
+        }
+    }
+
+    private boolean validatedPass() {
+        pass = view.getPassword().getText();
+        passConfirm = view.getPasswordConfirm().getText();
+        if(pass.equals(passConfirm)){
+            return true;
+        }else{
+            JOptionPane.showMessageDialog(null, "Passwords does not match!\nPlease enter again!");
             return false;
         }
     }
