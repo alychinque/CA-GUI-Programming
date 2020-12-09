@@ -12,7 +12,7 @@ import model.Barber;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class barberDAO {
 
