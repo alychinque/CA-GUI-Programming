@@ -7,13 +7,13 @@ package model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import model.User;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class UserDAO {
 
@@ -26,17 +26,37 @@ public class UserDAO {
     public void insert(User user) throws SQLException {
         String query = "INSERT INTO customer(name_customer, surname_customer, phone_customer, email_customer, password_customer)"
                 + "VALUES (?, ?, ?, ?, ?)";
-                //'"+user.getFirstName()+"', '"+user.getSurname()+"', "+user.getPhone()+", '"+user.getEmail()+"', '"+user.getPassword()+"'
         // Get a statement from the connection
-//        PreparedStatement Statement = ;
-        PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setString(1, user.getFirstName());
         stmt.setString(2, user.getSurname());
         stmt.setInt(3, user.getPhone());
         stmt.setString(4, user.getEmail());
         stmt.setString(5, user.getPassword());
         stmt.execute();
-        connection.close();
     }
 
+    public int checkCustomer(String email, String pass) throws SQLException{
+        //query to get a customer by id and password
+        String sql = "SELECT * FROM customer where email_customer = ? and password_customer = ?";
+        //creating a Statement assigning a connection with the select query
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, email);
+        stmt.setString(2, pass);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+        
+        if(resultSet.next()){
+            //if there is a customer it returns the customers' id
+            return resultSet.getInt("id_customer");
+        }else{
+            return 0;
+        }
+        
+
+            
+        
+        
+    }
 }
