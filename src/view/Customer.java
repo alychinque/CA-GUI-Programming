@@ -26,7 +26,7 @@ import javax.swing.WindowConstants;
  */
 public class Customer extends JFrame{
 
-    public void Customer() {
+    public void Customer(int id) {
         this.setTitle("Style Barber Shop - customer");
         this.setSize(900, 600);
         this.setVisible(true);
