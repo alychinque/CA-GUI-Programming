@@ -27,6 +27,14 @@ import model.User;
  */
 public class Customer extends JFrame{
     private User validUser;
+    public JTextArea complainT;
+    public User getValidUser() {
+        return validUser;
+    }
+    
+     public JTextArea getComplainT() {
+        return complainT;
+    }
 
     public void Customer(User validUser) {
         this.setTitle("Style Barber Shop - customer");
@@ -120,7 +128,7 @@ public class Customer extends JFrame{
         complain.setForeground(new java.awt.Color(255, 204, 0));
         complain.setBounds(250, 240, 550, 30);
         main.add(complain);
-        JTextArea complainT = new JTextArea();
+        complainT = new JTextArea();
         complainT.setBounds(370, 280, 395, 120);
         //SET THE INSERTION POINT TO THE TOP OF THE FIELD
         main.add(complainT);
@@ -145,5 +153,5 @@ public class Customer extends JFrame{
         this.validate();
         this.repaint();
     }
-    
+
 }
