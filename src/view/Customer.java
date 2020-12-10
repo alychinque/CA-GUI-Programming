@@ -19,14 +19,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+import model.User;
 
 /**
  *
  * @author Alysson Chinque
  */
 public class Customer extends JFrame{
+    private User validUser;
 
-    public void Customer(int id) {
+    public void Customer(User validUser) {
         this.setTitle("Style Barber Shop - customer");
         this.setSize(900, 600);
         this.setVisible(true);
@@ -35,6 +37,7 @@ public class Customer extends JFrame{
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
         CustomerController custController = new CustomerController(this);
+        this.validUser = validUser;
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
@@ -70,16 +73,11 @@ public class Customer extends JFrame{
         main.setBounds(0, 72, 894, 449);
         
         //WELCOME TEXT
-        JLabel welcome = new JLabel("Welcome");
+        JLabel welcome = new JLabel("Welcome "+ this.validUser.getSurname() +", "+ this.validUser.getFirstName());
         welcome.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         welcome.setForeground(new java.awt.Color(255, 204, 0));
-        welcome.setBounds(50, 30, 150, 70);
+        welcome.setBounds(50, 30, 600, 70);
         main.add(welcome);
-        JLabel nameCust = new JLabel("receive the name");
-        nameCust.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
-        nameCust.setForeground(new java.awt.Color(255, 204, 0));
-        nameCust.setBounds(195, 30, 350, 70);
-        main.add(nameCust);
         JLabel searchText = new JLabel("Search a baber by name or location:");
         searchText.setFont(new Font("Arial", Font.PLAIN, 20));
         searchText.setForeground(new java.awt.Color(255, 204, 0));
