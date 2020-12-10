@@ -73,7 +73,6 @@ public class Login extends JFrame{
                 
         //CREATED LEFT PANEL AND STYLED IT
         left = new JPanel();
-        left.setVisible(false);
         left.setLayout(null);
         left.setBackground(Color.black);
         left.setBorder(BorderFactory.createLineBorder(Color.orange));
