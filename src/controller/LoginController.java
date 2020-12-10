@@ -9,10 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import javax.swing.JOptionPane;
 import model.DAO.ConnectionDB;
 import model.DAO.UserDAO;
+import model.User;
 import view.Customer;
 import view.Home;
 import view.Login;
@@ -53,17 +53,29 @@ public class LoginController implements ActionListener {
 
                     //instantiating userDAO passing a connection as a parameter
                     UserDAO userDAO = new UserDAO(conn);
+                    
+                    //data customer
+                    String email = this.view.getEmailCustomer().getText();
+                    String pass = this.view.getPassCustomer().getText();
+                    
+                    if (email.equals("") || pass.equals("")){
+                        JOptionPane.showMessageDialog(null, "Please fill the fields up!");
+                        break;
+                    }
 
                     //accessing method checkCustumer in the userDAO class passing email and password as a parameter
-                    int id = userDAO.checkCustomer(this.view.getEmailCustomer().getText(), this.view.getPassCustomer().getText());
-                    Customer cust = new Customer();
-                    cust.Customer(id);
-                    this.view.setVisible(false);
-                    JOptionPane.showMessageDialog(null, "Welcome!");
+                    User validUser = userDAO.checkCustomer(email, pass);
                     
+                    if (validUser == null){
+                        JOptionPane.showMessageDialog(null, "User not found!\nPlease enter a valid email and password!\n\nOr Register");
+                        break;
+                    }else{
+                        Customer cust = new Customer();
+                        cust.Customer(validUser);
+                        this.view.setVisible(false);
+                    }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "User not found!\nPlease enter a valid email and password!\n\nOr Register");
-                    java.util.logging.Logger.getLogger(RegistrationController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
                 break;
