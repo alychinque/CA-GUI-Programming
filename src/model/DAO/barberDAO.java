@@ -23,16 +23,21 @@ public class barberDAO {
     }
 
     public void insert(Barber barber) throws SQLException {
-        String query = "INSERT INTO barber(name_barber, surname_barber, phone_barber, "
-                + "email_barber, password_barber, barbershop, address, location)"
-                + "VALUES ('"+barber.getFirstName()+"', '"+barber.getSurname()+"', "+barber.getPhone()
-                +", '"+barber.getEmail()+"', '"+barber.getPassword()+"', '"+barber.getBarberShop()
-                +"', '"+barber.getAddress()+"', '"+barber.getLocation()+"')";
+        String query= "INSERT INTO barber(name_barber, surname_barber, phone_barber, " 
+                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Get a statement from the connection
         PreparedStatement stmt = connection.prepareStatement(query);
+         String name = barber.getFirstName();
+        stmt.setString(1, name);
+        stmt.setString(2, barber.getSurname());
+        stmt.setInt(3, barber.getPhone());
+        stmt.setString(4, barber.getEmail());
+        stmt.setString(5, barber.getPassword());
+        stmt.setString(6, barber.getBarberShop());
+        stmt.setString(7, barber.getAddress());
+        stmt.setString(8, barber.getLocation());
         stmt.execute();
-        connection.close();
     }
     
 }
