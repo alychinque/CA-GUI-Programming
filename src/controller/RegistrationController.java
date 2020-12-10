@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import model.Barber;
@@ -41,6 +40,7 @@ public class RegistrationController implements ActionListener {
     private String location;
     
     private User user;
+    private Barber barber;
 
     public RegistrationController(Registration view) {
         this.view = view;
@@ -68,13 +68,14 @@ public class RegistrationController implements ActionListener {
 
             case "registerCust":
                 //validate a user
-                
-                if (validateName() && validatePhone() && validateEmail() && validatedPass()) {
-                     user = new User(name, surname, phone, email, pass);
+                if (validName() && validPhone() && validEmail() && validPass()) {
+                    user = new User(name, surname, phone, email, pass);
                     JOptionPane.showMessageDialog(null, "Success");
                     Login lg = new Login();
                     this.view.dispose();
                     lg.Login();
+                    lg.changeVisibilityCustomer(true);
+                    lg.changeVisibilityBarber(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                 }
@@ -89,25 +90,26 @@ public class RegistrationController implements ActionListener {
                     //accessing method insert in the userDAO class passing a user as a parameter
                     userDAO.insert(user);
                 } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(RegistrationController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error saving user,\nPlease, try again");
                 }
                 break;
 
             case "registerBarber":
-                if (validateName() && validatePhone() && validateEmail()) {
+                if (validName() && validPhone() && validEmail()
+                        && validAddress() && validPass()) {
+                    barberShop = this.view.getBarberShop().getText();
+                    location = this.view.getCombo();
+                    barber = new Barber(name, surname, barberShop, phone, address, location, email, pass);
                     JOptionPane.showMessageDialog(null, "Success");
+                    Login lg = new Login();
+                    this.view.dispose();
+                    lg.Login();
+                    lg.changeVisibilityBarber(true);
+                    lg.changeVisibilityCustomer(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                 }
-                barberShop = view.getBarberShop().getText();
-                phone = Integer.parseInt(view.getPhone().getText());
-                address = view.getAddress().getText();
-                location = view.getCombo();
-                email = view.getEmail().getText();
-                pass = view.getPassword().getText();
-
-                //creating a new barber 
-                Barber barber = new Barber(name, surname, barberShop, phone, address, location, email, pass);
+                
                 try {
                     //creating a new Connection conn and giving connection with the DB
                     Connection conn = new ConnectionDB().getConnection();
@@ -118,13 +120,13 @@ public class RegistrationController implements ActionListener {
                     //accessing method insert in the userDAO class passing a user as a parameter
                     barberDAO.insert(barber);
                 } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(RegistrationController.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Error saving barber,\nPlease, try again");
                 }
                 break;
         }
     }
 
-    private Boolean validateName() {
+    private Boolean validName() {
         //receiving custumers' attributes
         try {
             fullName = view.getFullName().getText().trim().split(" ");
@@ -160,11 +162,11 @@ public class RegistrationController implements ActionListener {
         }
     }
 
-    private Boolean validatePhone() {
+    private Boolean validPhone() {
         try {
-            phoneString = view.getPhone().getText();
+            phoneString = this.view.getPhone().getText();
             phone = Integer.parseInt(phoneString);
-            if (phoneString.length() >= 7 && phoneString.length() <= 10) {
+            if (phoneString.length() >= 7 && phoneString.length() <= 11) {
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Phone is not valid!\nPlease enter again, just numbers between 7 and 10 digits!");
@@ -178,9 +180,9 @@ public class RegistrationController implements ActionListener {
     }
     //method implemented from geeksforgeeks
     //URL:https://www.geeksforgeeks.org/check-email-address-valid-not-java/
-    private Boolean validateEmail() {
+    private Boolean validEmail() {
         try {
-            email = view.getEmail().getText().toLowerCase();
+            email = this.view.getEmail().getText().toLowerCase();
             String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."
                     + "[a-zA-Z0-9_+&*-]+)*@"
                     + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
@@ -203,9 +205,9 @@ public class RegistrationController implements ActionListener {
         }
     }
 
-    private boolean validatedPass() {
-        pass = view.getPassword().getText();
-        passConfirm = view.getPasswordConfirm().getText();
+    private boolean validPass() {
+        pass = this.view.getPassword().getText();
+        passConfirm = this.view.getPasswordConfirm().getText();
         if(pass.equals(passConfirm)){
             return true;
         }else{
@@ -213,4 +215,9 @@ public class RegistrationController implements ActionListener {
             return false;
         }
     }
+    private boolean validAddress() {
+        address = this.view.getAddress().getText();
+        return address.length() > 5;
+    }
+    
 }
