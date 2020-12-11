@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import model.Barber;
 import model.DAO.ConnectionDB;
 import model.DAO.UserDAO;
-import model.DAO.barberDAO;
+import model.DAO.BarberDAO;
 import model.User;
 import view.Home;
 import view.Login;
@@ -117,7 +117,7 @@ public class RegistrationController implements ActionListener {
                     Connection conn = new ConnectionDB().getConnection();
 
                     //instantiating userDAO passing a connection as a parameter
-                    barberDAO barberDAO = new barberDAO(conn);
+                    BarberDAO barberDAO = new BarberDAO(conn);
 
                     //accessing method insert in the userDAO class passing a user as a parameter
                     barberDAO.insert(barber);
