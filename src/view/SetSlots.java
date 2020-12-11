@@ -9,8 +9,11 @@ import com.toedter.calendar.JDateChooser;
 import controller.SetSlotsController;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -27,6 +30,19 @@ import model.Barber;
 public class SetSlots extends JFrame {
     private Barber validBarber;
     JDateChooser jDateChooser;
+    
+    JCheckBox box9;
+        JCheckBox box10;
+        JCheckBox box11;
+        JCheckBox box12;
+        JCheckBox box13;
+        JCheckBox box14;
+        JCheckBox box15;
+        JCheckBox box16;
+        JCheckBox box17;
+        JCheckBox box18;
+        JCheckBox box19;
+        JCheckBox all;
 
     public void SetSlots(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -107,17 +123,74 @@ public class SetSlots extends JFrame {
         
         //HOURS PANEL
         JPanel hoursPanel = new JPanel();
+        hoursPanel.setLayout(null);
         hoursPanel.setBackground(Color.black);
         hoursPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
         hoursPanel.setBounds(260, 130, 200, 190);
         main.add(hoursPanel);
         
         //LABEL HOURS
+        JPanel headHours = new JPanel();
+        headHours.setBackground(Color.black);
+        headHours.setBorder(BorderFactory.createLineBorder(Color.orange));
+        headHours.setBounds(0, 0, 200, 30);
         JLabel hours = new JLabel("Hours");
         hours.setForeground(new java.awt.Color(255, 204, 0));
-        hoursPanel.add(hours);
+        headHours.add(hours);
+        hoursPanel.add(headHours);
+        
+        //CHECKBOXES OF HOURS
+        box9 = new JCheckBox("9:00");
+        box10 = new JCheckBox("10:00");
+        box11 = new JCheckBox("11:00");
+        box12 = new JCheckBox("12:00");
+        box13 = new JCheckBox("13:00");
+        box14 = new JCheckBox("14:00");
+        box15 = new JCheckBox("15:00");
+        box16 = new JCheckBox("16:00");
+        box17 = new JCheckBox("17:00");
+        box18 = new JCheckBox("18:00");
+        box19 = new JCheckBox("19:00");
+        all = new JCheckBox("all");
+        
+        //SET BOUNDS CHECKBOXES
+        box9.setBounds(5, 40, 60, 20);
+        box10.setBounds(70, 40, 60, 20);
+        box11.setBounds(135, 40, 60, 20);
+        box12.setBounds(5, 70, 60, 20);
+        box13.setBounds(70, 70, 60, 20);
+        box14.setBounds(135, 70, 60, 20);
+        box15.setBounds(5, 100, 60, 20);
+        box16.setBounds(70, 100, 60, 20);
+        box17.setBounds(135, 100, 60, 20);
+        box18.setBounds(5, 130, 60, 20);
+        box19.setBounds(70, 130, 60, 20);
+        all.setBounds(135, 130, 60, 20);
+        
+        //ADD CHECKBOXES
+        hoursPanel.add(box9);
+        hoursPanel.add(box10);
+        hoursPanel.add(box11);
+        hoursPanel.add(box12);
+        hoursPanel.add(box13);
+        hoursPanel.add(box14);
+        hoursPanel.add(box15);
+        hoursPanel.add(box16);
+        hoursPanel.add(box17);
+        hoursPanel.add(box18);
+        hoursPanel.add(box19);
+        hoursPanel.add(all);
         
         
+        all.addItemListener((ItemEvent e) -> {
+            if(all.isSelected()){
+                box9.setSelected(true);
+                box10.setSelected(true);
+                box11.setSelected(true);
+                box12.setSelected(true);
+            }
+        });
+              
         //BUTTON TO ADD DATES
         JButton jb1 = new JButton("ADD");
         jb1.addActionListener(setSlotsController);
@@ -125,17 +198,24 @@ public class SetSlots extends JFrame {
         main.add(jb1);
         this.add(main);
         
+        
+        
+        //LABEL CONFIRMATION
+        JPanel headConfirmation = new JPanel();
+        headConfirmation.setBackground(Color.black);
+        headConfirmation.setBorder(BorderFactory.createLineBorder(Color.orange));
+        headConfirmation.setBounds(550, 130, 300, 30);
+        JLabel confirmation = new JLabel("Confirmation");
+        confirmation.setForeground(new java.awt.Color(255, 204, 0));
+        headConfirmation.add(confirmation);
+        main.add(headConfirmation);
+        
         //CONFIRMATION PANEL
         JPanel confirmPanel = new JPanel();
         confirmPanel.setBackground(Color.black);
         confirmPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
-        confirmPanel.setBounds(550, 130, 300, 298);
+        confirmPanel.setBounds(550, 160, 300, 280);
         main.add(confirmPanel);
-        
-        //LABEL CONFIRMATION
-        JLabel confirmation = new JLabel("Confirmation");
-        confirmation.setForeground(new java.awt.Color(255, 204, 0));
-        confirmPanel.add(confirmation);
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
