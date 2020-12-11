@@ -81,7 +81,7 @@ public class Customer extends JFrame{
         main.setBounds(0, 72, 894, 449);
         
         //WELCOME TEXT
-        JLabel welcome = new JLabel("Welcome "+ this.validUser.getSurname() +", "+ this.validUser.getFirstName());
+        JLabel welcome = new JLabel("Welcome  "+ this.validUser.getFirstName() +"  "+ this.validUser.getSurname());
         welcome.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         welcome.setForeground(new java.awt.Color(255, 204, 0));
         welcome.setBounds(50, 30, 600, 70);
