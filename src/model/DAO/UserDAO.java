@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import model.User;
+
 /**
  *
  * @author Alysson Chinque
@@ -35,7 +36,7 @@ public class UserDAO {
         stmt.execute();
     }
 
-    public User checkCustomer(String email, String pass) throws SQLException{
+    public User checkCustomer(String email, String pass) throws SQLException {
         //query to get a customer by id and password
         String sql = "SELECT * FROM customer where email_customer = ? and password_customer = ?";
         //creating a Statement assigning a connection with the select query
@@ -46,14 +47,14 @@ public class UserDAO {
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
         User validUser = null;
-        if(resultSet.next()){
+        if (resultSet.next()) {
             //if there is a customer it returns the customers' details
             int id = resultSet.getInt("id_customer");
             String name = resultSet.getString("name_customer");
             String surname = resultSet.getString("surname_customer");
             validUser = new User(id, name, surname);
             return validUser;
-        }else{
+        } else {
             return null;
         }
     }
