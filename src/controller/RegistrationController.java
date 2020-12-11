@@ -78,6 +78,7 @@ public class RegistrationController implements ActionListener {
                     lg.changeVisibilityBarber(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
+                    break;
                 }
                 //creating a new user receiving a validated user
                 try {
@@ -108,6 +109,7 @@ public class RegistrationController implements ActionListener {
                     lg.changeVisibilityCustomer(false);
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
+                    break;
                 }
                 
                 try {
