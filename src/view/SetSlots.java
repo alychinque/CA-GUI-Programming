@@ -112,12 +112,30 @@ public class SetSlots extends JFrame {
         hoursPanel.setBounds(260, 130, 200, 190);
         main.add(hoursPanel);
         
+        //LABEL HOURS
+        JLabel hours = new JLabel("Hours");
+        hours.setForeground(new java.awt.Color(255, 204, 0));
+        hoursPanel.add(hours);
+        
+        
         //BUTTON TO ADD DATES
         JButton jb1 = new JButton("ADD");
         jb1.addActionListener(setSlotsController);
-        jb1.setBounds(470, 130, 70, 20);
+        jb1.setBounds(470, 205, 70, 20);
         main.add(jb1);
         this.add(main);
+        
+        //CONFIRMATION PANEL
+        JPanel confirmPanel = new JPanel();
+        confirmPanel.setBackground(Color.black);
+        confirmPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
+        confirmPanel.setBounds(550, 130, 300, 298);
+        main.add(confirmPanel);
+        
+        //LABEL CONFIRMATION
+        JLabel confirmation = new JLabel("Confirmation");
+        confirmation.setForeground(new java.awt.Color(255, 204, 0));
+        confirmPanel.add(confirmation);
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
