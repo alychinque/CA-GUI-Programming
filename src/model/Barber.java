@@ -10,6 +10,7 @@ package model;
  * @author alych
  */
 public class Barber {
+    private int id;
     private String firstName;
     private String surname;
     private String barberShop;
@@ -28,6 +29,12 @@ public class Barber {
         this.location = location;
         this.email = email;
         this.password = password;
+    }
+
+    public Barber(int id, String name, String surname) {
+        this.id = id;
+        this.firstName = name;
+        this.surname = surname;
     }
 
     public String getFirstName() {
