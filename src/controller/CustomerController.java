@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
