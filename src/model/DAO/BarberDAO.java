@@ -24,7 +24,7 @@ public class BarberDAO {
     }
 
     public void insert(Barber barber) throws SQLException {
-        String query = "INSERT INTO barber(name_barber, surname_barber, phone_barber, "
+        String query = "INSERT INTO barber(name_barber, surname_barber, phone_barber, email_barber, password_barber, barbershop, address, location)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         // Get a statement from the connection
