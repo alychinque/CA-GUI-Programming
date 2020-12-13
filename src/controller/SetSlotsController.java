@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import model.BarberAvailability;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.ConnectionDB;
+import view.BarberView;
 import view.SetSlots;
 
 /**
@@ -26,10 +27,15 @@ import view.SetSlots;
 public class SetSlotsController implements ActionListener {
 
     private final SetSlots view;
-    Date date;
+    private Date date;
+    private Date dateToday;
     private ArrayList<String> times;
-    SimpleDateFormat formato;
-    BarberAvailability availability;
+    private SimpleDateFormat formato;
+    private BarberAvailability availability;
+    private String[] array;
+    private int idBarber;
+    private String today;
+    private String dateString;
 
     public SetSlotsController(SetSlots view) {
         this.view = view;
@@ -40,16 +46,28 @@ public class SetSlotsController implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "add":
-                //get and format the date
-                date = view.jDateChooser.getDate();
-                formato = new SimpleDateFormat("dd/MM/yyyy");
-                String dateString = formato.format(date);
-                int idBarber = view.getValidBarber().getId();
-                
-                //if there is no date send a message
-                if (view.jDateChooser.getDate() == null) {
-                    JOptionPane.showMessageDialog(null, "please insert a date");
-                    break;
+                try {
+                    //get and format the chosen date and current date
+                    date = view.jDateChooser.getDate();
+                    dateToday = new Date();
+                    formato = new SimpleDateFormat("dd/MM/yyyy");
+                    dateString = formato.format(date);
+                    today = formato.format(dateToday);
+
+                    //get id barber
+                    idBarber = view.getValidBarber().getId();
+
+                    //if there is no date send a message
+                    if (view.jDateChooser.getDate() == null) {
+                        JOptionPane.showMessageDialog(null, "please insert a date");
+                        break;
+                        //checks if date is earlier
+                    } else if (dateString.compareTo(today) < 0) {
+                        JOptionPane.showMessageDialog(view, "The date cannot be earlier than the current date");
+                        break;
+                    }
+                } catch (Exception ez) {
+                    JOptionPane.showMessageDialog(view, "error");
                 }
                 //if all is selected times is assigned with all times the day
                 if (this.view.getAll()) {
@@ -66,33 +84,12 @@ public class SetSlotsController implements ActionListener {
                     times.add("18:00");
                     times.add("19:00");
 
-                    String[] array = times.toArray(new String[times.size()]);
-                    availability = new BarberAvailability(idBarber, dateString, array);
-                    try {
-                        //creating a new Connection conn and giving connection with the DB
-                        Connection conn = new ConnectionDB().getConnection();
-
-                        //instantiating userDAO passing a connection as a parameter
-                        BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
-
-                        //accessing method insert in the userDAO class passing a user as a parameter
-                        barberAvailabilityDAO.insert(availability);
-
-                        //write date and times added to the DB in text area
-                        this.view.getConfirmTextArea().append("Added the day " + formato.format(date)
-                                + "\nTimes:\n" + times + "\n");
-
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Error saving barber,\nPlease, try again");
-                        System.out.println(ex);
-                        break;
-                    }
-
-                    //System.out.println(times.get(0));
+                    //convert arrayList in array
+                    array = times.stream().toArray(n -> new String[n]);
                     //clear the array after add
                     times.clear();
                 } else {
-                   
+
                     //if a time is selected it is added to times
                     times = new ArrayList<>();
                     if (view.getBox9()) {
@@ -128,44 +125,50 @@ public class SetSlotsController implements ActionListener {
                     if (view.getBox19()) {
                         times.add("19:00");
                     }
-                    
-                     //it checks if times is empty
+
+                    //convert arrayList in array
+                    array = times.toArray(new String[times.size()]);
+
+                    //it checks if times is empty
                     if (times.isEmpty()) {
                         JOptionPane.showMessageDialog(null, "please insert time slots");
                         break;
                     }
-                    
-                    String[] array = times.toArray(new String[times.size()]);
-                    availability = new BarberAvailability(idBarber, dateString, array);
-                    
-                    try {
-                        //creating a new Connection conn and giving connection with the DB
-                        Connection conn = new ConnectionDB().getConnection();
-
-                        //instantiating userDAO passing a connection as a parameter
-                        BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
-
-                        //accessing method insert in the userDAO class passing a user as a parameter
-                        barberAvailabilityDAO.insert(availability);
-
-                        //write date and times added to the DB in text area
-                        this.view.getConfirmTextArea().append("Added the day " + formato.format(date)
-                                + "\nTimes:\n" + times + "\n");
-
-                    } catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Error saving barber,\nPlease, try again");
-                        System.out.println(ex);
-                        break;
-                    }
-                    
-                    this.view.getConfirmTextArea().append("Added the day " + formato.format(date)
-                            + "\nTimes:\n" + times + "\n");
 
                     //clear the array after add
                     times.clear();
                 }
-                break;
+
+                try {
+                    //creating a new Connection conn and giving connection with the DB
+                    Connection conn = new ConnectionDB().getConnection();
+
+                    //instantiating userDAO passing a connection as a parameter
+                    BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
+
+                    availability = new BarberAvailability(idBarber, dateString, array);
+
+                    //check if the date is already used
+                    if (barberAvailabilityDAO.checkDay(availability)) {
+
+                        //accessing method insert in the userDAO class passing a user as a parameter
+                        barberAvailabilityDAO.insert(availability);
+                        //write date and times added to the DB in text area
+                        this.view.getConfirmTextArea().append("Added the day " + formato.format(date)
+                                + "\nTimes:\n" + Arrays.toString(array) + "\n");
+                        break;
+                    }
+                    break;
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Error saving barber,\nPlease, try again");
+                    System.out.println(ex);
+                    break;
+                }
+            case "back":
+                BarberView barberView = new BarberView();
+                this.view.dispose();
+                barberView.BarberView(this.view.getValidBarber());
         }
     }
-
 }
