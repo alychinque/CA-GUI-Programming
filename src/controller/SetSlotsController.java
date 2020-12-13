@@ -77,7 +77,7 @@ public class SetSlotsController implements ActionListener {
                     if (view.getBox17()){times.add("17:00");}
                     if (view.getBox18()){times.add("18:00");}
                     if (view.getBox19()){times.add("19:00");}
-                    if (times == null){
+                    if (times.isEmpty()){
                         JOptionPane.showMessageDialog(null, "please insert a time slots");
                         break;
                     }
