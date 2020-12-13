@@ -19,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import model.Barber;
@@ -45,6 +46,7 @@ public class SetSlots extends JFrame {
         JCheckBox all;
         
         JTextArea confirmTextArea;
+        JScrollPane scrollPane;
 
     public void SetSlots(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -233,18 +235,15 @@ public class SetSlots extends JFrame {
         main.add(headConfirmation);
         
         //CONFIRMATION PANEL
-        JPanel confirmPanel = new JPanel();
-        confirmPanel.setBackground(Color.black);
-        confirmPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
-        confirmPanel.setBounds(550, 160, 300, 30);
-        main.add(confirmPanel);
-        JPanel ConfirmArea = new JPanel();
-        ConfirmArea.setBackground(Color.black);
-        ConfirmArea.setBorder(BorderFactory.createLineBorder(Color.orange));
-        ConfirmArea.setBounds(550, 190, 300, 250);
         confirmTextArea = new JTextArea();
-        ConfirmArea.add(confirmTextArea);
-        main.add(ConfirmArea);
+        scrollPane = new JScrollPane(confirmTextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setBounds(550, 160, 300, 250);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.orange));
+        confirmTextArea.setBackground(Color.black);
+        confirmTextArea.setBorder(BorderFactory.createLineBorder(Color.orange));
+        confirmTextArea.setForeground(new java.awt.Color(255, 255, 255));
+        //ConfirmArea.add(confirmTextArea);
+        main.add(scrollPane);
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
