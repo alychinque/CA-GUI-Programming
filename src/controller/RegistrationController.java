@@ -38,7 +38,7 @@ public class RegistrationController implements ActionListener {
     private String barberShop;
     private String address;
     private String location;
-    
+
     private User user;
     private Barber barber;
 
@@ -102,16 +102,12 @@ public class RegistrationController implements ActionListener {
                     location = this.view.getCombo();
                     barber = new Barber(name, surname, barberShop, phone, address, location, email, pass);
                     JOptionPane.showMessageDialog(null, "Success");
-                    Login lg = new Login();
-                    this.view.dispose();
-                    lg.Login();
-                    lg.changeVisibilityBarber(true);
-                    lg.changeVisibilityCustomer(false);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                     break;
                 }
-                
+
                 try {
                     //creating a new Connection conn and giving connection with the DB
                     Connection conn = new ConnectionDB().getConnection();
@@ -123,7 +119,14 @@ public class RegistrationController implements ActionListener {
                     barberDAO.insert(barber);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error saving barber,\nPlease, try again");
+                    System.out.println(ex);
+                    break;
                 }
+                Login lg = new Login();
+                this.view.dispose();
+                lg.Login();
+                lg.changeVisibilityBarber(true);
+                lg.changeVisibilityCustomer(false);
                 break;
         }
     }
@@ -180,8 +183,10 @@ public class RegistrationController implements ActionListener {
         }
 
     }
+
     //method implemented from geeksforgeeks
     //URL:https://www.geeksforgeeks.org/check-email-address-valid-not-java/
+
     private Boolean validEmail() {
         try {
             email = this.view.getEmail().getText().toLowerCase();
@@ -210,16 +215,17 @@ public class RegistrationController implements ActionListener {
     private boolean validPass() {
         pass = this.view.getPassword().getText();
         passConfirm = this.view.getPasswordConfirm().getText();
-        if(pass.equals(passConfirm)){
+        if (pass.equals(passConfirm)) {
             return true;
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Passwords does not match!\nPlease enter again!");
             return false;
         }
     }
+
     private boolean validAddress() {
         address = this.view.getAddress().getText();
         return address.length() > 5;
     }
-    
+
 }
