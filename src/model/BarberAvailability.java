@@ -21,6 +21,10 @@ public class BarberAvailability {
         this.dateAva = date;
         this.time = time;
     }
+    public BarberAvailability(int id, String date) {
+        this.id = id;
+        this.dateAva = date;
+    }
 
     public int getId() {
         return id;
