@@ -5,16 +5,45 @@
  */
 package model;
 
+import java.util.Date;
+
 /**
  *
  * @author alych
  */
 public class BarberAvailability {
-    private String date;
-    private String time;
+    int id;
+    String dateAva;
+    private String [] time;
 
-    public BarberAvailability() {
-        
+    public BarberAvailability(int id, String date, String [] time) {
+        this.id = id;
+        this.dateAva = date;
+        this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDateAva() {
+        return dateAva;
+    }
+
+    public void setDateAva(String date) {
+        this.dateAva = date;
+    }
+
+    public String [] getTime() {
+        return time;
+    }
+
+    public void setTime(String[] time) {
+        this.time = time;
     }
     
     
