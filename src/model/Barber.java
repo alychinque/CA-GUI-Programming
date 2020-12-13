@@ -37,6 +37,10 @@ public class Barber {
         this.surname = surname;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getFirstName() {
         return firstName;
     }
