@@ -37,7 +37,7 @@ public class CustomerController implements ActionListener {
         switch (e.getActionCommand()) {
             case "name":
                 this.view.setVisible(false);
-                BarberSearch bs = new BarberSearch();
+                BarberSearch bs = new BarberSearch(this.view.getValidUser());
                 bs.BarberSearch();
                 break;
             case "location":
