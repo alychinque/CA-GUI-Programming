@@ -40,6 +40,7 @@ public class LoginController implements ActionListener {
                 if(this.view.getCombo().equals("CUSTOMER")){
                     this.view.changeVisibilityCustomer(true);
                     this.view.changeVisibilityBarber(false);
+                    break;
                 }else{
                     this.view.changeVisibilityCustomer(false);
                     this.view.changeVisibilityBarber(true);
