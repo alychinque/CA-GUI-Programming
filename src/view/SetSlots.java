@@ -10,7 +10,6 @@ import controller.SetSlotsController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -20,6 +19,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import model.Barber;
 
@@ -29,9 +29,9 @@ import model.Barber;
  */
 public class SetSlots extends JFrame {
     private Barber validBarber;
-    JDateChooser jDateChooser;
+    public JDateChooser jDateChooser;
     
-    JCheckBox box9;
+        JCheckBox box9;
         JCheckBox box10;
         JCheckBox box11;
         JCheckBox box12;
@@ -43,6 +43,8 @@ public class SetSlots extends JFrame {
         JCheckBox box18;
         JCheckBox box19;
         JCheckBox all;
+        
+        JTextArea confirmTextArea;
 
     public void SetSlots(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -181,24 +183,44 @@ public class SetSlots extends JFrame {
         hoursPanel.add(box19);
         hoursPanel.add(all);
         
-        
+        //IF ALL IS SELECTED ALL BECOME TRUE IF IS NOT ALL BECOME FALSE
         all.addItemListener((ItemEvent e) -> {
             if(all.isSelected()){
                 box9.setSelected(true);
                 box10.setSelected(true);
                 box11.setSelected(true);
                 box12.setSelected(true);
+                box13.setSelected(true);
+                box14.setSelected(true);
+                box15.setSelected(true);
+                box16.setSelected(true);
+                box17.setSelected(true);
+                box18.setSelected(true);
+                box19.setSelected(true);
+            }else{
+                box9.setSelected(false);
+                box10.setSelected(false);
+                box11.setSelected(false);
+                box12.setSelected(false);
+                box13.setSelected(false);
+                box14.setSelected(false);
+                box15.setSelected(false);
+                box16.setSelected(false);
+                box17.setSelected(false);
+                box18.setSelected(false);
+                box19.setSelected(false);
             }
         });
               
         //BUTTON TO ADD DATES
-        JButton jb1 = new JButton("ADD");
-        jb1.addActionListener(setSlotsController);
-        jb1.setBounds(470, 205, 70, 20);
-        main.add(jb1);
+        JButton add = new JButton("ADD");
+        add.setBounds(470, 205, 70, 20);
+        main.add(add);
         this.add(main);
         
-        
+        //ACTION LISTENER
+        add.addActionListener(setSlotsController);
+        add.setActionCommand("add");
         
         //LABEL CONFIRMATION
         JPanel headConfirmation = new JPanel();
@@ -214,8 +236,15 @@ public class SetSlots extends JFrame {
         JPanel confirmPanel = new JPanel();
         confirmPanel.setBackground(Color.black);
         confirmPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
-        confirmPanel.setBounds(550, 160, 300, 280);
+        confirmPanel.setBounds(550, 160, 300, 30);
         main.add(confirmPanel);
+        JPanel ConfirmArea = new JPanel();
+        ConfirmArea.setBackground(Color.black);
+        ConfirmArea.setBorder(BorderFactory.createLineBorder(Color.orange));
+        ConfirmArea.setBounds(550, 190, 300, 250);
+        confirmTextArea = new JTextArea();
+        ConfirmArea.add(confirmTextArea);
+        main.add(ConfirmArea);
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
@@ -238,5 +267,56 @@ public class SetSlots extends JFrame {
 
     public JDateChooser getjDateChooser() {
         return jDateChooser;
+    }
+
+    public boolean getBox9() {
+        return box9.isSelected();
+    }
+
+    public boolean getBox10() {
+        return box10.isSelected();
+    }
+
+    public boolean getBox11() {
+        return box11.isSelected();
+    }
+
+    public boolean getBox12() {
+        return box12.isSelected();
+    }
+
+    public boolean getBox13() {
+        return box13.isSelected();
+    }
+
+    public boolean getBox14() {
+        return box14.isSelected();
+    }
+
+    public boolean getBox15() {
+        return box15.isSelected();
+    }
+
+    public boolean getBox16() {
+        return box16.isSelected();
+    }
+
+    public boolean getBox17() {
+        return box17.isSelected();
+    }
+
+    public boolean getBox18() {
+        return box18.isSelected();
+    }
+
+    public boolean getBox19() {
+        return box19.isSelected();
+    }
+
+    public boolean getAll() {
+        return all.isSelected();
+    }
+    public JTextArea getConfirmTextArea() {
+        return confirmTextArea;
     }
 }
