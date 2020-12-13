@@ -244,6 +244,13 @@ public class SetSlots extends JFrame {
         confirmTextArea.setForeground(new java.awt.Color(255, 255, 255));
         //ConfirmArea.add(confirmTextArea);
         main.add(scrollPane);
+        
+        // RETURN BUTTON AND FOOTER PANEL
+        JButton back = new JButton("BACK");
+        back.setBounds(15, 525, 80, 19);
+        this.add(back);
+        back.addActionListener(setSlotsController);
+        back.setActionCommand("back");
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
