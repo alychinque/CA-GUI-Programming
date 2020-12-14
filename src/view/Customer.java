@@ -28,13 +28,9 @@ import model.User;
 public class Customer extends JFrame{
     private User validUser;
     public JTextArea complainT;
-    public User getValidUser() {
-        return validUser;
-    }
+    private JTextField nameT;
+    private JTextField locationT;
     
-     public JTextArea getComplainT() {
-        return complainT;
-    }
 
     public void Customer(User validUser) {
         this.setTitle("Style Barber Shop - customer");
@@ -98,7 +94,7 @@ public class Customer extends JFrame{
         name.setForeground(new java.awt.Color(255, 204, 0));
         name.setBounds(250, 140, 80, 30);
         main.add(name);
-        JTextField nameT = new JTextField();
+        nameT = new JTextField();
         nameT.setBounds(370, 140, 300, 30);
         main.add(nameT);
         JButton nameB = new JButton("SEARCH");
@@ -113,7 +109,7 @@ public class Customer extends JFrame{
         location.setForeground(new java.awt.Color(255, 204, 0));
         location.setBounds(250, 190, 120, 30);
         main.add(location);
-        JTextField locationT = new JTextField("");
+        locationT = new JTextField("");
         locationT.setBounds(370, 190, 300, 30);
         main.add(locationT);
         JButton locationB = new JButton("SEARCH");
@@ -153,5 +149,22 @@ public class Customer extends JFrame{
         this.validate();
         this.repaint();
     }
+    
+    public User getValidUser() {
+        return validUser;
+    }
+    
+     public JTextArea getComplainT() {
+        return complainT;
+    }
 
+    public JTextField getNameT() {
+        return nameT;
+    }
+
+    public JTextField getLocationT() {
+        return locationT;
+    }
+     
+     
 }
