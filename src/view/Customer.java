@@ -31,7 +31,6 @@ public class Customer extends JFrame {
     private User validUser;
     public JTextArea complainT;
     private JTextField nameT;
-    private String[] locationT;
     private JComboBox combo;
 
     public void Customer(User validUser) {
