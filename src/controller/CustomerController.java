@@ -14,13 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import model.Barber;
 import model.DAO.BarberDAO;
 import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
 import view.Customer;
-import view.MakeAppointment;
 
 /**
  *
@@ -53,7 +51,9 @@ public class CustomerController implements ActionListener {
                     String name = this.view.getNameT().getText();
                     if (nameFilled(name) && isValid(name)) {
                         BarberDAO barberDAO = new BarberDAO(conn);
+
                         barberFound = barberDAO.search(name, 1);
+
                         BarberSearch bs = new BarberSearch();
                         bs.setOption(collectNames());
                         bs.setData(barberFound);
@@ -62,8 +62,7 @@ public class CustomerController implements ActionListener {
                         break;
                     }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(view, "Barber not Found,\nPlease try again");
-                    break;
+                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             case "location":
@@ -78,7 +77,7 @@ public class CustomerController implements ActionListener {
                     this.view.dispose();
                     break;
 
-                } catch (SQLException ex) {
+                } catch (SQLException ew) {
                     JOptionPane.showMessageDialog(this.view, "Barber not Found,\nPlease try again");
                     break;
                 }
