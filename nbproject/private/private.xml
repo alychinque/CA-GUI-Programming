@@ -4,16 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/model/Barber.java</file>
-            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/SetSlotsController.java</file>
-            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/model/User.java</file>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/LoginController.java</file>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/model/DAO/BarberDAO.java</file>
-            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/model/BarberAvailability.java</file>
-            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/BarberViewController.java</file>
-            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/view/SetSlots.java</file>
+            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/view/Login.java</file>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/CustomerController.java</file>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/model/DAO/BarberAvailabilityDAO.java</file>
+            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/view/BarberSearch.java</file>
             <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/view/Customer.java</file>
+            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/BarberSController.java</file>
+            <file>file:/C:/Users/alych/Documents/NetBeansProjects/CA-GUI-Programming/src/controller/RegistrationController.java</file>
         </group>
     </open-files>
 </project-private>
