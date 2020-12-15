@@ -9,24 +9,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import view.BarberSearch;
 import view.Customer;
+import view.MakeAppointment;
 
 /**
  *
  * @author Alysson Chinque
  */
 public class BarberSController implements ActionListener {
+
     private final BarberSearch view;
-    
+
     public BarberSController(BarberSearch view) {
         this.view = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("back")) {
-            this.view.dispose();
-            Customer customer = new Customer();
-            customer.Customer(this.view.getValidUser());
+        switch (e.getActionCommand()) {
+            case "name":
+                MakeAppointment appointment = new MakeAppointment(this.view.getValidUser());
+                break;
+            case "back":
+                this.view.dispose();
+                Customer customer = new Customer();
+                customer.Customer(this.view.getValidUser());
+                break;
         }
     }
 
