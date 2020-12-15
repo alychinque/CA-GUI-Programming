@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.LocationSController;
+import controller.makeAppointmentController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -24,7 +24,7 @@ import javax.swing.WindowConstants;
  *
  * @author Alysson Chinque
  */
-public class LocationSearch extends JFrame{
+public class MakeAppointment extends JFrame{
     String[] colNames = {"Module", "Lecture", "Days"};
         String[][]  data = {
             {"GUI", "Amilcar", "Friday"},
@@ -61,7 +61,7 @@ public class LocationSearch extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
-        LocationSController locationController = new LocationSController(this);
+        makeAppointmentController locationController = new makeAppointmentController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
