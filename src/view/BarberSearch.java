@@ -98,7 +98,6 @@ public class BarberSearch extends JFrame {
 
         //CREATED PANEL OF CHOICE
         combo = new JComboBox(option);
-       
         combo.addActionListener(barberSController);
         combo.setActionCommand("name");
         combo.setBounds(347, 360, 200, 25);
