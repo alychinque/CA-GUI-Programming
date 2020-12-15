@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import model.Barber;
 
 /**
@@ -19,6 +21,7 @@ public class BarberDAO {
 
     private final Connection connection;
     private Barber validBarber = null;
+    private Barber listBarber;
 
     public BarberDAO(Connection connection) {
         this.connection = connection;
@@ -52,8 +55,7 @@ public class BarberDAO {
         stmt.execute();
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-        
-        
+
         if (resultSet.next()) {
             //if there is a barber it returns the customers' details
             int id = resultSet.getInt("id_barber");
@@ -66,7 +68,7 @@ public class BarberDAO {
         }
     }
 
-    public Barber search(String name) throws SQLException {
+    public String[][] search(String name) throws SQLException {
         //query to get a barber by name
         String sql = "SELECT * FROM barber where name_barber = ?";
         //creating a Statement assigning a connection with the select query
@@ -75,18 +77,27 @@ public class BarberDAO {
         stmt.execute();
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-        
-        if (resultSet.next()) {
+
+        String[][] data;
+        ArrayList<Barber> barber = new ArrayList<>();
+        while (resultSet.next()) {
             //if there is a barber it returns the customers' details
-            String nameBar = resultSet.getString("name_barber");
-            String surname = resultSet.getString("surname_barber");
-            String barberShop = resultSet.getString("barbershop");
-            String address = resultSet.getString("address");
-            String location = resultSet.getString("location");
-            validBarber = new Barber(nameBar, surname, barberShop, address, location);
-            return validBarber;
-        } else {
-            return null;
+            listBarber = new Barber(resultSet.getString("name_barber"), resultSet.getString("surname_barber"), resultSet.getString("barbershop"),
+                    resultSet.getString("address"), resultSet.getString("location"));
+
+            barber.add(listBarber);
+
         }
+        data = new String[barber.size()][4];
+        for (int i = 0; i < barber.size(); i++) {
+            for (int j = 0; j < 4; j++) {
+                if (j == 0) {data[i][j] = (barber.get(i).getFirstName() + " " + barber.get(i).getSurname());}
+                if (j == 1) {data[i][j] = barber.get(i).getBarberShop();}
+                if (j == 2) {data[i][j] = barber.get(i).getAddress();}
+                if (j == 3) {data[i][j] = barber.get(i).getLocation();}
+            }
+        }
+        return data;
     }
+
 }
