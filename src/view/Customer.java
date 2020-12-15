@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,12 +26,13 @@ import model.User;
  *
  * @author Alysson Chinque
  */
-public class Customer extends JFrame{
+public class Customer extends JFrame {
+
     private User validUser;
     public JTextArea complainT;
     private JTextField nameT;
-    private JTextField locationT;
-    
+    private String[] locationT;
+    private JComboBox combo;
 
     public void Customer(User validUser) {
         this.setTitle("Style Barber Shop - customer");
@@ -56,7 +58,7 @@ public class Customer extends JFrame{
         top.setBounds(0, 0, 894, 72);
         top.add(style);
         this.add(top);
-        
+
         //MENUBAR
         JMenuBar myMenuBar = new JMenuBar();
         this.setJMenuBar(myMenuBar);
@@ -68,16 +70,16 @@ public class Customer extends JFrame{
         myMenu.add(myBookings);
         JMenuItem logout = new JMenuItem("Logout");
         myMenu.add(logout);
-        
+
         //MAIN PANEL
         JPanel main = new JPanel();
         main.setLayout(null);
         main.setBackground(Color.black);
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 72, 894, 449);
-        
+
         //WELCOME TEXT
-        JLabel welcome = new JLabel("Welcome  "+ this.validUser.getFirstName() +"  "+ this.validUser.getSurname());
+        JLabel welcome = new JLabel("Welcome  " + this.validUser.getFirstName() + "  " + this.validUser.getSurname());
         welcome.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         welcome.setForeground(new java.awt.Color(255, 204, 0));
         welcome.setBounds(50, 30, 600, 70);
@@ -87,7 +89,7 @@ public class Customer extends JFrame{
         searchText.setForeground(new java.awt.Color(255, 204, 0));
         searchText.setBounds(50, 70, 400, 70);
         main.add(searchText);
-        
+
         //NAME LABEL, TEXTFIELD AND BUTTON
         JLabel name = new JLabel("NAME:");
         name.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -102,22 +104,30 @@ public class Customer extends JFrame{
         nameB.addActionListener(custController);
         nameB.setActionCommand("name");
         main.add(nameB);
-        
+
         //LOCATION LABEL, TEXTFIELD AND BUTTON
         JLabel location = new JLabel("LOCATION:");
         location.setFont(new Font("Arial", Font.PLAIN, 20));
         location.setForeground(new java.awt.Color(255, 204, 0));
         location.setBounds(250, 190, 120, 30);
         main.add(location);
-        locationT = new JTextField("");
-        locationT.setBounds(370, 190, 300, 30);
-        main.add(locationT);
+
+        String[] locationT = {"Dublin1", "Dublin2", "Dublin3", "Dublin4",
+            "Dublin5", "Dublin6", "Dublin7", "Dublin8",
+            "Dublin9", "Dublin10", "Dublin11", "Dublin12",
+            "Dublin13", "Dublin14", "Dublin15", "Dublin16",
+            "Dublin17", "Dublin18", "Dublin19", "Dublin20",
+            "Dublin21", "Dublin22", "Dublin23", "Dublin24",};
+        combo = new JComboBox(locationT);
+        combo.setBounds(370, 190, 300, 30);
+        main.add(combo);
+     
         JButton locationB = new JButton("SEARCH");
         locationB.setBounds(675, 200, 90, 20);
         locationB.addActionListener(custController);
         locationB.setActionCommand("location");
         main.add(locationB);
-        
+
         //COMPLAIN LABEL, TEXTFIELD AND BUTTON
         JLabel complain = new JLabel("DO YOU HAVE ANY SUGGESTION OR COMPLAIN?");
         complain.setFont(new Font("Arial", Font.PLAIN, 20));
@@ -134,7 +144,7 @@ public class Customer extends JFrame{
         complainB.setActionCommand("complain");
         main.add(complainB);
         this.add(main);
-        
+
         //FOOTER PANEL
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
@@ -149,12 +159,12 @@ public class Customer extends JFrame{
         this.validate();
         this.repaint();
     }
-    
+
     public User getValidUser() {
         return validUser;
     }
-    
-     public JTextArea getComplainT() {
+
+    public JTextArea getComplainT() {
         return complainT;
     }
 
@@ -162,9 +172,8 @@ public class Customer extends JFrame{
         return nameT;
     }
 
-    public JTextField getLocationT() {
-        return locationT;
+    public String getCombo() {
+        return combo.getSelectedItem().toString();
     }
-     
-     
+
 }
