@@ -71,11 +71,7 @@ public class RegistrationController implements ActionListener {
                 if (validName() && validPhone() && validEmail() && validPass()) {
                     user = new User(name, surname, phone, email, pass);
                     JOptionPane.showMessageDialog(null, "Success");
-                    Login lg = new Login();
-                    this.view.dispose();
-                    lg.Login();
-                    lg.changeVisibilityCustomer(true);
-                    lg.changeVisibilityBarber(false);
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Registration failed");
                     break;
@@ -93,6 +89,13 @@ public class RegistrationController implements ActionListener {
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Error saving user,\nPlease, try again");
                 }
+                Login lg = new Login();
+                this.view.dispose();
+                lg.Login();
+                lg.setEmailCustomer(email);
+                lg.setPassCustomer(pass);
+                lg.changeVisibilityCustomer(true);
+                lg.changeVisibilityBarber(false);
                 break;
 
             case "registerBarber":
@@ -122,9 +125,11 @@ public class RegistrationController implements ActionListener {
                     System.out.println(ex);
                     break;
                 }
-                Login lg = new Login();
                 this.view.dispose();
+                lg = new Login();
                 lg.Login();
+                lg.setEmailBarber(email);
+                lg.setPassBarber(pass);
                 lg.changeVisibilityBarber(true);
                 lg.changeVisibilityCustomer(false);
                 break;
@@ -186,7 +191,6 @@ public class RegistrationController implements ActionListener {
 
     //method implemented from geeksforgeeks
     //URL:https://www.geeksforgeeks.org/check-email-address-valid-not-java/
-
     private Boolean validEmail() {
         try {
             email = this.view.getEmail().getText().toLowerCase();
