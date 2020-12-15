@@ -8,6 +8,7 @@ package view;
 import controller.BarberSController;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -80,14 +81,13 @@ public class BarberSearch extends JFrame {
 
         JLabel nameBarber;
         if (type == 1){
-            nameBarber= new JLabel("Found " + validUser.getFirstName()); 
+            nameBarber= new JLabel("Found " + Arrays.toString(data[0]).split(" ")[0]); 
         } else {
-            nameBarber= new JLabel("Found " + data[3]); 
+            nameBarber= new JLabel("Found " + data[0][3]); 
         }
-        nameBarber= new JLabel("Found + barber"); //ADD BARBER'S NAME HERE
         nameBarber.setForeground(new java.awt.Color(255, 204, 0));
         nameBarber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        nameBarber.setBounds(200, 70, 200, 30);
+        nameBarber.setBounds(200, 70, 600, 30);
         main.add(nameBarber);
 
         //TABLE TO SHOW BARBERS FOUND
