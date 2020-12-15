@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
+import model.User;
 
 /**
  *
@@ -53,7 +54,7 @@ public class MakeAppointment extends JFrame{
             {"Laboratory", "Aldana", "Tuesday"},
         };
 
-    public void LocationSearch() {
+    public MakeAppointment(User validUser) {
         this.setTitle("Style Barber Shop - location search");
         this.setSize(900, 600);
         this.setVisible(true);
