@@ -12,7 +12,10 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import model.Barber;
+import model.DAO.BarberDAO;
 import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
@@ -26,6 +29,8 @@ import view.LocationSearch;
 public class CustomerController implements ActionListener {
 
     private final Customer view;
+    private Connection conn;
+    private String[][] barberFound;
 
     public CustomerController(Customer view) {
         this.view = view;
@@ -34,43 +39,89 @@ public class CustomerController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //creating a new Connection conn and giving connection with the DB
+        try {
+            conn = new ConnectionDB().getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Failed");
+        }
         switch (e.getActionCommand()) {
+
             case "name":
-                this.view.setVisible(false);
-                BarberSearch bs = new BarberSearch();
-                bs.BarberSearch(this.view.getValidUser());
-                break;
+                try {
+                    String name = this.view.getNameT().getText();
+                    if (nameFilled(name) && isValid(name)) {
+                        BarberDAO barberDAO = new BarberDAO(conn);
+                        barberFound = barberDAO.search(name);
+                        BarberSearch bs = new BarberSearch();
+                        bs.setOption(collectNames());
+                        bs.setData(barberFound);
+                        bs.BarberSearch(this.view.getValidUser());
+                        this.view.dispose();
+                        break;
+                    }
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(view, "Barber not Found,\nPlease try again");
+                    break;
+                }
+
             case "location":
                 this.view.setVisible(false);
                 LocationSearch ls = new LocationSearch();
                 ls.LocationSearch();
                 break;
             case "complain":
-                int id = this.view.getValidUser().getId();
-                String text = this.view.getComplainT().getText();
-                Date dateNow = new Date();
-                String date = dateNow.toString();
-                if (text.equals("")){
-                    JOptionPane.showMessageDialog(null, "Please write a message!");
-                    break;
-                }
-                //creating a new Connection conn and giving connection with the DB
                 try {
-                    Connection conn = new ConnectionDB().getConnection();
+                    int id = this.view.getValidUser().getId();
+                    String text = this.view.getComplainT().getText();
+                    Date dateNow = new Date();
+                    String date = dateNow.toString();
+                    if (text.equals("")) {
+                        JOptionPane.showMessageDialog(null, "Please write a message!");
+                        break;
+                    }
                     ComplainDAO complainDAO = new ComplainDAO(conn);
                     complainDAO.setComplain(id, text, date);
                     JOptionPane.showMessageDialog(null, "SENT");
-                    this.view.complainT.setText(""); 
-               } catch (SQLException ex) {
-                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(null, "Failed");
+                    this.view.complainT.setText("");
+
+                    break;
+                } catch (Exception ez) {
+                    JOptionPane.showMessageDialog(view, "Something went wrong.\nPlease try again");
                 }
-                
-                break;
+
             default:
                 System.out.println("error");
                 break;
         }
+    }
+
+    private boolean nameFilled(String name) {
+        if (name.equals("")) {
+            JOptionPane.showMessageDialog(view, "Please insert a name or first letter!");
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isValid(String name) {
+        boolean nameBoo = Pattern.matches("[a-z]+", name);
+        if (nameBoo) {
+            return true;
+        }
+        JOptionPane.showMessageDialog(view, "Names cannot contain numbers or special characters\nPlease try again.");
+        return false;
+    }
+
+    private String[] collectNames() {
+        String[] names = new String[barberFound.length];
+        
+        for (int i = 0; i < barberFound.length; i++) {
+            names[i] = barberFound[i][0];
+            System.out.println(barberFound[i][0]);
+        }
+        return names;
     }
 
 }
