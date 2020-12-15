@@ -23,7 +23,6 @@ public class BarberSController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("chega aqui");
         if (e.getActionCommand().equals("back")) {
             this.view.dispose();
             Customer customer = new Customer();
