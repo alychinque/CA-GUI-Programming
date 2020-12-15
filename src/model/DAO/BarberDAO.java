@@ -18,6 +18,7 @@ import model.Barber;
 public class BarberDAO {
 
     private final Connection connection;
+    private Barber validBarber = null;
 
     public BarberDAO(Connection connection) {
         this.connection = connection;
@@ -51,13 +52,38 @@ public class BarberDAO {
         stmt.execute();
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-        Barber validBarber = null;
+        
+        
         if (resultSet.next()) {
             //if there is a barber it returns the customers' details
             int id = resultSet.getInt("id_barber");
             String name = resultSet.getString("name_barber");
             String surname = resultSet.getString("surname_barber");
             validBarber = new Barber(id, name, surname);
+            return validBarber;
+        } else {
+            return null;
+        }
+    }
+
+    public Barber search(String name) throws SQLException {
+        //query to get a barber by name
+        String sql = "SELECT * FROM barber where name_barber = ?";
+        //creating a Statement assigning a connection with the select query
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, name);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+        
+        if (resultSet.next()) {
+            //if there is a barber it returns the customers' details
+            String nameBar = resultSet.getString("name_barber");
+            String surname = resultSet.getString("surname_barber");
+            String barberShop = resultSet.getString("barbershop");
+            String address = resultSet.getString("address");
+            String location = resultSet.getString("location");
+            validBarber = new Barber(nameBar, surname, barberShop, address, location);
             return validBarber;
         } else {
             return null;
