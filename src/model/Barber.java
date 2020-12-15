@@ -36,6 +36,13 @@ public class Barber {
         this.firstName = name;
         this.surname = surname;
     }
+    public Barber (String firstName, String surname, String barberShop, String address, String location) {
+        this.firstName = firstName;
+        this.surname = surname;
+        this.barberShop = barberShop;
+        this.address = address;
+        this.location = location;
+    }
 
     public int getId() {
         return id;
