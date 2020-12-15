@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import model.Barber;
 
 /**
@@ -67,15 +68,9 @@ public class BarberDAO {
         }
     }
 
-    public String[][] search(String name, int type) throws SQLException {
+    public String[][] search(String name) throws SQLException {
         //query to get a barber by name
-        String sql;
-        if (type == 1){
-            sql = "SELECT * FROM barber where name_barber = ?";
-        }else{
-            sql = "SELECT * FROM barber where location = ?";
-        }
-        
+        String sql = "SELECT * FROM barber where name_barber = ?";
         //creating a Statement assigning a connection with the select query
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1, name);
