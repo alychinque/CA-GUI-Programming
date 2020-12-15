@@ -20,7 +20,7 @@ import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
 import view.Customer;
-import view.LocationSearch;
+import view.MakeAppointment;
 
 /**
  *
@@ -53,11 +53,11 @@ public class CustomerController implements ActionListener {
                     String name = this.view.getNameT().getText();
                     if (nameFilled(name) && isValid(name)) {
                         BarberDAO barberDAO = new BarberDAO(conn);
-                        barberFound = barberDAO.search(name);
+                        barberFound = barberDAO.search(name, 1);
                         BarberSearch bs = new BarberSearch();
                         bs.setOption(collectNames());
                         bs.setData(barberFound);
-                        bs.BarberSearch(this.view.getValidUser());
+                        bs.BarberSearch(this.view.getValidUser(), 1);
                         this.view.dispose();
                         break;
                     }
@@ -67,10 +67,22 @@ public class CustomerController implements ActionListener {
                 }
 
             case "location":
-                this.view.setVisible(false);
-                LocationSearch ls = new LocationSearch();
-                ls.LocationSearch();
-                break;
+                try {
+                    String location = this.view.getCombo();
+                    BarberDAO barberDAO = new BarberDAO(conn);
+                    barberFound = barberDAO.search(location, 2);
+                    BarberSearch bs = new BarberSearch();
+                    bs.setOption(collectNames());
+                    bs.setData(barberFound);
+                    bs.BarberSearch(this.view.getValidUser(), 2);
+                    this.view.dispose();
+                    break;
+
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this.view, "Barber not Found,\nPlease try again");
+                    break;
+                }
+
             case "complain":
                 try {
                     int id = this.view.getValidUser().getId();
@@ -116,10 +128,9 @@ public class CustomerController implements ActionListener {
 
     private String[] collectNames() {
         String[] names = new String[barberFound.length];
-        
+
         for (int i = 0; i < barberFound.length; i++) {
             names[i] = barberFound[i][0];
-            System.out.println(barberFound[i][0]);
         }
         return names;
     }
