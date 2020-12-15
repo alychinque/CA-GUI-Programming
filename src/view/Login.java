@@ -191,10 +191,6 @@ public class Login extends JFrame{
     public String getCombo() {
         return combo.getSelectedItem().toString();
     }
-
-    public void setCombo(JComboBox combo) {
-        this.combo = combo;
-    }
     
     public JTextField getEmailCustomer() {
         return emailCustomer;
@@ -210,5 +206,25 @@ public class Login extends JFrame{
 
     public JPasswordField getPassBarber() {
         return passBarber;
+    }
+    
+    public void setCombo(JComboBox combo) {
+        this.combo = combo;
+    }
+
+    public void setEmailCustomer(String emailCustomer) {
+        this.emailCustomer.setText(emailCustomer);
+    }
+
+    public void setPassCustomer(String passCustomer) {
+        this.passCustomer.setText(passCustomer);
+    }
+
+    public void setEmailBarber(String emailBarber) {
+        this.emailBarber.setText(emailBarber);
+    }
+
+    public void setPassBarber(String passBarber) {
+        this.passBarber.setText(passBarber);
     }
 }
