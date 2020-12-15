@@ -155,7 +155,7 @@ public class SetSlotsController implements ActionListener {
                         barberAvailabilityDAO.insert(availability);
                         //write date and times added to the DB in text area
                         this.view.getConfirmTextArea().append("Added the day " + formato.format(date)
-                                + "\nTimes:\n" + Arrays.toString(array) + "\n");
+                                + "\nTimes:\n" + Arrays.toString(array) + "\n---------------------------------------------------------------------------\n");
                         break;
                     }
                     break;
