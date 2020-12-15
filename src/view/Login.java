@@ -60,7 +60,6 @@ public class Login extends JFrame{
         JPanel choice = new JPanel();
         String[] option = {"CUSTOMER", "BARBER"};
         combo = new JComboBox(option);
-        setCombo(combo);
         LoginController loginCont = new LoginController(this);
         combo.addActionListener(loginCont);
         combo.setActionCommand("combo");
@@ -206,10 +205,6 @@ public class Login extends JFrame{
 
     public JPasswordField getPassBarber() {
         return passBarber;
-    }
-    
-    public void setCombo(JComboBox combo) {
-        this.combo = combo;
     }
 
     public void setEmailCustomer(String emailCustomer) {
