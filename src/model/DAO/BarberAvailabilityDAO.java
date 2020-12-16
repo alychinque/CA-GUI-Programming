@@ -9,8 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
+import model.Barber;
 import model.BarberAvailability;
 
 /**
@@ -45,18 +47,18 @@ public class BarberAvailabilityDAO {
         stmt.execute();
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-        
+
         //if there are data it shows, otherwise return true and insert
         if (resultSet.next()) {
-        
+
             //it gets the barbers' details from DB and store in new variables
             int id = resultSet.getInt("id_barber");
             String date = resultSet.getString("date");
             String time = resultSet.getString("time");
-           
+
             //if barber already save data it asks if they want to overwrite 
             if (id == availability.getId() && date.equals(availability.getDateAva())) {
-                
+
                 int returnValue = JOptionPane.showConfirmDialog(null, "You have already set the day " + date
                         + "\nwith times: " + time
                         + "\nDo you want overwrite?", "Day already set", JOptionPane.YES_NO_OPTION);
@@ -66,22 +68,49 @@ public class BarberAvailabilityDAO {
                     JOptionPane.showMessageDialog(null, "Ok.");
                     deleteDay(id, date);
                     return true;
-                    
-                //if no it shows message, returns false and waits the new date 
+
+                    //if no it shows message, returns false and waits the new date 
                 } else if (returnValue == JOptionPane.NO_OPTION) {
                     JOptionPane.showMessageDialog(null, "Change the day, Please");
                     return false;
                 }
-            }return true;
-        }return true;
+            }
+            return true;
+        }
+        return true;
     }
-    
-    public void deleteDay(int id, String date) throws SQLException{
+
+    public void deleteDay(int id, String date) throws SQLException {
         String query = "DELETE FROM barber_availability WHERE id_barber = ? AND date = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
         stmt.setString(2, date);
         stmt.execute();
-    }    
+    }
 
+    public String[] search(int id, int type) throws SQLException {
+        String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, id);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+//        String[] days = null;
+        String[] times;
+        BarberAvailability barber;
+        ArrayList<BarberAvailability> barberAvailability = new ArrayList<>();
+        //if there are data it shows, otherwise return true and insert
+        while (resultSet.next()) {
+            //it gets the barbers' details from DB and store in new variables
+            times = resultSet.getString("time").split(",");
+            barber = new BarberAvailability(resultSet.getInt("id_barber"), resultSet.getString("date"), times);
+            barberAvailability.add(barber);
+        }
+        String[] days = new String[barberAvailability.size()];
+        for (int i = 0; i < barberAvailability.size(); i++) {
+            days[i] = barberAvailability.get(i).getDateAva();
+        }
+        
+        return days;
+    }
 }
