@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.ConnectionDB;
+import view.ChooseTime;
 import view.Customer;
 import view.MakeAppointment;
 
@@ -21,12 +22,12 @@ import view.MakeAppointment;
  *
  * @author Alysson Chinque
  */
-public class makeAppointmentController implements ActionListener {
+public class MakeAppointmentController implements ActionListener {
 
     private final MakeAppointment view;
     private Connection conn;
 
-    public makeAppointmentController(MakeAppointment view) {
+    public MakeAppointmentController(MakeAppointment view) {
         this.view = view;
 
     }
@@ -42,19 +43,20 @@ public class makeAppointmentController implements ActionListener {
         switch (e.getActionCommand()) {
             case "pickedDay":
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
-
+                ChooseTime chooseTime = new ChooseTime();
+                chooseTime.setDay(this.view.getBoxDay());
                 try {
-                    this.view.setTimes(barberAvailabilityDAO.searchTime(this.view.getId(), this.view.getBoxTime()));
+                    chooseTime.setTimes(barberAvailabilityDAO.searchTime(this.view.getId(), this.view.getBoxDay()));
                 } catch (SQLException ex) {
-                    Logger.getLogger(makeAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MakeAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                this.view.setBoxTime();
+                chooseTime.ChooseTime(this.view.getValidUser());
+                this.view.dispose();
+                
                 break;
 
             case "back":
-                this.view.setVisible(false);
-                Customer customer = new Customer();
-                // customer.Customer();
+                this.view.dispose();
                 break;
         }
     }
