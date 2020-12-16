@@ -7,10 +7,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -57,7 +55,7 @@ public class BarberSController implements ActionListener {
                  
                     try {
                         id = barberDAO.searchId(name, surname);
-                        days = barberAvailabilityDAO.search(id, "days ");                        
+                        days = barberAvailabilityDAO.searchDays(id);                        
                     } catch (SQLException ex) {
                         Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
                     }
