@@ -88,7 +88,7 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
-    public String[] search(int id, String search) throws SQLException {
+    public String[] searchDays(int id) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
@@ -106,26 +106,31 @@ public class BarberAvailabilityDAO {
             barber = new BarberAvailability(resultSet.getInt("id_barber"), resultSet.getString("date"), times);
             barberAvailability.add(barber);
         }
-        switch (search) {
-            case "id":
-                String[] ids = new String[barberAvailability.size()];
-                for (int i = 0; i < barberAvailability.size(); i++) {
-                    ids[i] = String.valueOf(barberAvailability.get(i).getId());
-                }
-                return ids;
-            case "day":
-                String[] days = new String[barberAvailability.size()];
-                for (int i = 0; i < barberAvailability.size(); i++) {
-                    days[i] = barberAvailability.get(i).getDateAva();
-                }
-                return days;
-            case "time":
-                String[] time = new String[barberAvailability.size()];
-                for (int i = 0; i < barberAvailability.size(); i++) {
-                    time[i] = Arrays.toString(barberAvailability.get(i).getTime());
-                }
-                return time;
+
+        String[] days = new String[barberAvailability.size()];
+        for (int i = 0; i < barberAvailability.size(); i++) {
+            days[i] = barberAvailability.get(i).getDateAva();
         }
-        return null;
+        return days;
+
+    }
+
+    public String[] searchTime(int id, String day) throws SQLException {
+        String query = "SELECT * FROM barber_availability WHERE id_barber = ? and date = ? ORDER BY date ASC";
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, id);
+        stmt.setString(2, day);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+//        String[] days = null;
+        String[] time = null;
+        
+        //if there are data it shows, otherwise return true and insert
+        while (resultSet.next()) {
+            //it gets the barbers' details from DB and store in new variables
+            time = resultSet.getString("time").split(",");
+        }
+        return time;
     }
 }
