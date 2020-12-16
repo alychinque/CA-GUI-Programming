@@ -31,6 +31,7 @@ public class MakeAppointment extends JFrame {
     private JComboBox boxTime;
     private String[] days;
     private String[] times;
+    private int id;
 
     public void MakeAppointment(User validUser) {
         this.setTitle("Style Barber Shop - make appointment");
@@ -95,7 +96,7 @@ public class MakeAppointment extends JFrame {
         boxDay = new JComboBox(days2);
         boxDay.setBounds(350, 70, 150, 30);
         boxDay.addActionListener(locationController);
-        boxDay.setActionCommand("day");
+        boxDay.setActionCommand("pickedDay");
         main.add(boxDay);
 
         String [] times2 = {"9:00", "10:00", "11:00", "12:00", "13:00", "14:00"};
@@ -145,6 +146,14 @@ public class MakeAppointment extends JFrame {
 
     public void setTimes(String[] times) {
         this.times = times;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
