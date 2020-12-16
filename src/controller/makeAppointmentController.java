@@ -9,13 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.BarberAvailability;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.ConnectionDB;
 import view.ChooseTime;
-import view.Customer;
 import view.MakeAppointment;
 
 /**
@@ -45,18 +46,16 @@ public class MakeAppointmentController implements ActionListener {
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
                 ChooseTime chooseTime = new ChooseTime();
                 chooseTime.setDay(this.view.getBoxDay());
+                ArrayList<BarberAvailability> barberAvailability = this.view.getBarberAvailability();
                 try {
-                    chooseTime.setTimes(barberAvailabilityDAO.searchTime(this.view.getId(), this.view.getBoxDay()));
+                    chooseTime.setTimes(barberAvailabilityDAO.searchTime(this.view.getBarberAvailability().get(0).getId(), this.view.getBoxDay()));
                 } catch (SQLException ex) {
                     Logger.getLogger(MakeAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                chooseTime.ChooseTime(this.view.getValidUser());
+                chooseTime.setNameBarber(this.view.getNameBarber());
+                chooseTime.ChooseTime(this.view.getValidUser(), this.view.getBarberAvailability());
                 this.view.dispose();
                 
-                break;
-
-            case "back":
-                this.view.dispose();
                 break;
         }
     }
