@@ -79,6 +79,7 @@ public class BarberSearch extends JFrame {
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 72, 894, 449);
 
+        //IF 1 IT SHOWS THE NAME WANTED ELSE SHOW THE LOCATION
         JLabel nameBarber;
         if (type == 1){
             nameBarber= new JLabel("Found " + Arrays.toString(data[0]).split(" ")[0]); 
