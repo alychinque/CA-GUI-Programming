@@ -9,9 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.BarberAvailability;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ConnectionDB;
@@ -53,21 +55,22 @@ public class BarberSController implements ActionListener {
                 String surname = this.view.getCombo().split(" ")[1];
                 BarberDAO barberDAO = new BarberDAO(conn);
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
+                ArrayList<BarberAvailability> barberAvailability = new ArrayList<>();
+                
                  
                     try {
                         id = barberDAO.searchId(name, surname);
-                        System.out.println("barberID: " + id);
                         ChooseTime chooseTime = new ChooseTime();
-                        chooseTime.setIdBarber(id);
-                        days = barberAvailabilityDAO.searchDays(id);                        
+                        barberAvailability = barberAvailabilityDAO.searchBarber(id); 
+                        days = getDays(barberAvailability);
                     } catch (SQLException ex) {
                         Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
                     }                
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
-                appointment.setId(id);
+                appointment.setNameBarber(name);
                 appointment.setDays(days);
-                appointment.MakeAppointment(this.view.getValidUser());
+                appointment.MakeAppointment(this.view.getValidUser(), barberAvailability);
                 break;
                 
             case "back":
@@ -77,5 +80,16 @@ public class BarberSController implements ActionListener {
                 break;
         }
     }
+
+    private String[] getDays(ArrayList<BarberAvailability> barberAvailability) {
+        String[] days = new String[barberAvailability.size()];
+        for (int i = 0; i < barberAvailability.size(); i++) {
+            days[i] = barberAvailability.get(i).getDateAva();
+        }
+        return days;
+    }
+
+     
+    
 
 }
