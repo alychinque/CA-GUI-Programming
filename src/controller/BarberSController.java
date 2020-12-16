@@ -7,6 +7,16 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import model.DAO.BarberAvailabilityDAO;
+import model.DAO.BarberDAO;
+import model.DAO.ConnectionDB;
 import view.BarberSearch;
 import view.Customer;
 import view.MakeAppointment;
@@ -18,6 +28,8 @@ import view.MakeAppointment;
 public class BarberSController implements ActionListener {
 
     private final BarberSearch view;
+    private Connection conn;
+    String[] days;
 
     public BarberSController(BarberSearch view) {
         this.view = view;
@@ -25,10 +37,35 @@ public class BarberSController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try {
+            conn = new ConnectionDB().getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Failed");
+        }
         switch (e.getActionCommand()) {
             case "name":
-                MakeAppointment appointment = new MakeAppointment(this.view.getValidUser());
+                String name = this.view.getCombo().split(" ")[0];
+                String surname = this.view.getCombo().split(" ")[1];
+                BarberDAO barberDAO = new BarberDAO(conn);
+                BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
+                int id;
+                
+                 {
+                    try {
+                        id = barberDAO.searchId(name, surname);
+                        days = barberAvailabilityDAO.search(id, 1);                        
+                    } catch (SQLException ex) {
+                        Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                this.view.dispose();
+                MakeAppointment appointment = new MakeAppointment();
+                appointment.setDays(days);
+                appointment.MakeAppointment(this.view.getValidUser());
                 break;
+                
             case "back":
                 this.view.dispose();
                 Customer customer = new Customer();
