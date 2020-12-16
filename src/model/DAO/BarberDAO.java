@@ -95,7 +95,7 @@ public class BarberDAO {
         data = new String[barber.size()][4];
         for (int i = 0; i < barber.size(); i++) {
             for (int j = 0; j < 4; j++) {
-                if (j == 0) {data[i][j] = (barber.get(i).getFirstName() + " " + barber.get(i).getSurname());}
+                if (j == 0) {data[i][j] = barber.get(i).getFirstName() + " " + barber.get(i).getSurname();}
                 if (j == 1) {data[i][j] = barber.get(i).getBarberShop();}
                 if (j == 2) {data[i][j] = barber.get(i).getAddress();}
                 if (j == 3) {data[i][j] = barber.get(i).getLocation();}
@@ -104,4 +104,22 @@ public class BarberDAO {
         return data;
     }
 
+    public int searchId(String name, String surname) throws SQLException{
+        int id = 0;
+        //query to get a barber by id and password
+        String sql = "SELECT * FROM barber where name_barber = ? and surname_barber = ?";
+        //creating a Statement assigning a connection with the select query
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, name);
+        stmt.setString(2, surname);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+        
+        if (resultSet.next()) {
+            //if there is a barber it returns the customers' details
+            id = resultSet.getInt("id_barber");
+        }
+        return id;
+    }
 }
