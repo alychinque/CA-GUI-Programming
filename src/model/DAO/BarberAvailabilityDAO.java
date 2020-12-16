@@ -12,12 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.JOptionPane;
-import model.Barber;
 import model.BarberAvailability;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class BarberAvailabilityDAO {
 
@@ -88,7 +87,7 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
-    public String[] searchDays(int id) throws SQLException {
+    public ArrayList<BarberAvailability> searchBarber(int id) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
@@ -106,13 +105,7 @@ public class BarberAvailabilityDAO {
             barber = new BarberAvailability(resultSet.getInt("id_barber"), resultSet.getString("date"), times);
             barberAvailability.add(barber);
         }
-
-        String[] days = new String[barberAvailability.size()];
-        for (int i = 0; i < barberAvailability.size(); i++) {
-            days[i] = barberAvailability.get(i).getDateAva();
-        }
-        return days;
-
+        return barberAvailability;
     }
 
     public String[] searchTime(int id, String day) throws SQLException {
@@ -124,7 +117,7 @@ public class BarberAvailabilityDAO {
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
         String[] time = null;
-        
+
         //if there are data it shows, otherwise return true and insert
         while (resultSet.next()) {
             //it gets the barbers' details from DB and store in new variables
@@ -133,3 +126,4 @@ public class BarberAvailabilityDAO {
         return time;
     }
 }
+
