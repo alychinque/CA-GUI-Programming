@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import model.User;
 import controller.ChooseTimeController;
+import java.util.ArrayList;
+import model.BarberAvailability;
 
 /**
  *
@@ -23,12 +25,14 @@ import controller.ChooseTimeController;
 public class ChooseTime extends JFrame {
 
     private User validUser;
+    private ArrayList<BarberAvailability> barberAvailability;
     private JComboBox boxTime;
     private String[] times;
     public int idBarber;
     private String day;
+    private String nameBarber;
 
-    public void ChooseTime(User validUser) {
+    public void ChooseTime(User validUser, ArrayList<BarberAvailability> barberAvailability) {
 
         this.setTitle("Style Barber Shop - time");
         this.setSize(450, 300);
@@ -38,6 +42,7 @@ public class ChooseTime extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.validUser = validUser;
+        this.barberAvailability = barberAvailability;
 
         //controller
         ChooseTimeController chooseTimeController = new ChooseTimeController(this);
@@ -64,11 +69,11 @@ public class ChooseTime extends JFrame {
         main.setBounds(0, 42, 444, 229);
 
         //labels for time
-        JLabel day = new JLabel("name barber");
-        day.setForeground(new java.awt.Color(255, 204, 0));
-        day.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        day.setBounds(147, 40, 250, 30);
-        main.add(day);
+        JLabel barber = new JLabel(this.nameBarber);
+        barber.setForeground(new java.awt.Color(255, 204, 0));
+        barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+        barber.setBounds(147, 40, 250, 30);
+        main.add(barber);
 
         //jcombobox time
         String[] times2 = times;
@@ -88,6 +93,10 @@ public class ChooseTime extends JFrame {
         return validUser;
     }
 
+    public ArrayList<BarberAvailability> getBarberAvailability() {
+        return barberAvailability;
+    }
+    
     public String getBoxTime() {
         return boxTime.getSelectedItem().toString();
     }
@@ -99,22 +108,16 @@ public class ChooseTime extends JFrame {
         this.times = times;
     }
 
-    public int getIdBarber() {
-        System.out.println("this."+ this.idBarber);
-        return this.idBarber;
-    }
-
-    public void setIdBarber(int idBarber) {
-        System.out.println("setIdBarber: "+ idBarber);
-        this.idBarber = idBarber;
-    }
-
     public String getDay() {
         return day;
     }
 
     public void setDay(String day) {
         this.day = day;
+    }
+
+    public void setNameBarber(String nameBarber) {
+        this.nameBarber = nameBarber;
     }
     
 }
