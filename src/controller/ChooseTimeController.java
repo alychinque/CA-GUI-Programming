@@ -13,7 +13,7 @@ import view.Customer;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class ChooseTimeController implements ActionListener{
     private final ChooseTime view;
@@ -26,14 +26,9 @@ public class ChooseTimeController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("time")){
             int idUser = this.view.getValidUser().getId();
-            System.out.println("get: "+ this.view.getIdBarber());
-            int idBarber = this.view.idBarber;
+            int idBarber = this.view.getBarberAvailability().get(0).getId();
             String day = this.view.getDay();
             String time = this.view.getBoxTime();
-            System.out.println(idUser);
-            System.out.println(idBarber);
-            System.out.println(day);
-            System.out.println(time);
             
             Appointment appointment = new Appointment(idUser, idBarber, day, time, "pendent");
             
