@@ -5,17 +5,13 @@
  */
 package view;
 
-import controller.makeAppointmentController;
+import controller.MakeAppointmentController;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import model.User;
@@ -30,12 +26,11 @@ public class MakeAppointment extends JFrame {
     private JComboBox boxDay;
     private JComboBox boxTime;
     private String[] days;
-    private String[] times;
     private int id;
 
     public void MakeAppointment(User validUser) {
-        this.setTitle("Style Barber Shop - make appointment");
-        this.setSize(900, 600);
+        this.setTitle("Style Barber Shop - day");
+        this.setSize(450, 300);
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -44,85 +39,47 @@ public class MakeAppointment extends JFrame {
         this.validUser = validUser;
 
         //controller
-        makeAppointmentController locationController = new makeAppointmentController(this);
+        MakeAppointmentController makeAppController = new MakeAppointmentController(this);
 
         //CREATED A PANEL AND A LABEL
         JPanel top = new JPanel();
-        JLabel style = new JLabel("STYLE BARBER SHOP");
+        JLabel style = new JLabel("Choose the day");
 
         //SET HEADER
         top.setBackground(Color.black);
         top.setBorder(BorderFactory.createLineBorder(Color.orange));
-        style.setFont(new Font("Showcard Gothic", Font.PLAIN, 48));
+        style.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
         style.setForeground(new java.awt.Color(255, 204, 0));
         //ADDED LABEL TO PANEL AND PANEL TO FRAME
-        top.setBounds(0, 0, 894, 72);
+        top.setBounds(0, 0, 444, 42);
         top.add(style);
         this.add(top);
-
-        //MENUBAR
-        JMenuBar myMenuBar = new JMenuBar();
-        this.setJMenuBar(myMenuBar);
-
-        JMenu myMenu = new JMenu("MENU");
-        myMenuBar.add(myMenu);
-
-        JMenuItem myBookings = new JMenuItem("My Bookings");
-        myMenu.add(myBookings);
-        JMenuItem logout = new JMenuItem("Logout");
-        myMenu.add(logout);
 
         //MAIN PANEL
         JPanel main = new JPanel();
         main.setLayout(null);
         main.setBackground(Color.black);
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
-        main.setBounds(0, 72, 894, 449);
+        main.setBounds(0, 42, 444, 229);
 
-       //labels for day and time
-        JLabel day = new JLabel("Choose one day: ");
+       //labels for day
+        JLabel day = new JLabel("name barber");
         day.setForeground(new java.awt.Color(255, 204, 0));
         day.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        day.setBounds(100, 70, 300, 30);
+        day.setBounds(147, 40, 250, 30);
         main.add(day);
-        JLabel time = new JLabel("Choose one time: ");
-        time.setForeground(new java.awt.Color(255, 204, 0));
-        time.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        time.setBounds(100, 150, 300, 30);
-        main.add(time);
 
-        //jcomboboxes for day and time
+        //jcombobox for day
         String [] days2 = days; 
         boxDay = new JComboBox(days2);
-        boxDay.setBounds(350, 70, 150, 30);
-        boxDay.addActionListener(locationController);
+        boxDay.setBounds(147, 120, 150, 30);
+        boxDay.addActionListener(makeAppController);
         boxDay.setActionCommand("pickedDay");
         main.add(boxDay);
         
-        boxTime.setVisible(false);
-        String [] times2 = times;
-        boxTime = new JComboBox(times2);
-        boxTime.setBounds(350, 150, 150, 30);
-        main.add(boxTime);
-        this.add(main);
+       this.add(main);
 
-        // RETURN BUTTON AND FOOTER PANEL
-        JButton back = new JButton("BACK");
-        back.setBounds(15, 525, 80, 19);
-        this.add(back);
-        back.addActionListener(locationController);
-        back.setActionCommand("back");
-
-        //FOOTER PANEL
-        JPanel footer = new JPanel();
-        JLabel copy = new JLabel("2020© Alysson Chinque");
-        footer.setBackground(Color.black);
-        footer.setBorder(BorderFactory.createLineBorder(Color.orange));
-        copy.setFont(new Font("Arial", Font.PLAIN, 12));
-        copy.setForeground(new java.awt.Color(255, 204, 0));
-        footer.add(copy);
-        footer.setBounds(0, 521, 894, 27);
-        this.add(footer);
+       
 
         this.validate();
         this.repaint();
@@ -137,16 +94,8 @@ public class MakeAppointment extends JFrame {
         return boxDay.getSelectedItem().toString();
     }
 
-    public String getBoxTime() {
-        return boxTime.getSelectedItem().toString();
-    }
-
     public void setDays(String[] days) {
         this.days = days;
-    }
-
-    public void setTimes(String[] times) {
-        this.times = times;
     }
 
     public int getId() {
@@ -155,10 +104,6 @@ public class MakeAppointment extends JFrame {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public void setBoxTime() {
-        this.boxTime.setVisible(true);
     }
 
 }
