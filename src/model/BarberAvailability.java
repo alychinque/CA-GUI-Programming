@@ -5,11 +5,9 @@
  */
 package model;
 
-import java.util.Date;
-
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class BarberAvailability {
     int id;
@@ -49,6 +47,4 @@ public class BarberAvailability {
     public void setTime(String[] time) {
         this.time = time;
     }
-    
-    
 }
