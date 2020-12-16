@@ -16,6 +16,7 @@ import model.DAO.BarberAvailabilityDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
+import view.ChooseTime;
 import view.Customer;
 import view.MakeAppointment;
 
@@ -55,11 +56,13 @@ public class BarberSController implements ActionListener {
                  
                     try {
                         id = barberDAO.searchId(name, surname);
+                        System.out.println("barberID: " + id);
+                        ChooseTime chooseTime = new ChooseTime();
+                        chooseTime.setIdBarber(id);
                         days = barberAvailabilityDAO.searchDays(id);                        
                     } catch (SQLException ex) {
                         Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                
+                    }                
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
                 appointment.setId(id);
