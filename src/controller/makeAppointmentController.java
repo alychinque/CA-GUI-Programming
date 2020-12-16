@@ -44,11 +44,11 @@ public class makeAppointmentController implements ActionListener {
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
 
                 try {
-                    this.view.setTimes(barberAvailabilityDAO.search(this.view.getId(), "time"));
+                    this.view.setTimes(barberAvailabilityDAO.searchTime(this.view.getId(), this.view.getBoxTime()));
                 } catch (SQLException ex) {
                     Logger.getLogger(makeAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                this.view.setBoxTime();
                 break;
 
             case "back":
