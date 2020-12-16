@@ -51,9 +51,7 @@ public class CustomerController implements ActionListener {
                     String name = this.view.getNameT().getText();
                     if (nameFilled(name) && isValid(name)) {
                         BarberDAO barberDAO = new BarberDAO(conn);
-
                         barberFound = barberDAO.search(name, 1);
-
                         BarberSearch bs = new BarberSearch();
                         bs.setOption(collectNames());
                         bs.setData(barberFound);
