@@ -104,7 +104,7 @@ public class Customer extends JFrame {
         nameB.setActionCommand("name");
         main.add(nameB);
 
-        //LOCATION LABEL, TEXTFIELD AND BUTTON
+        //LOCATION LABEL, JCOMBOBOX AND BUTTON
         JLabel location = new JLabel("LOCATION:");
         location.setFont(new Font("Arial", Font.PLAIN, 20));
         location.setForeground(new java.awt.Color(255, 204, 0));
@@ -116,7 +116,7 @@ public class Customer extends JFrame {
             "Dublin9", "Dublin10", "Dublin11", "Dublin12",
             "Dublin13", "Dublin14", "Dublin15", "Dublin16",
             "Dublin17", "Dublin18", "Dublin19", "Dublin20",
-            "Dublin21", "Dublin22", "Dublin23", "Dublin24",};
+            "Dublin21", "Dublin22", "Dublin23", "Dublin24"};
         combo = new JComboBox(locationT);
         combo.setBounds(370, 190, 300, 30);
         main.add(combo);
