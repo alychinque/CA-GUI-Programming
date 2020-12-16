@@ -29,7 +29,12 @@ public class BarberSController implements ActionListener {
 
     private final BarberSearch view;
     private Connection conn;
-    String[] days;
+    private String[] days;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
 
     public BarberSController(BarberSearch view) {
         this.view = view;
@@ -49,19 +54,17 @@ public class BarberSController implements ActionListener {
                 String surname = this.view.getCombo().split(" ")[1];
                 BarberDAO barberDAO = new BarberDAO(conn);
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
-                int id;
-                
-                 {
+                 
                     try {
                         id = barberDAO.searchId(name, surname);
-                        days = barberAvailabilityDAO.search(id, 1);                        
+                        days = barberAvailabilityDAO.search(id, "days ");                        
                     } catch (SQLException ex) {
                         Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                }
                 
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
+                appointment.setId(id);
                 appointment.setDays(days);
                 appointment.MakeAppointment(this.view.getValidUser());
                 break;
