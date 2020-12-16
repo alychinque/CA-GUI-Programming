@@ -8,12 +8,14 @@ package view;
 import controller.MakeAppointmentController;
 import java.awt.Color;
 import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+import model.BarberAvailability;
 import model.User;
 
 /**
@@ -24,11 +26,11 @@ public class MakeAppointment extends JFrame {
 
     private User validUser;
     private JComboBox boxDay;
-    private JComboBox boxTime;
     private String[] days;
-    private int id;
+    private ArrayList<BarberAvailability> barberAvailability;
+    private String nameBarber;
 
-    public void MakeAppointment(User validUser) {
+    public void MakeAppointment(User validUser, ArrayList<BarberAvailability> barberAvailability) {
         this.setTitle("Style Barber Shop - day");
         this.setSize(450, 300);
         this.setVisible(true);
@@ -37,6 +39,7 @@ public class MakeAppointment extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.validUser = validUser;
+        this.barberAvailability = barberAvailability;
 
         //controller
         MakeAppointmentController makeAppController = new MakeAppointmentController(this);
@@ -62,25 +65,22 @@ public class MakeAppointment extends JFrame {
         main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 42, 444, 229);
 
-       //labels for day
-        JLabel day = new JLabel("name barber");
-        day.setForeground(new java.awt.Color(255, 204, 0));
-        day.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        day.setBounds(147, 40, 250, 30);
-        main.add(day);
+        //labels for day
+        JLabel barber = new JLabel(this.nameBarber);
+        barber.setForeground(new java.awt.Color(255, 204, 0));
+        barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
+        barber.setBounds(147, 40, 250, 30);
+        main.add(barber);
 
         //jcombobox for day
-        String [] days2 = days; 
+        String[] days2 = days;
         boxDay = new JComboBox(days2);
         boxDay.setBounds(147, 120, 150, 30);
         boxDay.addActionListener(makeAppController);
         boxDay.setActionCommand("pickedDay");
         main.add(boxDay);
-        
-       this.add(main);
 
-       
-
+        this.add(main);
         this.validate();
         this.repaint();
 
@@ -90,6 +90,11 @@ public class MakeAppointment extends JFrame {
         return validUser;
     }
 
+    public ArrayList<BarberAvailability> getBarberAvailability() {
+        return barberAvailability;
+    }
+    
+
     public String getBoxDay() {
         return boxDay.getSelectedItem().toString();
     }
@@ -98,12 +103,13 @@ public class MakeAppointment extends JFrame {
         this.days = days;
     }
 
-    public int getId() {
-        return id;
+    public void setNameBarber(String nameBarber) {
+        this.nameBarber = nameBarber;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public String getNameBarber() {
+        return nameBarber;
     }
+    
 
 }
