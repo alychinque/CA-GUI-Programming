@@ -88,7 +88,7 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
-    public String[] search(int id, int type) throws SQLException {
+    public String[] search(int id, String search) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
@@ -106,11 +106,26 @@ public class BarberAvailabilityDAO {
             barber = new BarberAvailability(resultSet.getInt("id_barber"), resultSet.getString("date"), times);
             barberAvailability.add(barber);
         }
-        String[] days = new String[barberAvailability.size()];
-        for (int i = 0; i < barberAvailability.size(); i++) {
-            days[i] = barberAvailability.get(i).getDateAva();
+        switch (search) {
+            case "id":
+                String[] ids = new String[barberAvailability.size()];
+                for (int i = 0; i < barberAvailability.size(); i++) {
+                    ids[i] = String.valueOf(barberAvailability.get(i).getId());
+                }
+                return ids;
+            case "day":
+                String[] days = new String[barberAvailability.size()];
+                for (int i = 0; i < barberAvailability.size(); i++) {
+                    days[i] = barberAvailability.get(i).getDateAva();
+                }
+                return days;
+            case "time":
+                String[] time = new String[barberAvailability.size()];
+                for (int i = 0; i < barberAvailability.size(); i++) {
+                    time[i] = Arrays.toString(barberAvailability.get(i).getTime());
+                }
+                return time;
         }
-        
-        return days;
+        return null;
     }
 }
