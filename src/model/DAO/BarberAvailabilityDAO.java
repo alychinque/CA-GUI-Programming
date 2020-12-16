@@ -123,13 +123,12 @@ public class BarberAvailabilityDAO {
         stmt.execute();
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-//        String[] days = null;
         String[] time = null;
         
         //if there are data it shows, otherwise return true and insert
         while (resultSet.next()) {
             //it gets the barbers' details from DB and store in new variables
-            time = resultSet.getString("time").split(",");
+            time = resultSet.getString("time").split(", ");
         }
         return time;
     }
