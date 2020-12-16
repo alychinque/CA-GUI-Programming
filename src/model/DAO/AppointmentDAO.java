@@ -5,10 +5,18 @@
  */
 package model.DAO;
 
+import java.sql.Connection;
+
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class AppointmentDAO {
+    
+    private final Connection connection;
+    
+    public AppointmentDAO(Connection connection){
+        this.connection = connection;
+    }
     
 }
