@@ -98,8 +98,9 @@ public class MakeAppointment extends JFrame {
         boxDay.addActionListener(locationController);
         boxDay.setActionCommand("pickedDay");
         main.add(boxDay);
-
-        String [] times2 = {"9:00", "10:00", "11:00", "12:00", "13:00", "14:00"};
+        
+        boxTime.setVisible(false);
+        String [] times2 = times;
         boxTime = new JComboBox(times2);
         boxTime.setBounds(350, 150, 150, 30);
         main.add(boxTime);
@@ -154,6 +155,10 @@ public class MakeAppointment extends JFrame {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setBoxTime() {
+        this.boxTime.setVisible(true);
     }
 
 }
