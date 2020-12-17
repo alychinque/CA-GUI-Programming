@@ -5,16 +5,12 @@
  */
 package view;
 
-import com.sun.corba.se.impl.ior.NewObjectKeyTemplateBase;
-import com.sun.jmx.mbeanserver.Util;
-import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDateChooser;
 import controller.BarberViewController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BorderFactory;
@@ -25,8 +21,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import model.Barber;
 
