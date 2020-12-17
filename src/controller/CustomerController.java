@@ -77,21 +77,26 @@ public class CustomerController implements ActionListener {
                 break;
 
             case "location":
+                String location = this.view.getCombo();
+
+                BarberDAO barberDAO = new BarberDAO(conn);
+                BarberSearch bs = new BarberSearch();
                 try {
-                    String location = this.view.getCombo();
-                    BarberDAO barberDAO = new BarberDAO(conn);
                     barberFound = barberDAO.search(location, 2);
-                    BarberSearch bs = new BarberSearch();
+                    if (barberFound == null) {
+                        break;
+                    }
+
                     bs.setOption(collectNames());
                     bs.setData(barberFound);
-                    bs.BarberSearch(this.view.getValidUser(), 2);
-                    this.view.dispose();
-                    break;
-
-                } catch (SQLException ew) {
-                    JOptionPane.showMessageDialog(this.view, "Barber not Found,\nPlease try again");
+                } catch (Exception ew) {
+                    JOptionPane.showMessageDialog(view, location + " Location not Found");
                     break;
                 }
+                bs.BarberSearch(this.view.getValidUser(), 2);
+                this.view.dispose();
+
+                break;
 
             case "complain":
                 try {
