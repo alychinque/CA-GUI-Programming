@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 import model.Appointment;
 import model.ShowAppointment;
 
@@ -38,7 +39,7 @@ public class AppointmentDAO {
         stmt.execute();
     }
 
-    public ArrayList<ShowAppointment> returnAppointmet(int id) throws SQLException {
+    public String[][] returnAppointmet(int id) throws SQLException {
         String query = "SELECT barber.name_barber, barber.barbershop, barber.address, barber.location date, time, status \n"
                 + " FROM Alysson_2019305.appointment\n"
                 + " INNER JOIN barber ON barber.id_barber = appointment.id_barber\n"
@@ -49,6 +50,7 @@ public class AppointmentDAO {
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
 
+        String[][] data;
         ShowAppointment appointment;
         ArrayList<ShowAppointment> retAppointment = new ArrayList<>();
         //if there are data it shows, otherwise return true and insert
@@ -57,14 +59,36 @@ public class AppointmentDAO {
             String nameBarber = resultSet.getString("name_barber");
             String barbershop = resultSet.getString("barbershop");
             String address = resultSet.getString("address");
-            String location = resultSet.getString("location");
             String date = resultSet.getString("date");
             String time = resultSet.getString("time");
             String status = resultSet.getString("status");
-            
-            appointment = new ShowAppointment(nameBarber, barbershop, address, location, date, time, status);
+
+            appointment = new ShowAppointment(nameBarber, barbershop, address, date, time, status);
             retAppointment.add(appointment);
         }
-        return retAppointment;
+        data = new String[retAppointment.size()][6];
+        for (int i = 0; i < retAppointment.size(); i++) {
+            for (int j = 0; j < 6; j++) {
+                if (j == 0) {
+                    data[i][j] = retAppointment.get(i).getNameBarber();
+                }
+                if (j == 1) {
+                    data[i][j] = retAppointment.get(i).getBarberShop();
+                }
+                if (j == 2) {
+                    data[i][j] = retAppointment.get(i).getAddress();
+                }
+                if (j == 3) {
+                    data[i][j] = retAppointment.get(i).getDay();
+                }
+                if (j == 4) {
+                    data[i][j] = retAppointment.get(i).getTime();
+                }
+                if (j == 5) {
+                    data[i][j] = retAppointment.get(i).getStatus();
+                }
+            }
+        }
+        return data;
     }
 }
