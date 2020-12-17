@@ -14,13 +14,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.BarberAvailability;
+import model.DAO.AppointmentDAO;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
 import view.ChooseTime;
 import view.Customer;
+import view.Login;
 import view.MakeAppointment;
+import view.MyBookings;
 
 /**
  *
@@ -56,23 +59,43 @@ public class BarberSController implements ActionListener {
                 BarberDAO barberDAO = new BarberDAO(conn);
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
                 ArrayList<BarberAvailability> barberAvailability = new ArrayList<>();
-                
-                 
-                    try {
-                        id = barberDAO.searchId(name, surname);
-                        ChooseTime chooseTime = new ChooseTime();
-                        barberAvailability = barberAvailabilityDAO.searchBarber(id); 
-                        days = getDays(barberAvailability);
-                    } catch (SQLException ex) {
-                        Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
-                    }                
+
+                try {
+                    id = barberDAO.searchId(name, surname);
+                    ChooseTime chooseTime = new ChooseTime();
+                    barberAvailability = barberAvailabilityDAO.searchBarber(id);
+                    days = getDays(barberAvailability);
+                } catch (SQLException ex) {
+                    Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
                 appointment.setNameBarber(this.view.getCombo());
                 appointment.setDays(days);
                 appointment.MakeAppointment(this.view.getValidUser(), barberAvailability);
                 break;
-                
+
+            case "bookings":
+
+                AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
+
+                try {
+                    String[][] appointmentFound = appointmentDAO.returnAppointmet(this.view.getValidUser().getId());
+                    MyBookings myBookings = new MyBookings();
+                    myBookings.setData(appointmentFound);
+                    myBookings.MyBookings(this.view.getValidUser());
+                    this.view.dispose();
+                    break;
+                } catch (SQLException ex) {
+                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex);
+                }
+            case "logout":
+                this.view.dispose();
+                Login login = new Login();
+                login.Login();
+                break;
+
             case "back":
                 this.view.dispose();
                 Customer customer = new Customer();
@@ -88,8 +111,5 @@ public class BarberSController implements ActionListener {
         }
         return days;
     }
-
-     
-    
 
 }
