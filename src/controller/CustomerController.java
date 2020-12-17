@@ -9,20 +9,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
-import model.Appointment;
 import model.DAO.AppointmentDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
-import model.ShowAppointment;
 import view.BarberSearch;
 import view.Customer;
+import view.Login;
 import view.MyBookings;
 
 /**
@@ -52,21 +50,31 @@ public class CustomerController implements ActionListener {
         switch (e.getActionCommand()) {
 
             case "name":
-                try {
-                    String name = this.view.getNameT().getText();
-                    if (nameFilled(name) && isValid(name)) {
-                        BarberDAO barberDAO = new BarberDAO(conn);
+
+                String name = this.view.getNameT().getText();
+
+                if (nameFilled(name) && isValid(name)) {
+
+                    BarberDAO barberDAO = new BarberDAO(conn);
+                    BarberSearch bs = new BarberSearch();
+                    try {
                         barberFound = barberDAO.search(name, 1);
-                        BarberSearch bs = new BarberSearch();
+                        if (barberFound == null) {
+                            break;
+                        }
+
                         bs.setOption(collectNames());
                         bs.setData(barberFound);
-                        bs.BarberSearch(this.view.getValidUser(), 1);
-                        this.view.dispose();
+                    } catch (Exception ew) {
+                        JOptionPane.showMessageDialog(view, name + " Barber not Found");
                         break;
                     }
-                } catch (SQLException ex) {
-                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+                    bs.BarberSearch(this.view.getValidUser(), 1);
+                    this.view.dispose();
+                    break;
+
                 }
+                break;
 
             case "location":
                 try {
@@ -105,17 +113,25 @@ public class CustomerController implements ActionListener {
                     JOptionPane.showMessageDialog(view, "Something went wrong.\nPlease try again");
                 }
             case "bookings":
-                AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
-                ArrayList<ShowAppointment> booking = new ArrayList<>();
-                 {
-                    try {
-                        booking = appointmentDAO.returnAppointmet(this.view.getValidUser().getId());
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
 
-                MyBookings myBookings = new MyBookings();
+                AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
+
+                try {
+                    String[][] appointmentFound = appointmentDAO.returnAppointmet(this.view.getValidUser().getId());
+                    MyBookings myBookings = new MyBookings();
+                    myBookings.setData(appointmentFound);
+                    myBookings.MyBookings(this.view.getValidUser());
+                    this.view.dispose();
+                    break;
+                } catch (SQLException ex) {
+                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println(ex);
+                }
+            case "logout":
+                this.view.dispose();
+                Login login = new Login();
+                login.Login();
+                break;
 
             default:
                 System.out.println("error");
@@ -125,7 +141,7 @@ public class CustomerController implements ActionListener {
 
     private boolean nameFilled(String name) {
         if (name.equals("")) {
-            JOptionPane.showMessageDialog(view, "Please insert a name or first letter!");
+            JOptionPane.showMessageDialog(view, "Please insert a name!");
             return false;
         }
         return true;
