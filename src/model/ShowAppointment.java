@@ -14,16 +14,14 @@ public class ShowAppointment {
     private String nameBarber ;
     private String barberShop ;
     private String address ;
-    private String location ;
     private String day ;
     private String time ;
     private String status ;
 
-    public ShowAppointment(String nameBarber, String barberShop, String address, String location, String day, String time, String status) {
+    public ShowAppointment(String nameBarber, String barberShop, String address, String day, String time, String status) {
         this.nameBarber = nameBarber;
         this.barberShop = barberShop;
         this.address = address;
-        this.location = location;
         this.day = day;
         this.time = time;
         this.status = status;
@@ -39,10 +37,6 @@ public class ShowAppointment {
 
     public String getAddress() {
         return address;
-    }
-
-    public String getLocation() {
-        return location;
     }
 
     public String getDay() {
