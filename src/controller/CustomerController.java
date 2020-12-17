@@ -9,16 +9,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import model.Appointment;
+import model.DAO.AppointmentDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ComplainDAO;
 import model.DAO.ConnectionDB;
+import model.ShowAppointment;
 import view.BarberSearch;
 import view.Customer;
+import view.MyBookings;
 
 /**
  *
@@ -99,6 +104,18 @@ public class CustomerController implements ActionListener {
                 } catch (Exception ez) {
                     JOptionPane.showMessageDialog(view, "Something went wrong.\nPlease try again");
                 }
+            case "bookings":
+                AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
+                ArrayList<ShowAppointment> booking = new ArrayList<>();
+                 {
+                    try {
+                        booking = appointmentDAO.returnAppointmet(this.view.getValidUser().getId());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                MyBookings myBookings = new MyBookings();
 
             default:
                 System.out.println("error");
