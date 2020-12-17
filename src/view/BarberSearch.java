@@ -68,8 +68,13 @@ public class BarberSearch extends JFrame {
         myMenuBar.add(myMenu);
 
         JMenuItem myBookings = new JMenuItem("My Bookings");
+        myBookings.addActionListener(barberSController);
+        myBookings.setActionCommand("bookings");
         myMenu.add(myBookings);
+        
         JMenuItem logout = new JMenuItem("Logout");
+        logout.addActionListener(barberSController);
+        logout.setActionCommand("logout");
         myMenu.add(logout);
 
         //MAIN PANEL
