@@ -66,8 +66,13 @@ public class Customer extends JFrame {
         myMenuBar.add(myMenu);
 
         JMenuItem myBookings = new JMenuItem("My Bookings");
+        myBookings.addActionListener(custController);
+        myBookings.setActionCommand("bookings");
         myMenu.add(myBookings);
+
         JMenuItem logout = new JMenuItem("Logout");
+        logout.addActionListener(custController);
+        logout.setActionCommand("logout");
         myMenu.add(logout);
 
         //MAIN PANEL
@@ -120,7 +125,7 @@ public class Customer extends JFrame {
         combo = new JComboBox(locationT);
         combo.setBounds(370, 190, 300, 30);
         main.add(combo);
-     
+
         JButton locationB = new JButton("SEARCH");
         locationB.setBounds(675, 200, 90, 20);
         locationB.addActionListener(custController);
