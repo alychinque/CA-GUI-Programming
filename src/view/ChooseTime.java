@@ -72,7 +72,7 @@ public class ChooseTime extends JFrame {
         JLabel barber = new JLabel(this.nameBarber);
         barber.setForeground(new java.awt.Color(255, 204, 0));
         barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        barber.setBounds(147, 40, 250, 30);
+        barber.setBounds(147, 40, 300, 30);
         main.add(barber);
 
         //jcombobox time
@@ -119,5 +119,10 @@ public class ChooseTime extends JFrame {
     public void setNameBarber(String nameBarber) {
         this.nameBarber = nameBarber;
     }
+
+    public String getNameBarber() {
+        return nameBarber;
+    }
+    
     
 }
