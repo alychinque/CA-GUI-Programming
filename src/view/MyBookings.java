@@ -5,10 +5,19 @@
  */
 package view;
 
+import model.User;
+
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class MyBookings {
+    
+    private User validUser;
+    
+    public void MyBookings(User validUser){
+        this.validUser = validUser;
+        
+    }
     
 }
