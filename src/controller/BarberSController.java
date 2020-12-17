@@ -68,7 +68,7 @@ public class BarberSController implements ActionListener {
                     }                
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
-                appointment.setNameBarber(name);
+                appointment.setNameBarber(this.view.getCombo());
                 appointment.setDays(days);
                 appointment.MakeAppointment(this.view.getValidUser(), barberAvailability);
                 break;
