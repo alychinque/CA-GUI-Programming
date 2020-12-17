@@ -101,6 +101,9 @@ public class BarberDAO {
                 if (j == 3) {data[i][j] = barber.get(i).getLocation();}
             }
         }
+        if (data[0][0].isEmpty()){
+            return null;
+        }
         return data;
     }
 
