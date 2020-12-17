@@ -69,7 +69,7 @@ public class MakeAppointment extends JFrame {
         JLabel barber = new JLabel(this.nameBarber);
         barber.setForeground(new java.awt.Color(255, 204, 0));
         barber.setFont(new Font("Showcard Gothic", Font.PLAIN, 20));
-        barber.setBounds(147, 40, 250, 30);
+        barber.setBounds(147, 40, 300, 30);
         main.add(barber);
 
         //jcombobox for day
