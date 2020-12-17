@@ -54,7 +54,7 @@ public class ChooseTimeController implements ActionListener {
             }
             
             JOptionPane.showMessageDialog(view, "Congrats you have made an appointment\n"
-                    + "Barber: " + this.view.getNameBarber() + "on " + day + "at " + time
+                    + "Barber: " + this.view.getNameBarber() + ", on " + day + ", at " + time
                     + "\nThe current status is 'PENDENT' it is waiting for barber approval");
 
             Customer customer = new Customer();
