@@ -96,15 +96,10 @@ public class BarberView extends JFrame implements ActionListener {
 
         jDateChooser = new JDateChooser();
         
-//        //SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-//        data = DateFormat.getDateInstance().format(date);
         JButton jb1 = new JButton("send");
         jb1.addActionListener(this);
-//    
+    
         jDateChooser.setBounds(50, 100, 250, 20);
-//        JXDatePicker picker = new JXDatePicker();
-//        picker.setDate(Calendar.getInstance().getTime());
-//        picker.setFormats(new SimpleDateFormat("dd.MM.yyyy"));
         main.add(jDateChooser);
         jb = new JLabel("Today ");
         jb.setBounds(200, 330, 100, 20);
