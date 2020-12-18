@@ -17,6 +17,7 @@ public class ShowAppointment {
     private String day ;
     private String time ;
     private String status ;
+    private String nameCustomer;
 
     public ShowAppointment(String nameBarber, String barberShop, String address, String day, String time, String status) {
         this.nameBarber = nameBarber;
@@ -26,6 +27,13 @@ public class ShowAppointment {
         this.time = time;
         this.status = status;
     }
+    
+    public ShowAppointment(String nameCustomer, String day, String time, String status) {
+        this.nameCustomer = nameCustomer;
+        this.day = day;
+        this.time = time;
+        this.status = status;
+    }    
 
     public String getNameBarber() {
         return nameBarber;
@@ -49,6 +57,10 @@ public class ShowAppointment {
 
     public String getStatus() {
         return status;
+    }
+
+    public String getNameCustomer() {
+        return nameCustomer;
     }
     
     
