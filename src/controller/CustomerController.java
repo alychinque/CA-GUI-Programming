@@ -48,7 +48,6 @@ public class CustomerController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Failed");
         }
         switch (e.getActionCommand()) {
-
             case "name":
 
                 String name = this.view.getNameT().getText();
@@ -60,10 +59,11 @@ public class CustomerController implements ActionListener {
                     try {
                         barberFound = barberDAO.search(name, 1);
                         if (barberFound == null) {
+                            JOptionPane.showMessageDialog(view, name + " Barber not Found");
                             break;
                         }
 
-                        bs.setOption(collectNames());
+                        bs.setOption(collectNames(barberFound));
                         bs.setData(barberFound);
                     } catch (Exception ew) {
                         JOptionPane.showMessageDialog(view, name + " Barber not Found");
@@ -77,23 +77,29 @@ public class CustomerController implements ActionListener {
                 break;
 
             case "location":
+
                 String location = this.view.getCombo();
 
                 BarberDAO barberDAO = new BarberDAO(conn);
                 BarberSearch bs = new BarberSearch();
+
                 try {
                     barberFound = barberDAO.search(location, 2);
                     if (barberFound == null) {
+                        JOptionPane.showMessageDialog(view, "Barber not found in " + location);
                         break;
                     }
 
-                    bs.setOption(collectNames());
+                    bs.setOption(collectNames(barberFound));
                     bs.setData(barberFound);
                 } catch (Exception ew) {
-                    JOptionPane.showMessageDialog(view, location + " Location not Found");
+                    JOptionPane.showMessageDialog(view, "Barber not found in " + location);
                     break;
                 }
-                bs.BarberSearch(this.view.getValidUser(), 2);
+
+                bs.BarberSearch(
+                        this.view.getValidUser(), 2);
+
                 this.view.dispose();
 
                 break;
@@ -123,23 +129,29 @@ public class CustomerController implements ActionListener {
 
                 try {
                     String[][] appointmentFound = appointmentDAO.returnAppointmet(this.view.getValidUser().getId());
+                    if (appointmentFound == null) {
+                        JOptionPane.showMessageDialog(view, "No bookings found");
+                        break;
+                    }
                     MyBookings myBookings = new MyBookings();
                     myBookings.setData(appointmentFound);
                     myBookings.MyBookings(this.view.getValidUser());
                     this.view.dispose();
                     break;
                 } catch (SQLException ex) {
-                    Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
-                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(view, "Error");
+                    break;
                 }
+
             case "logout":
                 this.view.dispose();
                 Login login = new Login();
+
                 login.Login();
                 break;
 
             default:
-                System.out.println("error");
+                JOptionPane.showMessageDialog(view, "Error");
                 break;
         }
     }
@@ -161,7 +173,7 @@ public class CustomerController implements ActionListener {
         return false;
     }
 
-    private String[] collectNames() {
+    private String[] collectNames(String[][] barberFound) {
         String[] names = new String[barberFound.length];
 
         for (int i = 0; i < barberFound.length; i++) {
