@@ -29,24 +29,25 @@ import model.Barber;
  * @author Alysson Chinque
  */
 public class SetSlots extends JFrame {
+
     private Barber validBarber;
     public JDateChooser jDateChooser;
-    
-        JCheckBox box9;
-        JCheckBox box10;
-        JCheckBox box11;
-        JCheckBox box12;
-        JCheckBox box13;
-        JCheckBox box14;
-        JCheckBox box15;
-        JCheckBox box16;
-        JCheckBox box17;
-        JCheckBox box18;
-        JCheckBox box19;
-        JCheckBox all;
-        
-        JTextArea confirmTextArea;
-        JScrollPane scrollPane;
+
+    private JCheckBox box9;
+    private JCheckBox box10;
+    private JCheckBox box11;
+    private JCheckBox box12;
+    private JCheckBox box13;
+    private JCheckBox box14;
+    private JCheckBox box15;
+    private JCheckBox box16;
+    private JCheckBox box17;
+    private JCheckBox box18;
+    private JCheckBox box19;
+    private JCheckBox all;
+
+    private JTextArea confirmTextArea;
+    private JScrollPane scrollPane;
 
     public void SetSlots(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -87,7 +88,7 @@ public class SetSlots extends JFrame {
         today.addActionListener(setSlotsController);
         today.setActionCommand("today");
         myMenu.add(today);
-        
+
         JMenuItem logout = new JMenuItem("Logout");
         myMenu.add(logout);
         logout.addActionListener(setSlotsController);
@@ -107,18 +108,18 @@ public class SetSlots extends JFrame {
         instructions.setForeground(new java.awt.Color(255, 204, 0));
         instructions.setBounds(50, 30, 700, 70);
         main.add(instructions);
-        
+
         JLabel instructions2 = new JLabel("Please choose one day, then choose the hours you are available, then click in add");
         instructions2.setFont(new Font("Arial", Font.PLAIN, 16));
         instructions2.setForeground(new java.awt.Color(255, 204, 0));
         instructions2.setBounds(50, 70, 700, 70);
         main.add(instructions2);
-        
+
         //JDATECHOOSER CREATED TO GET AND ADD DATES THAT BARBERS ARE AVAILABLE
         jDateChooser = new JDateChooser();
         jDateChooser.setBounds(50, 130, 200, 20);
         main.add(jDateChooser);
-        
+
         //HOURS PANEL
         JPanel hoursPanel = new JPanel();
         hoursPanel.setLayout(null);
@@ -126,7 +127,7 @@ public class SetSlots extends JFrame {
         hoursPanel.setBorder(BorderFactory.createLineBorder(Color.orange));
         hoursPanel.setBounds(260, 130, 200, 190);
         main.add(hoursPanel);
-        
+
         //LABEL HOURS
         JPanel headHours = new JPanel();
         headHours.setBackground(Color.black);
@@ -136,7 +137,7 @@ public class SetSlots extends JFrame {
         hours.setForeground(new java.awt.Color(255, 204, 0));
         headHours.add(hours);
         hoursPanel.add(headHours);
-        
+
         //CHECKBOXES OF HOURS
         box9 = new JCheckBox("9:00");
         box10 = new JCheckBox("10:00");
@@ -150,7 +151,7 @@ public class SetSlots extends JFrame {
         box18 = new JCheckBox("18:00");
         box19 = new JCheckBox("19:00");
         all = new JCheckBox("all");
-        
+
         //SET BOUNDS CHECKBOXES
         box9.setBounds(5, 40, 60, 20);
         box10.setBounds(70, 40, 60, 20);
@@ -164,7 +165,7 @@ public class SetSlots extends JFrame {
         box18.setBounds(5, 130, 60, 20);
         box19.setBounds(70, 130, 60, 20);
         all.setBounds(135, 130, 60, 20);
-        
+
         //ADD CHECKBOXES
         hoursPanel.add(box9);
         hoursPanel.add(box10);
@@ -178,46 +179,95 @@ public class SetSlots extends JFrame {
         hoursPanel.add(box18);
         hoursPanel.add(box19);
         hoursPanel.add(all);
-        
+        {
+            box9.addItemListener((ItemEvent e) -> {
+                if (!box9.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box10.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box11.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box12.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box13.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box14.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box15.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box16.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box17.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box18.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            box19.addItemListener((ItemEvent e) -> {
+                if (!box11.isSelected()) {
+                    all.setSelected(false);
+                }
+            });
+            
+        }
         //IF ALL IS SELECTED ALL BECOME TRUE IF IS NOT ALL BECOME FALSE
-        all.addItemListener((ItemEvent e) -> {
-            if(all.isSelected()){
-                box9.setSelected(true);
-                box10.setSelected(true);
-                box11.setSelected(true);
-                box12.setSelected(true);
-                box13.setSelected(true);
-                box14.setSelected(true);
-                box15.setSelected(true);
-                box16.setSelected(true);
-                box17.setSelected(true);
-                box18.setSelected(true);
-                box19.setSelected(true);
-            }else{
-                box9.setSelected(false);
-                box10.setSelected(false);
-                box11.setSelected(false);
-                box12.setSelected(false);
-                box13.setSelected(false);
-                box14.setSelected(false);
-                box15.setSelected(false);
-                box16.setSelected(false);
-                box17.setSelected(false);
-                box18.setSelected(false);
-                box19.setSelected(false);
-            }
-        });
-              
+        {
+            all.addItemListener((ItemEvent e) -> {
+                if (all.isSelected()) {
+                    box9.setSelected(true);
+                    box10.setSelected(true);
+                    box11.setSelected(true);
+                    box12.setSelected(true);
+                    box13.setSelected(true);
+                    box14.setSelected(true);
+                    box15.setSelected(true);
+                    box16.setSelected(true);
+                    box17.setSelected(true);
+                    box18.setSelected(true);
+                    box19.setSelected(true);
+                } 
+            });
+        }
+
+        // IT DOES NOT 
+//        
         //BUTTON TO ADD DATES
         JButton add = new JButton("ADD");
         add.setBounds(470, 205, 70, 20);
         main.add(add);
         this.add(main);
-        
+
         //ACTION LISTENER
         add.addActionListener(setSlotsController);
         add.setActionCommand("add");
-        
+
         //LABEL CONFIRMATION
         JPanel headConfirmation = new JPanel();
         headConfirmation.setBackground(Color.black);
@@ -227,7 +277,7 @@ public class SetSlots extends JFrame {
         confirmation.setForeground(new java.awt.Color(255, 204, 0));
         headConfirmation.add(confirmation);
         main.add(headConfirmation);
-        
+
         //CONFIRMATION PANEL
         confirmTextArea = new JTextArea();
         scrollPane = new JScrollPane(confirmTextArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -238,7 +288,7 @@ public class SetSlots extends JFrame {
         confirmTextArea.setForeground(new java.awt.Color(255, 255, 255));
         //ConfirmArea.add(confirmTextArea);
         main.add(scrollPane);
-        
+
         // RETURN BUTTON AND FOOTER PANEL
         JButton back = new JButton("BACK");
         back.setBounds(15, 525, 80, 19);
@@ -260,6 +310,7 @@ public class SetSlots extends JFrame {
         this.validate();
         this.repaint();
     }
+
     //methods getters
     public Barber getValidBarber() {
         return validBarber;
@@ -316,6 +367,7 @@ public class SetSlots extends JFrame {
     public boolean getAll() {
         return all.isSelected();
     }
+
     public JTextArea getConfirmTextArea() {
         return confirmTextArea;
     }
