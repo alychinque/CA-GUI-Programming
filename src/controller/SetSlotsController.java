@@ -18,6 +18,7 @@ import model.BarberAvailability;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.ConnectionDB;
 import view.BarberView;
+import view.Login;
 import view.SetSlots;
 
 /**
@@ -169,6 +170,17 @@ public class SetSlotsController implements ActionListener {
                 BarberView barberView = new BarberView();
                 this.view.dispose();
                 barberView.BarberView(this.view.getValidBarber());
+                break;
+               
+            case "logout":
+                this.view.dispose();
+                Login login = new Login();
+                login.Login();
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(view, "Error");
+                break;
         }
     }
 }
