@@ -52,7 +52,7 @@ public class BarberViewController implements ActionListener {
                 String[][] barberAppointment = null;
                  {
                     try {
-                        barberAppointment = appointmentDAO.barberApointment(this.view.getValidBarber().getId());
+                        barberAppointment = appointmentDAO.barberAppointment(this.view.getValidBarber().getId());
                         if (barberAppointment == null) {
                             JOptionPane.showMessageDialog(null, "You don't have appointments");
                             break;
