@@ -8,11 +8,8 @@ package view;
 import controller.BookingController;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.util.Arrays;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -85,7 +82,7 @@ public class MyBookings extends JFrame {
         nameBarber.setBounds(200, 70, 600, 30);
         main.add(nameBarber);
 
-        //TABLE TO SHOW BARBERS FOUND
+        //TABLE TO SHOW BOOKINGS
         JTable tableBarbers = new JTable(data, colNames);
         JScrollPane scroll = new JScrollPane(tableBarbers);
         scroll.setBounds(175, 150, 550, 200);
