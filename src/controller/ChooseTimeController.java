@@ -41,16 +41,17 @@ public class ChooseTimeController implements ActionListener {
         }
         if (e.getActionCommand().equals("time")) {
             int idUser = this.view.getValidUser().getId();
-            int idBarber = this.view.getBarberAvailability().get(0).getId();
+            int idBarber = this.view.getId();
             String day = this.view.getDay();
             String time = this.view.getBoxTime();
 
-            Appointment appointment = new Appointment(idUser, idBarber, day, time, "pendent");
+            Appointment newAppointment = new Appointment(idUser, idBarber, day, time, "pendent");
             AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
             try {
-                appointmentDAO.insertAppointment(appointment);
+                appointmentDAO.insertAppointment(newAppointment);
             } catch (Exception ew) {
                 JOptionPane.showMessageDialog(view, "Failed making the appointment");
+                System.out.println(ew);
             }
             
             JOptionPane.showMessageDialog(view, "Congrats you have made an appointment\n"
