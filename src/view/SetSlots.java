@@ -88,12 +88,6 @@ public class SetSlots extends JFrame {
         today.setActionCommand("today");
         myMenu.add(today);
         
-        JMenuItem week = new JMenuItem("Week");
-        myMenu.add(week);
-        week.addActionListener(setSlotsController);
-        week.setActionCommand("week");
-        myMenu.add(week);
-        
         JMenuItem logout = new JMenuItem("Logout");
         myMenu.add(logout);
         logout.addActionListener(setSlotsController);
