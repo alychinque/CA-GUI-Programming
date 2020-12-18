@@ -46,14 +46,14 @@ public class MakeAppointmentController implements ActionListener {
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
                 ChooseTime chooseTime = new ChooseTime();
                 chooseTime.setDay(this.view.getBoxDay());
-                ArrayList<BarberAvailability> barberAvailability = this.view.getBarberAvailability();
                 try {
-                    chooseTime.setTimes(barberAvailabilityDAO.searchTime(this.view.getBarberAvailability().get(0).getId(), this.view.getBoxDay()));
+                    chooseTime.setTimes(barberAvailabilityDAO.searchTime(this.view.getId(), this.view.getBoxDay()));
                 } catch (SQLException ex) {
                     Logger.getLogger(MakeAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 chooseTime.setNameBarber(this.view.getNameBarber());
-                chooseTime.ChooseTime(this.view.getValidUser(), this.view.getBarberAvailability());
+                chooseTime.setId(this.view.getId());
+                chooseTime.ChooseTime(this.view.getValidUser());
                 this.view.dispose();
                 
                 break;
