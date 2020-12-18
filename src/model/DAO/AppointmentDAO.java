@@ -20,6 +20,7 @@ import model.ShowAppointment;
 public class AppointmentDAO {
 
     private final Connection connection;
+    
 
     public AppointmentDAO(Connection connection) {
         this.connection = connection;
@@ -95,6 +96,7 @@ public class AppointmentDAO {
     }
 
     public String[][] barberApointment(int id) throws SQLException {
+
         String query = "SELECT name_customer, appointment.date, appointment.time, appointment.status \n"
                 + "FROM Alysson_2019305.appointment \n"
                 + "INNER JOIN customer ON customer.id_customer = appointment.id_customer\n"
@@ -103,9 +105,9 @@ public class AppointmentDAO {
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
         stmt.execute();
+
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
-
         String[][] data;
         ShowAppointment appointment;
         ArrayList<ShowAppointment> retAppointment = new ArrayList<>();
@@ -120,6 +122,60 @@ public class AppointmentDAO {
             appointment = new ShowAppointment(nameCustomer, date, time, status);
             retAppointment.add(appointment);
         }
+        
+        if (retAppointment.isEmpty()) {
+            return null;
+        }
+        
+        data = new String[retAppointment.size()][4];
+        for (int i = 0; i < retAppointment.size(); i++) {
+            for (int j = 0; j < 4; j++) {
+                if (j == 0) {
+                    data[i][j] = retAppointment.get(i).getNameCustomer();
+                }
+                if (j == 1) {
+                    data[i][j] = retAppointment.get(i).getDay();
+                }
+                if (j == 2) {
+                    data[i][j] = retAppointment.get(i).getTime();
+                }
+                if (j == 3) {
+                    data[i][j] = retAppointment.get(i).getStatus();
+                }
+            }
+        }
+        return data;
+    }
+
+    public String[][] appointmentToday(int id, String today) throws SQLException {
+        String query = "SELECT name_customer, appointment.date, appointment.time, appointment.status \n"
+                + "FROM Alysson_2019305.customer \n"
+                + "INNER JOIN appointment ON customer.id_customer = appointment.id_customer\n"
+                + "where appointment.id_barber = ? and appointment.date = ?\n"
+                + "order by time asc;";
+        System.out.println("Sorry, I could't find how to fix this part");
+        PreparedStatement stmt = connection.prepareStatement(query);
+        stmt.setInt(1, id);
+        stmt.setString(2, today);
+        stmt.execute();
+        //catch the result
+        ResultSet resultSet = stmt.getResultSet();
+        
+        String[][] data;
+        ShowAppointment appointment;
+        ArrayList<ShowAppointment> retAppointment = new ArrayList<>();
+        //if there are data it shows, otherwise return true and insert
+        while (resultSet.next()) {
+            //it gets the appointment and barber' details from DB and store in new variables
+            String nameCustomer = resultSet.getString("name_customer");
+            String date = resultSet.getString("date");
+            String time = resultSet.getString("time");
+            String status = resultSet.getString("status");
+
+            appointment = new ShowAppointment(nameCustomer, date, time, status);
+            retAppointment.add(appointment);
+        }
+        
         if (retAppointment.isEmpty()) {
             return null;
         }
