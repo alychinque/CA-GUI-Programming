@@ -31,8 +31,9 @@ public class ChooseTime extends JFrame {
     public int idBarber;
     private String day;
     private String nameBarber;
+    private int id;
 
-    public void ChooseTime(User validUser, ArrayList<BarberAvailability> barberAvailability) {
+    public void ChooseTime(User validUser) {
 
         this.setTitle("Style Barber Shop - time");
         this.setSize(450, 300);
@@ -42,7 +43,6 @@ public class ChooseTime extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
         this.validUser = validUser;
-        this.barberAvailability = barberAvailability;
 
         //controller
         ChooseTimeController chooseTimeController = new ChooseTimeController(this);
@@ -93,10 +93,6 @@ public class ChooseTime extends JFrame {
         return validUser;
     }
 
-    public ArrayList<BarberAvailability> getBarberAvailability() {
-        return barberAvailability;
-    }
-    
     public String getBoxTime() {
         return boxTime.getSelectedItem().toString();
     }
@@ -123,6 +119,13 @@ public class ChooseTime extends JFrame {
     public String getNameBarber() {
         return nameBarber;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
+    public int getId(){
+        return id;
+    }
     
 }
