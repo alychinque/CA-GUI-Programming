@@ -8,14 +8,12 @@ package view;
 import controller.MakeAppointmentController;
 import java.awt.Color;
 import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-import model.BarberAvailability;
 import model.User;
 
 /**
@@ -27,10 +25,10 @@ public class MakeAppointment extends JFrame {
     private User validUser;
     private JComboBox boxDay;
     private String[] days;
-    private ArrayList<BarberAvailability> barberAvailability;
     private String nameBarber;
+    private int id;
 
-    public void MakeAppointment(User validUser, ArrayList<BarberAvailability> barberAvailability) {
+    public void MakeAppointment(User validUser) {
         this.setTitle("Style Barber Shop - day");
         this.setSize(450, 300);
         this.setVisible(true);
@@ -38,8 +36,7 @@ public class MakeAppointment extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setLayout(null);
-        this.validUser = validUser;
-        this.barberAvailability = barberAvailability;
+        this.validUser = validUser;        
 
         //controller
         MakeAppointmentController makeAppController = new MakeAppointmentController(this);
@@ -90,10 +87,17 @@ public class MakeAppointment extends JFrame {
         return validUser;
     }
 
-    public ArrayList<BarberAvailability> getBarberAvailability() {
-        return barberAvailability;
+    public int getId() {
+        return id;
     }
-    
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String[] getDays() {
+        return days;
+    }
 
     public String getBoxDay() {
         return boxDay.getSelectedItem().toString();
