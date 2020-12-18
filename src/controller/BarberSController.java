@@ -9,17 +9,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.BarberAvailability;
 import model.DAO.AppointmentDAO;
 import model.DAO.BarberAvailabilityDAO;
 import model.DAO.BarberDAO;
 import model.DAO.ConnectionDB;
 import view.BarberSearch;
-import view.ChooseTime;
 import view.Customer;
 import view.Login;
 import view.MakeAppointment;
@@ -33,7 +30,6 @@ public class BarberSController implements ActionListener {
 
     private final BarberSearch view;
     private Connection conn;
-    private String[] days;
     private int id;
 
     public int getId() {
@@ -58,21 +54,21 @@ public class BarberSController implements ActionListener {
                 String surname = this.view.getCombo().split(" ")[1];
                 BarberDAO barberDAO = new BarberDAO(conn);
                 BarberAvailabilityDAO barberAvailabilityDAO = new BarberAvailabilityDAO(conn);
-                ArrayList<BarberAvailability> barberAvailability = new ArrayList<>();
+                String[] daysBarberAvailable = null;
 
                 try {
                     id = barberDAO.searchId(name, surname);
-                    ChooseTime chooseTime = new ChooseTime();
-                    barberAvailability = barberAvailabilityDAO.searchBarber(id);
-                    days = getDays(barberAvailability);
+                    daysBarberAvailable = barberAvailabilityDAO.searchBarber(id);
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(BarberSController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 this.view.dispose();
                 MakeAppointment appointment = new MakeAppointment();
                 appointment.setNameBarber(this.view.getCombo());
-                appointment.setDays(days);
-                appointment.MakeAppointment(this.view.getValidUser(), barberAvailability);
+                appointment.setDays(daysBarberAvailable);
+                appointment.setId(id);
+                appointment.MakeAppointment(this.view.getValidUser());
                 break;
 
             case "bookings":
@@ -103,13 +99,4 @@ public class BarberSController implements ActionListener {
                 break;
         }
     }
-
-    private String[] getDays(ArrayList<BarberAvailability> barberAvailability) {
-        String[] days = new String[barberAvailability.size()];
-        for (int i = 0; i < barberAvailability.size(); i++) {
-            days[i] = barberAvailability.get(i).getDateAva();
-        }
-        return days;
-    }
-
 }
