@@ -8,9 +8,6 @@ package view;
 import controller.BarberViewController;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -64,14 +61,20 @@ public class BarberView extends JFrame {
         myMenuBar.add(myMenu);
 
         JMenuItem today = new JMenuItem("Today");
+        today.addActionListener(barberController);
+        today.setActionCommand("today");
         myMenu.add(today);
+        
         JMenuItem setSlots = new JMenuItem("Set Slots");
         setSlots.addActionListener(barberController);
         setSlots.setActionCommand("setSlots");
         myMenu.add(setSlots);
+        
         JMenuItem logout = new JMenuItem("Logout");
+        logout.addActionListener(barberController);
+        logout.setActionCommand("logout");
         myMenu.add(logout);
-
+        
         //MAIN PANEL
         JPanel main = new JPanel();
         main.setLayout(null);
@@ -87,7 +90,7 @@ public class BarberView extends JFrame {
         main.add(welcome);
         
         //LABEL SHOW APPOINTMENTS
-        JLabel label = new JLabel("CHECK YOUR APPOINTMENTS: ");
+        JLabel label = new JLabel("SHOW YOUR APPOINTMENTS: ");
         label.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
         label.setForeground(new java.awt.Color(255, 204, 0));
         label.setBounds(90, 120, 420, 80);
@@ -102,14 +105,14 @@ public class BarberView extends JFrame {
         main.add(show);
         
         //LABEL SHOW TO APPOINTMENTS FOR TODAY
-        JLabel labelToday = new JLabel("CHECK YOUR APPOINTMENTS:");
+        JLabel labelToday = new JLabel("CHECK YOUR APPOINTMENTS FOR TODAY:");
         labelToday.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
         labelToday.setForeground(new java.awt.Color(255, 204, 0));
         labelToday.setBounds(90, 225, 685, 80);
         main.add(labelToday);
         
         //BUTTON TO SHOW APPOINTMENTS FOR TODAY
-        JButton todayB = new JButton("TODAY");
+        JButton todayB = new JButton("CHECK");
         todayB.setBounds(575, 230, 170, 50);
         todayB.setFont(new Font("Arial", Font.PLAIN, 18));
         todayB.addActionListener(barberController);
@@ -130,7 +133,6 @@ public class BarberView extends JFrame {
         setSlotsB.addActionListener(barberController);
         setSlotsB.setActionCommand("setSlots");
         main.add(setSlotsB);
-
         this.add(main);
 
         //FOOTER PANEL
