@@ -90,7 +90,9 @@ public class BarberDAO {
                     resultSet.getString("address"), resultSet.getString("location"));
 
             barber.add(listBarber);
-
+        }
+        if (barber.isEmpty()){
+            return null;
         }
         data = new String[barber.size()][4];
         for (int i = 0; i < barber.size(); i++) {
@@ -101,9 +103,7 @@ public class BarberDAO {
                 if (j == 3) {data[i][j] = barber.get(i).getLocation();}
             }
         }
-        if (data[0][0].isEmpty()){
-            return null;
-        }
+        
         return data;
     }
 
