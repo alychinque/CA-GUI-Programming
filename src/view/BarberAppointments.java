@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
+import model.Barber;
 
 /**
  *
@@ -26,14 +27,14 @@ import javax.swing.WindowConstants;
  */
 public class BarberAppointments extends JFrame {
 
-    private BarberView validBarber;
+    private Barber validBarber;
     private final String[] colNames = {"Customer", "Day", "Time", "Status"};
     private String[][] data;
     private JTable tableBarbers;
     private JScrollPane scroll;
     private String day;
 
-    public void BarberAppointments(BarberView validBarber) {
+    public void BarberAppointments(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
         this.setSize(900, 600);
         this.setVisible(true);
@@ -67,12 +68,18 @@ public class BarberAppointments extends JFrame {
         myMenuBar.add(myMenu);
 
         JMenuItem today = new JMenuItem("Today");
+        today.addActionListener(barberAppointmentsController);
+        today.setActionCommand("today");
         myMenu.add(today);
+        
         JMenuItem setSlots = new JMenuItem("Set Slots");
         setSlots.addActionListener(barberAppointmentsController);
         setSlots.setActionCommand("setSlots");
         myMenu.add(setSlots);
+        
         JMenuItem logout = new JMenuItem("Logout");
+        logout.addActionListener(barberAppointmentsController);
+        logout.setActionCommand("logout");
         myMenu.add(logout);
 
         //MAIN PANEL
@@ -96,6 +103,13 @@ public class BarberAppointments extends JFrame {
         main.add(scroll);
 
         this.add(main);
+        
+        // RETURN BUTTON AND FOOTER PANEL
+        JButton back = new JButton("BACK");
+        back.setBounds(15, 525, 80, 19);
+        this.add(back);
+        back.addActionListener(barberAppointmentsController);
+        back.setActionCommand("back");
 
         //FOOTER PANEL
         JPanel footer = new JPanel();
@@ -112,7 +126,7 @@ public class BarberAppointments extends JFrame {
         this.repaint();
     }
 
-    public BarberView getValidBarber() {
+    public Barber getValidBarber() {
         return validBarber;
     }
 
