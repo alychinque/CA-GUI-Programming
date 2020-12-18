@@ -25,7 +25,8 @@ public class AppointmentDAO {
     public AppointmentDAO(Connection connection) {
         this.connection = connection;
     }
-
+    
+    //THIS METHOD INSERT DATA OF AN APPOINTMENT IN THE DATABASE
     public void insertAppointment(Appointment appointment) throws SQLException {
         String query = "INSERT INTO appointment (id_customer, id_barber, date, time, status) VALUES(?, ?, ?, ?, ?);";
         // Get a statement from the connection
@@ -38,6 +39,7 @@ public class AppointmentDAO {
         stmt.execute();
     }
 
+    //THIS METHOD RETRIEVE AN APPOINTMENT ACCORDING TO ID CUSTOMER
     public String[][] returnAppointmet(int id) throws SQLException {
         String query = "SELECT barber.name_barber, barber.barbershop, barber.address, date, time, status \n"
                 + " FROM Alysson_2019305.appointment\n"
@@ -66,9 +68,11 @@ public class AppointmentDAO {
             appointment = new ShowAppointment(nameBarber, barbershop, address, date, time, status);
             retAppointment.add(appointment);
         }
+        //IF EMPTY RETURN NULL
         if (retAppointment.isEmpty()) {
             return null;
         }
+        //CREATED THIS TWO DIMENSIONAL ARRAY TO STORE THE APPOINTMENTS
         data = new String[retAppointment.size()][6];
         for (int i = 0; i < retAppointment.size(); i++) {
             for (int j = 0; j < 6; j++) {
@@ -95,7 +99,8 @@ public class AppointmentDAO {
         return data;
     }
 
-    public String[][] barberApointment(int id) throws SQLException {
+    //THIS METHOD RETRIEVE AN APPOINTMENT ACCORDING TO ID BARBER
+    public String[][] barberAppointment(int id) throws SQLException {
 
         String query = "SELECT name_customer, appointment.date, appointment.time, appointment.status \n"
                 + "FROM Alysson_2019305.appointment \n"
@@ -147,6 +152,7 @@ public class AppointmentDAO {
         return data;
     }
 
+    //THIS METHOD SUPPOSE TO RETRIEVE BARBERS' APPOINTMENT ACCORDING TO ID BARBER AND TODAYS DATE
     public String[][] appointmentToday(int id, String today) throws SQLException {
         String query = "SELECT name_customer, appointment.date, appointment.time, appointment.status \n"
                 + "FROM Alysson_2019305.customer \n"
