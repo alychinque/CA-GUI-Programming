@@ -19,8 +19,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import model.Barber;
 
@@ -31,10 +29,6 @@ import model.Barber;
 public class BarberView extends JFrame {
 
     private Barber validBarber;
-    private final String[] colNames = {"Customer", "Day", "Time", "Status"};
-    private String[][] data;
-    private JTable tableBarbers;
-    private JScrollPane scroll;
 
     public void BarberView(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -96,12 +90,12 @@ public class BarberView extends JFrame {
         JLabel label = new JLabel("CHECK YOUR APPOINTMENTS: ");
         label.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
         label.setForeground(new java.awt.Color(255, 204, 0));
-        label.setBounds(90, 150, 420, 80);
+        label.setBounds(90, 120, 420, 80);
         main.add(label);
         
         //BUTTON TO SHOW APPOINTMENTS
         JButton show = new JButton("SHOW");
-        show.setBounds(575, 170, 170, 50);
+        show.setBounds(575, 125, 170, 50);
         show.setFont(new Font("Arial", Font.PLAIN, 18));
         show.addActionListener(barberController);
         show.setActionCommand("show");
@@ -111,12 +105,12 @@ public class BarberView extends JFrame {
         JLabel labelToday = new JLabel("CHECK YOUR APPOINTMENTS:");
         labelToday.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
         labelToday.setForeground(new java.awt.Color(255, 204, 0));
-        labelToday.setBounds(90, 250, 685, 80);
+        labelToday.setBounds(90, 225, 685, 80);
         main.add(labelToday);
         
-        //BUTTON TO SHOW 
+        //BUTTON TO SHOW APPOINTMENTS FOR TODAY
         JButton todayB = new JButton("TODAY");
-        todayB.setBounds(575, 270, 170, 50);
+        todayB.setBounds(575, 230, 170, 50);
         todayB.setFont(new Font("Arial", Font.PLAIN, 18));
         todayB.addActionListener(barberController);
         todayB.setActionCommand("today");
@@ -126,12 +120,12 @@ public class BarberView extends JFrame {
         JLabel labelSetSlots = new JLabel("SET YOUR DAYS AND TIME FREE: ");
         labelSetSlots.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
         labelSetSlots.setForeground(new java.awt.Color(255, 204, 0));
-        labelSetSlots.setBounds(90, 350, 420, 80);
+        labelSetSlots.setBounds(90, 330, 420, 80);
         main.add(labelSetSlots);
         
         //BUTTON TO SHOW 
         JButton setSlotsB = new JButton("SET SLOTS");
-        setSlotsB.setBounds(575, 370, 170, 50);
+        setSlotsB.setBounds(575, 335, 170, 50);
         setSlotsB.setFont(new Font("Arial", Font.PLAIN, 18));
         setSlotsB.addActionListener(barberController);
         setSlotsB.setActionCommand("setSlots");
@@ -157,8 +151,4 @@ public class BarberView extends JFrame {
     public Barber getValidBarber() {
         return validBarber;
     }
-
-    public void setData(String[][] data) {
-        this.data = data;
-    } 
 }
