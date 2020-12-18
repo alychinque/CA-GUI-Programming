@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,6 +18,7 @@ import model.DAO.AppointmentDAO;
 import model.DAO.ConnectionDB;
 import view.BarberAppointments;
 import view.BarberView;
+import view.Login;
 import view.SetSlots;
 
 /**
@@ -26,6 +29,7 @@ public class BarberViewController implements ActionListener {
 
     private final BarberView view;
     private Connection conn;
+    AppointmentDAO appointmentDAO;
 
     public BarberViewController(BarberView view) {
         this.view = view;
@@ -35,6 +39,7 @@ public class BarberViewController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         //creating a new Connection conn and giving connection with the DB
         try {
+            appointmentDAO = new AppointmentDAO(conn);
             conn = new ConnectionDB().getConnection();
         } catch (SQLException ex) {
             Logger.getLogger(CustomerController.class.getName()).log(Level.SEVERE, null, ex);
@@ -43,21 +48,46 @@ public class BarberViewController implements ActionListener {
 
         switch (e.getActionCommand()) {
             case "show":
-                AppointmentDAO appointmentDAO = new AppointmentDAO(conn);
+                appointmentDAO = new AppointmentDAO(conn);
                 String[][] barberAppointment = null;
                  {
                     try {
                         barberAppointment = appointmentDAO.barberApointment(this.view.getValidBarber().getId());
                         if (barberAppointment == null) {
-
+                            JOptionPane.showMessageDialog(null, "You don't have appointments");
+                            break;
                         }
                     } catch (SQLException ex) {
-                        Logger.getLogger(BarberViewController.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(view, "Stop here");
+                        break;
                     }
-                     BarberAppointments barberAppointments = new BarberAppointments();
-                     barberAppointments.setData(barberAppointment);
-                     barberAppointments.BarberAppointments(this.view);
-                     this.view.dispose();
+                    BarberAppointments barberAppointments = new BarberAppointments();
+                    barberAppointments.setData(barberAppointment);
+                    barberAppointments.BarberAppointments(this.view.getValidBarber());
+                    this.view.dispose();
+                    break;
+                }
+
+            case "today":
+                Date dateToday = new Date();
+                SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+                String now = formato.format(dateToday);
+                String[][] today = null;
+                 {
+                    try {
+                        today = appointmentDAO.appointmentToday(this.view.getValidBarber().getId(), now);
+                        if (today == null) {
+                            JOptionPane.showMessageDialog(null, "You don't have appointments on "+ now);
+                            break;
+                        }
+                    } catch (SQLException ew) {
+                        Logger.getLogger(BarberViewController.class.getName()).log(Level.SEVERE, null, ew);
+                        System.out.println("error: " + ew);
+                    }
+                    BarberAppointments barberAppointments = new BarberAppointments();
+                    barberAppointments.setData(today);
+                    barberAppointments.BarberAppointments(this.view.getValidBarber());
+                    this.view.dispose();
                 }
 
             case "setSlots":
@@ -66,6 +96,15 @@ public class BarberViewController implements ActionListener {
                 this.view.dispose();
                 break;
 
+            case "logout":
+                this.view.dispose();
+                Login login = new Login();
+                login.Login();
+                break;
+
+            default:
+                JOptionPane.showMessageDialog(view, "Error");
+                break;
         }
     }
 
