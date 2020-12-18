@@ -87,7 +87,7 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
-    public ArrayList<BarberAvailability> searchBarber(int id) throws SQLException {
+    public String[] searchBarber(int id) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
@@ -105,7 +105,14 @@ public class BarberAvailabilityDAO {
             barber = new BarberAvailability(resultSet.getInt("id_barber"), resultSet.getString("date"), times);
             barberAvailability.add(barber);
         }
-        return barberAvailability;
+        String[] days = new String[barberAvailability.size()];
+        for (int i = 0; i < barberAvailability.size(); i++) {
+            days[i] = barberAvailability.get(i).getDateAva();
+        }
+        if (days[0].isEmpty()){
+            return null;
+        }
+        return days;
     }
 
     public String[] searchTime(int id, String day) throws SQLException {
