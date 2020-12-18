@@ -20,6 +20,7 @@ public class ComplainDAO {
     public ComplainDAO(Connection connection) {
         this.connection = connection;
     }
+    //SET A COMPLAIN IN THE DATABASE
     public void setComplain(int id, String text, String date) throws SQLException{
         String query = "INSERT INTO complain(id_customer, complainText, complainDate)"
                 + "VALUES (?, ?, ?)";

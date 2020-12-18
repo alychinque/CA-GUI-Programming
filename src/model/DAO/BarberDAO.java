@@ -26,6 +26,7 @@ public class BarberDAO {
         this.connection = connection;
     }
 
+    //THIS METHOD INSERT A BARBER IN THE DATABASE
     public void insert(Barber barber) throws SQLException {
         String query = "INSERT INTO barber(name_barber, surname_barber, phone_barber, email_barber, password_barber, barbershop, address, location)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -44,6 +45,7 @@ public class BarberDAO {
         stmt.execute();
     }
 
+    //THIS METHOD CHECKS ACCORDING EMAIL AND PASS IF THERE IS A BARBER STORED
     public Barber checkBarber(String email, String pass) throws SQLException {
         //query to get a barber by id and password
         String sql = "SELECT * FROM barber where email_barber = ? and password_barber = ?";
@@ -67,6 +69,7 @@ public class BarberDAO {
         }
     }
 
+    //THIS METHOD SEARCHES IN THE DATABASE IF THERE IS A BARBER WITH A NAME OR A LOCATION
     public String[][] search(String name, int type) throws SQLException {
         //query to get a barber by name
         String sql;
@@ -107,6 +110,7 @@ public class BarberDAO {
         return data;
     }
 
+    //THIS METHOD SEARCHES AN ID BY PASSING NAME AND SURMANE OF A BARBER
     public int searchId(String name, String surname) throws SQLException{
         int id = 0;
         //query to get a barber by id and password

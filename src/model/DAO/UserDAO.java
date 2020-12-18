@@ -23,6 +23,7 @@ public class UserDAO {
         this.connection = connection;
     }
 
+    //THIS METHOD INSERTS AN USER IN THE DATABASE
     public void insert(User user) throws SQLException {
         String query = "INSERT INTO customer(name_customer, surname_customer, phone_customer, email_customer, password_customer)"
                 + "VALUES (?, ?, ?, ?, ?)";
@@ -36,6 +37,7 @@ public class UserDAO {
         stmt.execute();
     }
 
+    //THIS METHOD CHECKS ACCORDING EMAIL AND PASS IF USER IS IN THE DATABASE
     public User checkCustomer(String email, String pass) throws SQLException {
         //query to get a customer by id and password
         String sql = "SELECT * FROM customer where email_customer = ? and password_customer = ?";

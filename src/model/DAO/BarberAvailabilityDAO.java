@@ -26,6 +26,7 @@ public class BarberAvailabilityDAO {
         this.connection = connection;
     }
 
+    //THIS METHOD INSERTS A DATE AND TIME THAT A BARBER IS AVAILABLE TO WORK
     public void insert(BarberAvailability availability) throws SQLException {
         String query = "INSERT INTO barber_availability (id_barber, date, time)"
                 + "VALUES (?, ?, ?)";
@@ -38,6 +39,9 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
+    //THIS METHOD CHECKS IF THE DATE THAT A BARBER IS TRYNG TO INSERT IS ALREADY IN THE DATABASE 
+    //IF SO IT ASKS IF YOU WANT TO OVERWRITE OR LEAVE AS IT IS
+    //IF YOU WANT OVERWRITE IT CALLS A DELETEDAY AND STORES IN THE DATABASE THE NEW ONE
     public Boolean checkDay(BarberAvailability availability) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? AND date = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
@@ -47,7 +51,7 @@ public class BarberAvailabilityDAO {
         //catch the result
         ResultSet resultSet = stmt.getResultSet();
 
-        //if there are data it shows, otherwise return true and insert
+        //if there is data it shows, otherwise return true and insert
         if (resultSet.next()) {
 
             //it gets the barbers' details from DB and store in new variables
@@ -79,6 +83,7 @@ public class BarberAvailabilityDAO {
         return true;
     }
 
+    //THIS METHOD DELETE AN STORED DAY BY PASSING BARBER ID AND DATE
     public void deleteDay(int id, String date) throws SQLException {
         String query = "DELETE FROM barber_availability WHERE id_barber = ? AND date = ?";
         PreparedStatement stmt = connection.prepareStatement(query);
@@ -87,6 +92,7 @@ public class BarberAvailabilityDAO {
         stmt.execute();
     }
 
+    //IT SEARCHES A BARBER BY ID
     public String[] searchBarber(int id) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);
@@ -115,6 +121,7 @@ public class BarberAvailabilityDAO {
         return days;
     }
 
+    // THIS METHOD SEARCHES WHAT TIME A BARBER WILL BE AVAILABLE IN A CERTAIN DAY
     public String[] searchTime(int id, String day) throws SQLException {
         String query = "SELECT * FROM barber_availability WHERE id_barber = ? and date = ? ORDER BY date ASC";
         PreparedStatement stmt = connection.prepareStatement(query);

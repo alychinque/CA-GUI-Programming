@@ -14,6 +14,7 @@ import java.sql.SQLException;
  */
 public class ConnectionDB {
 
+    //CREATED A CONNECTION WITH THE DATABASE
     public Connection getConnection() throws SQLException {
         String dbServer = "jdbc:mysql://apontejaj.com:3306/Alysson_2019305?useSSL=false";
         String user = "Alysson_2019305";
