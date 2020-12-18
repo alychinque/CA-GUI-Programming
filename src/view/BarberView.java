@@ -5,14 +5,12 @@
  */
 package view;
 
-import com.toedter.calendar.JDateChooser;
 import controller.BarberViewController;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,6 +19,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import model.Barber;
 
@@ -28,13 +28,13 @@ import model.Barber;
  *
  * @author Alysson Chinque
  */
-public class BarberView extends JFrame implements ActionListener {
+public class BarberView extends JFrame {
 
     private Barber validBarber;
-    JLabel jb;
-    String data;
-    JDateChooser jDateChooser;
-    Date date;
+    private final String[] colNames = {"Customer", "Day", "Time", "Status"};
+    private String[][] data;
+    private JTable tableBarbers;
+    private JScrollPane scroll;
 
     public void BarberView(Barber validBarber) {
         this.setTitle("Style Barber Shop - Barber");
@@ -71,8 +71,6 @@ public class BarberView extends JFrame implements ActionListener {
 
         JMenuItem today = new JMenuItem("Today");
         myMenu.add(today);
-        JMenuItem week = new JMenuItem("Week");
-        myMenu.add(week);
         JMenuItem setSlots = new JMenuItem("Set Slots");
         setSlots.addActionListener(barberController);
         setSlots.setActionCommand("setSlots");
@@ -93,19 +91,51 @@ public class BarberView extends JFrame implements ActionListener {
         welcome.setForeground(new java.awt.Color(255, 204, 0));
         welcome.setBounds(50, 30, 600, 70);
         main.add(welcome);
-
-        jDateChooser = new JDateChooser();
         
-        JButton jb1 = new JButton("send");
-        jb1.addActionListener(this);
-    
-        jDateChooser.setBounds(50, 100, 250, 20);
-        main.add(jDateChooser);
-        jb = new JLabel("Today ");
-        jb.setBounds(200, 330, 100, 20);
-        main.add(jb);
-        jb1.setBounds(50, 330, 100, 20);
-        main.add(jb1);
+        //LABEL SHOW APPOINTMENTS
+        JLabel label = new JLabel("CHECK YOUR APPOINTMENTS: ");
+        label.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
+        label.setForeground(new java.awt.Color(255, 204, 0));
+        label.setBounds(90, 150, 420, 80);
+        main.add(label);
+        
+        //BUTTON TO SHOW APPOINTMENTS
+        JButton show = new JButton("SHOW");
+        show.setBounds(575, 170, 170, 50);
+        show.setFont(new Font("Arial", Font.PLAIN, 18));
+        show.addActionListener(barberController);
+        show.setActionCommand("show");
+        main.add(show);
+        
+        //LABEL SHOW TO APPOINTMENTS FOR TODAY
+        JLabel labelToday = new JLabel("CHECK YOUR APPOINTMENTS:");
+        labelToday.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
+        labelToday.setForeground(new java.awt.Color(255, 204, 0));
+        labelToday.setBounds(90, 250, 685, 80);
+        main.add(labelToday);
+        
+        //BUTTON TO SHOW 
+        JButton todayB = new JButton("TODAY");
+        todayB.setBounds(575, 270, 170, 50);
+        todayB.setFont(new Font("Arial", Font.PLAIN, 18));
+        todayB.addActionListener(barberController);
+        todayB.setActionCommand("today");
+        main.add(todayB);
+        
+        //LABEL SHOW TO SET SLOTS
+        JLabel labelSetSlots = new JLabel("SET YOUR DAYS AND TIME FREE: ");
+        labelSetSlots.setFont(new Font("Showcard Gothic", Font.PLAIN, 24));
+        labelSetSlots.setForeground(new java.awt.Color(255, 204, 0));
+        labelSetSlots.setBounds(90, 350, 420, 80);
+        main.add(labelSetSlots);
+        
+        //BUTTON TO SHOW 
+        JButton setSlotsB = new JButton("SET SLOTS");
+        setSlotsB.setBounds(575, 370, 170, 50);
+        setSlotsB.setFont(new Font("Arial", Font.PLAIN, 18));
+        setSlotsB.addActionListener(barberController);
+        setSlotsB.setActionCommand("setSlots");
+        main.add(setSlotsB);
 
         this.add(main);
 
@@ -124,17 +154,11 @@ public class BarberView extends JFrame implements ActionListener {
         this.repaint();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        date = jDateChooser.getDate();
-        System.out.println(date);
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println(formato.format(date));
-        jb.setText("Added the day " + formato.format(date));
-    }
-
     public Barber getValidBarber() {
         return validBarber;
     }
-    
+
+    public void setData(String[][] data) {
+        this.data = data;
+    } 
 }
