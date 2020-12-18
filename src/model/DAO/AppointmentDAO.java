@@ -10,7 +10,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Locale;
 import model.Appointment;
 import model.ShowAppointment;
 
@@ -35,15 +34,15 @@ public class AppointmentDAO {
         stmt.setString(3, appointment.getDate());
         stmt.setString(4, appointment.getTime());
         stmt.setString(5, appointment.getStatus());
-
         stmt.execute();
     }
 
     public String[][] returnAppointmet(int id) throws SQLException {
-        String query = "SELECT barber.name_barber, barber.barbershop, barber.address, barber.location date, time, status \n"
+        String query = "SELECT barber.name_barber, barber.barbershop, barber.address, date, time, status \n"
                 + " FROM Alysson_2019305.appointment\n"
                 + " INNER JOIN barber ON barber.id_barber = appointment.id_barber\n"
-                + " where appointment.id_customer = ?;";
+                + " where appointment.id_customer = ?"
+                + " order by date asc;";
         PreparedStatement stmt = connection.prepareStatement(query);
         stmt.setInt(1, id);
         stmt.execute();
@@ -65,6 +64,9 @@ public class AppointmentDAO {
 
             appointment = new ShowAppointment(nameBarber, barbershop, address, date, time, status);
             retAppointment.add(appointment);
+        }
+        if (retAppointment.isEmpty()){
+            return null;
         }
         data = new String[retAppointment.size()][6];
         for (int i = 0; i < retAppointment.size(); i++) {
