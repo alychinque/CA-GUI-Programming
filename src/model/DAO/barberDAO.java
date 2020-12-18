@@ -110,7 +110,7 @@ public class BarberDAO {
     public int searchId(String name, String surname) throws SQLException{
         int id = 0;
         //query to get a barber by id and password
-        String sql = "SELECT * FROM barber where name_barber = ? and surname_barber = ?";
+        String sql = "SELECT id_barber FROM barber where name_barber = ? and surname_barber = ?";
         //creating a Statement assigning a connection with the select query
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1, name);
