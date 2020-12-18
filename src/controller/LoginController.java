@@ -13,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Barber;
-import model.DAO.AppointmentDAO;
 import model.DAO.ConnectionDB;
 import model.DAO.UserDAO;
 import model.DAO.BarberDAO;

@@ -13,7 +13,7 @@ import view.MyBookings;
 
 /**
  *
- * @author alych
+ * @author Alysson Chinque
  */
 public class BookingController implements ActionListener{
     private MyBookings view;

@@ -154,7 +154,8 @@ public class RegistrationController implements ActionListener {
             return false;
         }
     }
-
+    
+    //checks if name and surname contain only letters
     private boolean isValidName(String name, String surname) {
         boolean nameBoo = Pattern.matches("[a-z]+", name);
         boolean surnameBoo = Pattern.matches("[a-z]+", surname);
@@ -172,6 +173,7 @@ public class RegistrationController implements ActionListener {
         }
     }
 
+    //checks if phone containg between 7 and 11 digits
     private Boolean validPhone() {
         try {
             phoneString = this.view.getPhone().getText();
@@ -216,6 +218,7 @@ public class RegistrationController implements ActionListener {
         }
     }
 
+    //checks if the passwords are equal
     private boolean validPass() {
         pass = this.view.getPassword().getText();
         passConfirm = this.view.getPasswordConfirm().getText();
@@ -227,9 +230,16 @@ public class RegistrationController implements ActionListener {
         }
     }
 
+    //addresses must have at least 5 characters to be valid
     private boolean validAddress() {
         address = this.view.getAddress().getText();
-        return address.length() > 5;
+        if (address.length() > 5){
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Addresses must have at least 5 characters to be valid");
+            return false;
+        }
+         
     }
 
 }
