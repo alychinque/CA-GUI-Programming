@@ -56,10 +56,10 @@ public class Registration extends JFrame {
         JLabel style = new JLabel("STYLE BARBER SHOP");
 
         //SET HEADER
-        top.setBackground(color("background"));
-        top.setBorder(BorderFactory.createLineBorder(color("bt")));
+        top.setBackground(Color.black);
+        top.setBorder(BorderFactory.createLineBorder(Color.orange));
         style.setFont(new Font("Showcard Gothic", Font.PLAIN, 48));
-        style.setForeground(color("bt"));
+        style.setForeground(new java.awt.Color(255, 204, 0));
         //ADDED LABEL TO PANEL AND PANEL TO FRAME
         top.setBounds(0, 0, 894, 72);
         top.add(style);
@@ -69,9 +69,9 @@ public class Registration extends JFrame {
         JPanel choice = new JPanel();
         JLabel text = new JLabel("REGISTRATION");
         text.setFont(new Font("Showcard Gothic", Font.PLAIN, 28));
-        text.setForeground(color("bt"));
-        choice.setBorder(BorderFactory.createLineBorder(color("bt")));
-        choice.setBackground(color("background"));
+        text.setForeground(new java.awt.Color(255, 204, 0));
+        choice.setBorder(BorderFactory.createLineBorder(Color.orange));
+        choice.setBackground(Color.black);
         choice.add(text);
 
         choice.setBounds(0, 72, 894, 45);
@@ -79,13 +79,13 @@ public class Registration extends JFrame {
 
         //MAIN PANEL
         JPanel main = new JPanel();
-        main.setBackground(color("background"));
-        main.setBorder(BorderFactory.createLineBorder(color("bt")));
+        main.setBackground(Color.black);
+        main.setBorder(BorderFactory.createLineBorder(Color.orange));
         main.setBounds(0, 110, 894, 434);
         main.setLayout(null);
 
         JLabel fullNameL = new JLabel("FULL NAME:");
-        fullNameL.setForeground(color("bt"));
+        fullNameL.setForeground(new java.awt.Color(255, 204, 0));
         fullNameL.setBounds(150, 56, 200, 25);
         main.add(fullNameL);
         fullName = new JTextField();
@@ -93,7 +93,7 @@ public class Registration extends JFrame {
         main.add(fullName);
 
         JLabel phoneL = new JLabel("PHONE:");
-        phoneL.setForeground(color("bt"));
+        phoneL.setForeground(new java.awt.Color(255, 204, 0));
         phoneL.setBounds(150, 97, 200, 25);
         main.add(phoneL);
         phone = new JTextField();
@@ -101,7 +101,7 @@ public class Registration extends JFrame {
         main.add(phone);
 
         JLabel emailL = new JLabel("EMAIL:");
-        emailL.setForeground(color("bt"));
+        emailL.setForeground(new java.awt.Color(255, 204, 0));
         emailL.setBounds(150, 138, 200, 25);
         main.add(emailL);
         email = new JTextField();
@@ -109,7 +109,7 @@ public class Registration extends JFrame {
         main.add(email);
 
         JLabel passwordL = new JLabel("PASSWORD:");
-        passwordL.setForeground(color("bt"));
+        passwordL.setForeground(new java.awt.Color(255, 204, 0));
         passwordL.setBounds(150, 179, 200, 25);
         main.add(passwordL);
         password = new JPasswordField();
@@ -117,7 +117,7 @@ public class Registration extends JFrame {
         main.add(password);
         
         JLabel passwordLConfirm = new JLabel("CONFIRM PASSWORD:");
-        passwordLConfirm.setForeground(color("bt"));
+        passwordLConfirm.setForeground(new java.awt.Color(255, 204, 0));
         passwordLConfirm.setBounds(100, 220, 200, 25);
         main.add(passwordLConfirm);
         passwordConfirm = new JPasswordField();
@@ -128,16 +128,16 @@ public class Registration extends JFrame {
         JRadioButton customer = new JRadioButton("CUSTOMER");
         customer.setBounds(670, 220, 100, 15);
         customer.setSelected(true);
-        customer.setBackground(color("background"));
-        customer.setForeground(color("bt"));
+        customer.setBackground(Color.black);
+        customer.setForeground(new java.awt.Color(255, 204, 0));
         customer.addActionListener(regController);
         customer.setActionCommand("customer");
         JRadioButton barber = new JRadioButton("BARBER");
         barber.addActionListener(regController);
         barber.setActionCommand("barber");
         barber.setBounds(770, 220, 100, 15);
-        barber.setBackground(color("background"));
-        barber.setForeground(color("bt"));
+        barber.setBackground(Color.black);
+        barber.setForeground(new java.awt.Color(255, 204, 0));
         ButtonGroup group = new ButtonGroup();
         group.add(customer);
         group.add(barber);
@@ -153,12 +153,12 @@ public class Registration extends JFrame {
         //BARBER SECTION
         barberSection = new JPanel();
         barberSection.setBounds(4, 260, 886, 174);
-        barberSection.setBackground(color("background"));
+        barberSection.setBackground(Color.black);
         barberSection.setLayout(null);
         barberSection.setVisible(false);
 
         JLabel barberShopL = new JLabel("BARBERSHOP:");
-        barberShopL.setForeground(color("bt"));
+        barberShopL.setForeground(new java.awt.Color(255, 204, 0));
         barberShopL.setBounds(146, 5, 200, 27);
         barberSection.add(barberShopL);
         barberShop = new JTextField();
@@ -166,7 +166,7 @@ public class Registration extends JFrame {
         barberSection.add(barberShop);
 
         JLabel addressL = new JLabel("ADDRESS:");
-        addressL.setForeground(color("bt"));
+        addressL.setForeground(new java.awt.Color(255, 204, 0));
         addressL.setBounds(146, 52, 200, 27);
         barberSection.add(addressL);
         address = new JTextField();
@@ -174,7 +174,7 @@ public class Registration extends JFrame {
         barberSection.add(address);
 
         JLabel locationL = new JLabel("LOCATION:");
-        locationL.setForeground(color("bt"));
+        locationL.setForeground(new java.awt.Color(255, 204, 0));
         locationL.setBounds(146, 99, 200, 27);
         barberSection.add(locationL);
         String[] option = {"Dublin1", "Dublin2", "Dublin3", "Dublin4",
@@ -208,10 +208,10 @@ public class Registration extends JFrame {
 
         JPanel footer = new JPanel();
         JLabel copy = new JLabel("2020© Alysson Chinque");
-        footer.setBackground(color("background"));
-        footer.setBorder(BorderFactory.createLineBorder(color("bt")));
+        footer.setBackground(Color.black);
+        footer.setBorder(BorderFactory.createLineBorder(Color.orange));
         copy.setFont(new Font("Arial", Font.PLAIN, 12));
-        copy.setForeground(color("bt"));
+        copy.setForeground(new java.awt.Color(255, 204, 0));
         footer.add(copy);
         footer.setBounds(0, 544, 894, 27);
         this.add(footer);
@@ -292,17 +292,6 @@ public class Registration extends JFrame {
 
     public void setCombo(JComboBox combo) {
         this.combo = combo;
-    }
-
-    private Color color(String type) {
-        switch (type) {
-            case "bt":
-                return new java.awt.Color(255, 204, 0);
-            case "background":
-                return new java.awt.Color(24, 24, 24);
-            default:
-                return Color.white;
-        }
     }
     
 }
